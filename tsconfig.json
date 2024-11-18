@@ -16,6 +16,14 @@
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
+    "paths": {
+      "sanitation-layout": [
+        "./dist/sanitation-layout"
+      ],
+      "session": [
+        "./dist/session"
+      ]
+    },
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",

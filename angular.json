@@ -101,6 +101,72 @@
           }
         }
       }
+    },
+    "session": {
+      "projectType": "library",
+      "root": "projects/session",
+      "sourceRoot": "projects/session/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/session/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/session/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/session/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/session/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "sanitation-layout": {
+      "projectType": "library",
+      "root": "projects/sanitation-layout",
+      "sourceRoot": "projects/sanitation-layout/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/sanitation-layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sanitation-layout/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/sanitation-layout/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/sanitation-layout/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

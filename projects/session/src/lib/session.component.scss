@@ -1,0 +1,32 @@
+.log-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.icon-container{
+    background-color: var(--side-background-color);
+}
+
+.input-container{
+    
+
+    h6{
+        font-size: 18px;
+        margin: 0;
+    }
+    .border{
+        border-radius: 10px;
+        border: 2px solid rgb(212, 212, 212) !important;
+        width: 320px;
+    }
+
+    button{
+        border-radius: 10px;
+        background-color: var(--primary-button);
+    }
+
+    .password-dom{
+        cursor: pointer;
+        font-size: 14px;
+    }
+}

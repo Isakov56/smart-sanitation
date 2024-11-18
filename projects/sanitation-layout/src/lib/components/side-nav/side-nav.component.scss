@@ -1,0 +1,74 @@
+.sidenav-container {
+  height: 100%;
+  background-color: var(--primary-background-color);
+}
+
+.logo{
+  width: 270px;
+  height: 270px;
+  position: relative;
+  top: -50px;
+}
+
+.id-container{
+  border-bottom: 2px solid var(--primary-button);
+}
+
+.nav-link-div{
+  border: 2px solid var(--primary-button);
+  border-radius: 6px;
+}
+
+.nav-link-icon{
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.nav-link{
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-button);
+}
+
+.icon.id{
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--primary-button);
+}
+
+
+.account-circle{
+  color: var(--primary-button);
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+}
+
+.nav-link-container{
+  position: relative;
+  top: -80px;
+  padding-right: 2rem !important;
+  padding-left: 2rem !important;
+}
+
+.sidenav {
+  width: 280px;
+  background-color: var(--side-background-color);
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 20px;
+  height: 92%;
+  position: absolute;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--side-background-color);
+}

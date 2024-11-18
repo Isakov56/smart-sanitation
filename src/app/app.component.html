@@ -1,3 +1,5 @@
-<lib-shared-layout>
+<lib-sanitation-layout *ngIf="isLogedIn"> 
   <router-outlet></router-outlet>
-</lib-shared-layout>
+</lib-sanitation-layout>
+
+<router-outlet *ngIf="!isLogedIn"></router-outlet>
