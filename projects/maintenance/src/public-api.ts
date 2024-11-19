@@ -4,3 +4,4 @@
 
 export * from './lib/maintenance.service';
 export * from './lib/maintenance.component';
+export * from './lib/maintenance.routs'
