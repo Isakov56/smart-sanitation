@@ -30,7 +30,9 @@
       </div>
     </div>
   </mat-sidenav>
+  
   <mat-sidenav-content class="">
+    <div class="d-flex justify-content-between">
     <mat-toolbar color="primary ps-5">
       @if (isHandset$ | async) {
         <button
@@ -43,6 +45,13 @@
       }
       <h1 class="h1-content">{{ formattedRouteName }}</h1>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <div class="sidenav-right">
+      <div class="add-btn w-100 p-2 d-flex align-items-center justify-content-center flex-column">
+        <div>AGGUNGI</div>
+        <div>NUOVO DISPOSITIVO</div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

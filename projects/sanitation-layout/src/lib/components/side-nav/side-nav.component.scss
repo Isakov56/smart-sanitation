@@ -71,7 +71,6 @@
   margin-bottom: auto;
   border-radius: 20px;
   height: 92%;
-  position: absolute;
 }
 
 .sidenav .mat-toolbar {
@@ -89,4 +88,16 @@
   position: relative;
   bottom: -75px;
   border-top: 2px solid var(--primary-button);
+}
+
+.sidenav-right{
+  min-width: 240px;
+}
+
+.add-btn{
+  background-color: var(--primary-button);
+  color: white;
+  font-size: 17px;
+  border-radius: 10px;
+  cursor: pointer;
 }
