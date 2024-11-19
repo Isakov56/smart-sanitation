@@ -10,25 +10,36 @@
   top: -50px;
 }
 
+.h1-content{
+  font-size: 36px;
+  font-weight: 500;
+}
+
 .id-container{
   border-bottom: 2px solid var(--primary-button);
 }
 
 .nav-link-div{
-  border: 2px solid var(--primary-button);
-  border-radius: 6px;
+  // border: 2px solid var(--primary-button);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nav-link-div.active{
+  background-color: var(--primary-button-hover);
 }
 
 .nav-link-icon{
-  font-size: 2rem;
-  width: 2rem;
-  height: 2rem;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .nav-link{
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: var(--primary-button);
+  
 }
 
 .icon.id{
@@ -40,16 +51,16 @@
 
 .account-circle{
   color: var(--primary-button);
-  font-size: 3rem;
-  width: 3rem;
-  height: 3rem;
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .nav-link-container{
   position: relative;
-  top: -80px;
-  padding-right: 2rem !important;
-  padding-left: 2rem !important;
+  top: -90px;
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
 }
 
 .sidenav {
@@ -70,5 +81,5 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: var(--side-background-color);
+  background-color: transparent
 }

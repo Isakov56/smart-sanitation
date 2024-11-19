@@ -4,8 +4,8 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <img class="logo" src="https://s3-alpha-sig.figma.com/img/d21d/a5aa/0bef3a76f3522f1f74b33235c5c062e0?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LYLQFqWuUTsErdDhVRL9FVMSumbo8rOkCbQv7FQmwDnRWT7PiqHCNPyE2iCbNmVRlF1KlVMopuGyI0D3HFiS4G~c6JjTbJR2~tIZlo86HDpFqsamllmlHKZWHx2-G~61zMz6bRt5VjOtv54KxC0JcxBe~zAgxtyGzyCLWisK0IUCL7cgg9vAN5-~IE1SiUWsvIgpEGEmkcZud6y6StCcaxv~91bdP3wqdQgPb7SCf2TiargR~Bg0WRweDTmcH2w-ufdIyfhawSKn47BL7gvVMJBJemZm9z5kMT7QnVMYGh6KDQdUeWCkr2ZRvQ8wPuZIs8vhQCifha0LlAxdI3Qlrg__" alt="">
-    <div class="px-3 nav-link-container d-flex justify-content-center align-items-center flex-column">
-      <div class="d-flex align-items-center id-container py-2 w-100 mb-4">
+    <div class=" nav-link-container d-flex justify-content-center align-items-center flex-column">
+      <div class="d-flex align-items-center id-container p-2 w-100 mb-3 justify-content-center">
         <mat-icon  fontIcon="account_circle" class="account-circle me-3"></mat-icon>
         <div>
           <div class="icon id">ID:</div>
@@ -13,15 +13,18 @@
         </div>
       </div>
       <div class="w-100">
-        <div class="d-flex align-items-center nav-link-div w-100 h-100 justify-content-center p-2">
-          <mat-icon  fontIcon="home" class="nav-link-icon me-2 "></mat-icon>
-          <div class="d-flex justify-content-center nav-link ms-2">Dashboard</div>
+        <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 active my-2" [routerLink]="route.path">
+          <mat-icon  [fontIcon]="route.icon || 'default_icon'" class="nav-link-icon mx-3 ms-4"></mat-icon>
+          <div *ngIf="route.path" class="d-flex justify-content-center nav-link ms-2">{{ route.label ? (route.label) : '' }}</div>
         </div>
+        <!-- <mat-nav-list *ngFor="let route of routes" class="py-1">
+          <a mat-list-item  *ngIf="route.path" [routerLink]="route.path">{{ route.label ? (route.label) : '' }}</a>
+        </mat-nav-list> -->
       </div>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <!-- <mat-toolbar color="primary">
+  <mat-sidenav-content class="">
+    <mat-toolbar color="primary ps-5">
       @if (isHandset$ | async) {
         <button
           type="button"
@@ -31,8 +34,8 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      <span>smart-sanitation</span>
-    </mat-toolbar> -->
+      <h1 class="h1-content">Dashboard</h1>
+    </mat-toolbar>
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

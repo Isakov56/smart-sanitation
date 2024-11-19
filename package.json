@@ -27,7 +27,7 @@
     "i18n-lib": "^0.0.1",
     "isakov-core": "^0.0.2",
     "isakov-shared": "^0.0.2",
-    "isakov-themes": "^1.1.9",
+    "isakov-themes": "^1.1.11",
     "rxjs": "~7.8.0",
     "shared-layout": "^1.0.22",
     "tslib": "^2.3.0",

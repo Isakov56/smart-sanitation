@@ -17,6 +17,18 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
+      "dashboard": [
+        "./dist/dashboard"
+      ],
+      "maintenance": [
+        "./dist/maintenance"
+      ],
+      "monitoring": [
+        "./dist/monitoring"
+      ],
+      "reports": [
+        "./dist/reports"
+      ],
       "sanitation-layout": [
         "./dist/sanitation-layout"
       ],
