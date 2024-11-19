@@ -15,8 +15,9 @@
   font-weight: 500;
 }
 
-.id-container{
-  border-bottom: 2px solid var(--primary-button);
+
+.nav-link-border{
+  border-top: 2px solid var(--primary-button);
 }
 
 .nav-link-div{
@@ -82,4 +83,10 @@
   top: 0;
   z-index: 1;
   background-color: transparent
+}
+
+.log-out{
+  position: relative;
+  bottom: -75px;
+  border-top: 2px solid var(--primary-button);
 }
