@@ -1,6 +1,7 @@
 .sidenav-container {
   height: 100%;
   background-color: var(--primary-background-color);
+  width: 100%;
 }
 
 .logo{
@@ -91,13 +92,133 @@
 }
 
 .sidenav-right{
-  min-width: 240px;
+  min-width: 236px;
+  position: fixed;
+  z-index: 9999 !important;
+  right: 30px;
+  // position: absolute;
+  // height: 50vh;
+  // right: 0px;
+  // top: 0px;
+}
+
+.empty-container-side{
+  min-width: 220px;
+}
+
+.entry-container{
+  height: 45px;
 }
 
 .add-btn{
-  background-color: var(--primary-button);
+  background-color: var(--primary-button-dark);
   color: white;
   font-size: 17px;
   border-radius: 10px;
   cursor: pointer;
 }
+.content{
+  // flex: 1;
+  max-width: 950px; /* Optional: set a maximum width */
+  overflow: hidden;
+  // word-wrap: break-word; /* Ensure long text breaks to the next line */
+  // padding: 16px;
+  // text-align: center;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field {
+  padding: 0 !important;
+  height: 40px;  
+  background-color: var(--secondary-background);
+  color: red;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+  height: 40px !important; /* Match the input field height */
+  padding: 0px !important; /* Adjust horizontal padding */
+  color: red;
+  
+}
+
+::ng-deep .mat-mdc-input-element {
+  height: 40px !important; /* Reduce input element height */
+  line-height: 40px !important; /* Vertically align the text */
+  padding: 0px !important; /* Match input padding */
+  color: red;
+}
+
+.smaller.input{
+  color: var(--primary-button);
+}
+
+.smaller{
+  height: 37px;
+  position: relative;
+}
+
+.smaller.icon{
+  height: 40px;
+  color: var(--primary-button);
+}
+
+.sidenav-right.down{
+  margin-top: 35px;
+}
+
+::ng-deep mat-slide-toggle {
+  height: 24px !important; /* Set overall height */
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+::ng-deep mat-slide-toggle .mdc-switch {
+  height: 12px !important; /* Adjust the height of the switch */
+  width: 43px !important; /* Optional: Adjust width */
+}
+
+::ng-deep mat-slide-toggle .mdc-switch__track {
+  height: 23px !important; /* Slim down the track */
+  border-radius: 12px !important; /* Match height for rounded ends */
+}
+
+::ng-deep mat-slide-toggle .mdc-switch__handle {
+  height: 16px !important; /* Reduce size of the handle */
+  width: 16px !important;
+}
+
+::ng-deep mat-slide-toggle .mdc-switch__ripple {
+  height: 20px !important; /* Ensure ripple fits the slimmer design */
+  width: 20px !important;
+}
+
+::ng-deep mat-slide-toggle .mdc-form-field {
+  margin: 0 !important; /* Remove additional spacing */
+  padding: 0 !important;
+}
+
+.fw-semibold{
+  font-weight: 500 !important;
+}
+
+.primary-color{
+  color: var(--primary-button);
+}
+
+.tips{
+  background-color: var(--secondary-background);
+  margin-right: 0.8rem;
+  border-radius: 5px;
+  color: var(--primary-button);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.pick{
+  padding-left: 13px !important;
+}
+
+
+
+

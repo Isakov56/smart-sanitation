@@ -7,11 +7,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, startWith } from 'rxjs/operators';
 import { RouteConfig } from 'isakov-shared';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 
 @Component({
@@ -27,11 +35,22 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     RouterModule,
-    CommonModule
-  ]
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
   @Input() routes: RouteConfig[] = []
+
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]> | undefined;
 
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -51,10 +70,32 @@ export class SideNavComponent implements OnInit {
       const routePath = this.router.url.split('/').pop(); // Get last segment of the route
       this.formattedRouteName = this.capitalize(routePath || ''); // Default to 'Dashboard' if undefined
     });
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
   }
 
   // Helper method to capitalize the first letter of the string
   capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  isDarkTheme = false;
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+
+    if (this.isDarkTheme) {
+      document.body.classList.add('theme-dark');
+    } else {
+      document.body.classList.remove('theme-dark');
+    }
   }
 }

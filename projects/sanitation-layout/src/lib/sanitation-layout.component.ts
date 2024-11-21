@@ -7,7 +7,7 @@ import { RouteConfig } from 'isakov-shared';
   standalone: true,
   imports: [SideNavComponent],
   template: `
-    <app-side-nav [routes]="routes"></app-side-nav>
+    <app-side-nav [routes]="routes"><ng-content></ng-content></app-side-nav>
   `,
   styles: ``
 })
