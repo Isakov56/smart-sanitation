@@ -1,0 +1,14 @@
+{
+  "name": "charts-lib",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
+    "chart.js": "^4.4.6",
+    "ng2-charts": "^6.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

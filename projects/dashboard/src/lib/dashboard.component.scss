@@ -4,35 +4,58 @@
 }
 
 .example-card {
-    flex: 1 1 calc(30% - 60px); /* Adjust width to fit within the row */
-    max-width: calc(31% - 5px); /* Prevent cards from growing too large */
+    flex: 1 1 calc(30% - 60px);
+    max-width: calc(31% - 5px);
     margin: 10px 10px 10px 0px;
 }
+
 .card-container{
     display: flex;
-  flex-wrap: wrap; /* Ensures items wrap to a new row */
-  gap: 18px; /* Optional: adds spacing between cards */
-  }
+  flex-wrap: wrap; 
+  gap: 18px; 
+}
 
-@media (max-width: 1300px) { /* For tablets or medium-sized screens */
+@media (max-width: 1300px) {
     .example-card {
-        flex: 1 1 calc(40% - 20px); /* Increase width to 45% */
-        max-width: calc(30% - 0px); /* Adjust maximum width */
+        flex: 1 1 calc(40% - 20px); 
+        max-width: calc(30% - 0px); 
     }
     .card-container{
       gap: 10px; 
-      }
+    }
 }
 
-@media (max-width: 1240px) { /* For tablets or medium-sized screens */
+@media (max-width: 1240px) { 
+    
     .example-card {
-        flex: 1 1 calc(45% - 20px); /* Increase width to 45% */
-        max-width: calc(45% - 0px); /* Adjust maximum width */
+        flex: 1 1 calc(45% - 20px); 
+        max-width: calc(45% - 0px); 
     }
     .card-container{
       gap: 20px; 
-      }
-
+    }
+    
 }
+
+.charts-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 18px; 
+    width: 100%; 
+  }
+  
+  .charts-container > div {
+    flex: 1 1 calc(50% - 18px); 
+    max-width: calc(50% - 18px); 
+    margin: 10px 0; 
+  }
+  
+  @media (max-width: 1250px) {
+    .charts-container > div {
+        flex: 1 1 calc(100% - 18px); 
+        max-width: calc(100% - 18px);
+    }
+  }
+
 
   
