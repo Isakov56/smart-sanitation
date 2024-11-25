@@ -73,6 +73,10 @@
     margin: 0 !important; /* Remove additional spacing */
     padding: 0 !important;
   }
+
+  ::ng-deep input.mat-mdc-input-element {
+   background-color: var(--secondary-background);
+  }
   
   .fw-semibold{
     font-weight: 500 !important;
@@ -95,6 +99,10 @@
   
   .pick{
     padding-left: 13px !important;
+  }
+
+  .pick::placeholder {
+    color: var(--primary-button) !important;
   }
   
   

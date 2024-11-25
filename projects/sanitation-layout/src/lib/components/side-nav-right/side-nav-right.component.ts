@@ -1,14 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, shareReplay, startWith} from 'rxjs/operators';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map, startWith} from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -19,10 +14,6 @@ import {MatInputModule} from '@angular/material/input';
   selector: 'app-side-nav-right',
   standalone: true,
   imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
     MatIconModule,
     MatFormFieldModule,
     FormsModule,

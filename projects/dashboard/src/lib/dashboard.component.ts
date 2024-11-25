@@ -2,11 +2,12 @@ import { Component, OnInit  } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { CardComponent } from 'shared';
 
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, MatButtonModule, CommonModule, CardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   styles: ``

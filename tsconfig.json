@@ -17,6 +17,9 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
+      "charts-lib": [
+        "./dist/charts-lib"
+      ],
       "dashboard": [
         "./dist/dashboard"
       ],
@@ -34,6 +37,9 @@
       ],
       "session": [
         "./dist/session"
+      ],
+      "shared": [
+        "./dist/shared"
       ]
     },
     "importHelpers": true,
