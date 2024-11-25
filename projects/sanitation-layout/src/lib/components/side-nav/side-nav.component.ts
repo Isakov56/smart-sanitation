@@ -18,7 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import { SideNavRightComponent } from '../side-nav-right/side-nav-right.component';
 
 
 
@@ -41,16 +41,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSlideToggleModule,
     FormsModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    SideNavRightComponent
+],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
   @Input() routes: RouteConfig[] = []
-
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]> | undefined;
 
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -70,32 +67,10 @@ export class SideNavComponent implements OnInit {
       const routePath = this.router.url.split('/').pop(); // Get last segment of the route
       this.formattedRouteName = this.capitalize(routePath || ''); // Default to 'Dashboard' if undefined
     });
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
   }
 
   // Helper method to capitalize the first letter of the string
   capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  isDarkTheme = false;
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-
-    if (this.isDarkTheme) {
-      document.body.classList.add('theme-dark');
-    } else {
-      document.body.classList.remove('theme-dark');
-    }
   }
 }

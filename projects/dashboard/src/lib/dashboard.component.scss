@@ -5,12 +5,34 @@
 
 .example-card {
     flex: 1 1 calc(30% - 60px); /* Adjust width to fit within the row */
-    max-width: calc(30.5% - 5px); /* Prevent cards from growing too large */
+    max-width: calc(31% - 5px); /* Prevent cards from growing too large */
     margin: 10px 10px 10px 0px;
-  }
-
-  .card-container{
+}
+.card-container{
     display: flex;
   flex-wrap: wrap; /* Ensures items wrap to a new row */
   gap: 18px; /* Optional: adds spacing between cards */
   }
+
+@media (max-width: 1300px) { /* For tablets or medium-sized screens */
+    .example-card {
+        flex: 1 1 calc(40% - 20px); /* Increase width to 45% */
+        max-width: calc(30% - 0px); /* Adjust maximum width */
+    }
+    .card-container{
+      gap: 10px; 
+      }
+}
+
+@media (max-width: 1240px) { /* For tablets or medium-sized screens */
+    .example-card {
+        flex: 1 1 calc(45% - 20px); /* Increase width to 45% */
+        max-width: calc(45% - 0px); /* Adjust maximum width */
+    }
+    .card-container{
+      gap: 20px; 
+      }
+
+}
+
+  
