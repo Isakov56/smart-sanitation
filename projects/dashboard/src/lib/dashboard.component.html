@@ -35,6 +35,17 @@
           }"></app-bar-chart>
         </app-card>
       </div>
+      <div class="w-100" *ngIf='testChartData'>
+        <app-card>
+          <app-bar-chart [chartType]="'line'"
+          [data]="testChartData"
+          [gradientConfig]="{
+            startColor: '#090979',
+            endColor: '#0096b4',
+            direction: 'horizontal'
+          }"></app-bar-chart>
+        </app-card>
+      </div>
       <div class="w-100 mt-2" *ngIf="true">
         <app-card>
           <app-pie-chart 
@@ -52,5 +63,6 @@
           }"></app-pie-chart>
         </app-card>
       </div>
+      
     </div>
 </div>
