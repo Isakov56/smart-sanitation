@@ -45,14 +45,14 @@
   }
   
   .charts-container > div {
-    flex: 1 1 calc(50% - 18px); 
+    flex: 1 1 calc(50% - 0px); 
     max-width: calc(50% - 18px); 
-    margin: 10px 0; 
+    margin: auto; 
   }
   
   @media (max-width: 1250px) {
     .charts-container > div {
-        flex: 1 1 calc(100% - 18px); 
+        flex: 1 1 calc(100% - 0px); 
         max-width: calc(100% - 18px);
     }
   }

@@ -20,6 +20,9 @@
       "charts-lib": [
         "./dist/charts-lib"
       ],
+      "core": [
+        "./dist/core"
+      ],
       "dashboard": [
         "./dist/dashboard"
       ],

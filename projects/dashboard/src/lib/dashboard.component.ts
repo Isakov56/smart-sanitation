@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from 'shared';
 import { PieChartComponent } from 'charts-lib';
 import { BarChartComponent } from 'charts-lib';
+import { WeatherService } from 'core';
 
 @Component({
   selector: 'lib-dashboard',
@@ -16,11 +17,45 @@ import { BarChartComponent } from 'charts-lib';
 })
 export class DashboardComponent implements OnInit {
   cards: any[] = [];
-
-  constructor() {}
+  weatherData: any;
+  testChartData?: any;
+  
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.generateCards(6); // Adjust the number of cards here
+    this.generateCards(6);
+    this.getWeatherData('London');
+    console.log(this.testChartData)
+  }
+
+  getWeatherData(city: string): void {
+    this.weatherService.getWeatherData(city).subscribe(data => {
+      this.weatherData = data; // Store weather data
+      this.prepareChartData();  // Prepare chart data based on weather data
+      console.log(this.weatherData.main, 'kjhkjh')
+    });
+  }
+
+  prepareChartData(): void {
+    if (this.weatherData) {
+      // Example: prepare bar chart data using weather temperature data
+      this.testChartData = {
+        labels: ['Morning', 'Afternoon', 'Evening'],
+        datasets: [
+          {
+            label: 'Temperature (°C)',
+            data: [
+              this.weatherData.main.temp,  // Current temperature
+              23,  // Example static data
+              20   // Example static data
+            ],
+            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: 'rgba(75,192,192,0.2)',
+            fill: true
+          }
+        ]
+      };
+    }
   }
 
   generateCards(count: number): void {
@@ -36,10 +71,11 @@ export class DashboardComponent implements OnInit {
   }
 
   pieChartData = {
-    labels: ['Red', 'Blue', 'Yellow'],
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: [30, 20, 10, 25, 15],
+        label: 'Sales',
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       },
     ],
@@ -50,7 +86,7 @@ export class DashboardComponent implements OnInit {
     datasets: [
       {
         data: [65, 59, 80],
-        label: 'Sales',
+        label: 'Colors',
         backgroundColor: 'green',
       },
     ],
