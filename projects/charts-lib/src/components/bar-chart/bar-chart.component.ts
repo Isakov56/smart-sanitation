@@ -1,5 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { Chart, ChartType, ChartOptions } from 'chart.js';
+import { Chart, ChartType, ChartOptions, registerables  } from 'chart.js';
+
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-bar-chart',
