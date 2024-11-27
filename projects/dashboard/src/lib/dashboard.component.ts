@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.generateCards(6);
+    this.generateCards(3);
     this.getWeatherData('Rome');
     console.log(this.testChartData)
   }

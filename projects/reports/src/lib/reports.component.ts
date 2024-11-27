@@ -12,11 +12,11 @@ import { CardComponent } from 'shared';
   styleUrl: './reports.component.scss'
 })
 export class ReportsComponent implements OnInit{
-  isTable = false;
+  isTable = true;
   cards: any[] = [];
 
   ngOnInit(): void {
-    this.generateCards(6);
+    this.generateCards(9);
   }
 
   columns: string[] = ['Sala operatoria', 'Data', 'Data del lavaggio', 'Esito lavaggio'];

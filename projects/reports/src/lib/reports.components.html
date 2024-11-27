@@ -1,13 +1,13 @@
 <div class="me-1 pe-2">
     <div class="d-flex table-toggle">
-        <div class="px-2" >
-        <mat-icon class="table-toggle-icon" aria-label="Side nav toggle  icon" (click)="setTableView(false)">grid_view_icon</mat-icon>
+        <div class=" d-flex justify-content-center align-items-center icon-container" [ngClass]="{'active-icon': !isTable, 'inactive-icon': isTable}">
+            <mat-icon class="table-toggle-icon"  aria-label="Side nav toggle  icon" (click)="setTableView(false)">grid_view_icon</mat-icon>
         </div>
-        <div class="px-2">
-        <mat-icon class="table-toggle-icon" aria-label="Side nav toggle icon"  (click)="setTableView(true)">menu</mat-icon>
+        <div class=" d-flex justify-content-center align-items-center icon-container" [ngClass]="{'active-icon': isTable, 'inactive-icon': !isTable}">
+            <mat-icon class="table-toggle-icon"  aria-label="Side nav toggle icon"  (click)="setTableView(true)">menu</mat-icon>
         </div>
     </div>
-    <div *ngIf='isTable'>
+    <div *ngIf='isTable' class="mt-2">
         <app-table [columns]="columns" [data]="data" class="w-100"></app-table>
     </div>
     <div class="w-100 card-container mt-5" *ngIf='!isTable'>
@@ -16,13 +16,17 @@
         
         class="example-card pe-3"
       >
-        <div class="px-2">
+        <div class="px-3">
             <div class="d-flex justify-content-between">
                 <h6 class="text-small">Sala Operatoria</h6>
                 <h6 class="text-small">N.1</h6>
             </div>
             <div class="w-100 d-flex justify-content-center align-items-center">
                 <h1 class="text-success">98%</h1>
+            </div>
+            <div class="p-0 mb-1 ">
+                <div class="text-smaller p-0 m-0">Data: 10/11/2024</div>
+                <div class="text-smaller p-0 m-0">Durata: 3 minuti</div>
             </div>
         </div>
     </app-card>

@@ -1,6 +1,23 @@
 .table-toggle{
-    position: absolute; top: 10px; right: 300px;
+    position: absolute; top: 5px; right: 300px;
     z-index: 999999;
+    background-color: var(--secondary-background);
+    border-radius: 12px;
+}
+
+.icon-container{
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 5px 14px 5px 14px ;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    &.active-icon {
+        background-color: var(--primary-button-dark);       
+        .table-toggle-icon{
+            color: white;
+        }
+      }
+    
+      
 }
 
 .table-toggle-icon{
@@ -8,10 +25,11 @@
     font-size: 30px;
     width: 30px;
     height: 30px;
+    
 }
 
 .example-card {
-    flex: 1 1 calc(30% - 60px);
+    flex: 1 1 calc(35% - 60px);
     max-width: calc(31% - 5px);
     margin: auto;
     margin-bottom: 18px;
@@ -49,4 +67,12 @@
 
 .text-small{
     font-size: medium;
+    color: var(--primary-button);
+    font-weight: 500;
+}
+
+.text-smaller{
+    font-size: small;
+    font-weight: 500;
+    color: var(--primary-button);
 }
