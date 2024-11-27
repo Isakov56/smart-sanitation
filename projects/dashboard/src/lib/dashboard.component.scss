@@ -7,6 +7,8 @@
     flex: 1 1 calc(30% - 60px);
     max-width: calc(31% - 5px);
     margin: auto;
+    margin-bottom: 18px;
+    margin-left: 0;
 }
 
 .card-container{
@@ -19,7 +21,7 @@
 @media (max-width: 1300px) {
     .example-card {
         flex: 1 1 calc(40% - 20px); 
-        max-width: calc(30% - 0px); 
+        max-width: calc(32% - 0px); 
     }
     .card-container{
       gap: 10px; 
@@ -29,8 +31,8 @@
 @media (max-width: 1240px) { 
     
     .example-card {
-        flex: 1 1 calc(45% - 20px); 
-        max-width: calc(45% - 0px); 
+        flex: 1 1 calc(100% - 0px); 
+        max-width: calc(48% - 2px); 
     }
     .card-container{
       gap: 18px; 
@@ -49,6 +51,7 @@
     flex: 1 1 calc(50% - 0px); 
     max-width: calc(50% - 18px); 
     margin: auto; 
+    margin-left: 0;
   }
   
   @media (max-width: 1250px) {
