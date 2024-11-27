@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateCards(6);
-    this.getWeatherData('London');
+    this.getWeatherData('Rome');
     console.log(this.testChartData)
   }
 

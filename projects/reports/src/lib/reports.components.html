@@ -1,0 +1,30 @@
+<div class="me-1 pe-2">
+    <div class="d-flex table-toggle">
+        <div class="px-2" >
+        <mat-icon class="table-toggle-icon" aria-label="Side nav toggle  icon" (click)="setTableView(false)">grid_view_icon</mat-icon>
+        </div>
+        <div class="px-2">
+        <mat-icon class="table-toggle-icon" aria-label="Side nav toggle icon"  (click)="setTableView(true)">menu</mat-icon>
+        </div>
+    </div>
+    <div *ngIf='isTable'>
+        <app-table [columns]="columns" [data]="data" class="w-100"></app-table>
+    </div>
+    <div class="w-100 card-container mt-5" *ngIf='!isTable'>
+        <app-card
+        *ngFor="let card of cards"
+        
+        class="example-card pe-3"
+      >
+        <div class="px-2">
+            <div class="d-flex justify-content-between">
+                <h6 class="text-small">Sala Operatoria</h6>
+                <h6 class="text-small">N.1</h6>
+            </div>
+            <div class="w-100 d-flex justify-content-center align-items-center">
+                <h1 class="text-success">98%</h1>
+            </div>
+        </div>
+    </app-card>
+      <div class=" w-100 pe-3 charts-container">
+</div>

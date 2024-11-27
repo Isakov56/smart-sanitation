@@ -46,7 +46,7 @@
         }
         <h1 class="h1-content h-100 d-flex align-items-center">{{ formattedRouteName }}</h1>
       </mat-toolbar>
-      <div class="sidenav-right me-2">
+      <div class="sidenav-right me-2" *ngIf="!isReportsRoute()">
         <div class="add-btn w-100 p-2 d-flex align-items-center justify-content-center flex-column">
           <div>AGGUNGI</div>
           <div>NUOVO DISPOSITIVO</div>

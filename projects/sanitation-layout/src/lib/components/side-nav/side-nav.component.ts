@@ -49,6 +49,10 @@ import { SideNavRightComponent } from '../side-nav-right/side-nav-right.componen
 export class SideNavComponent implements OnInit {
   @Input() routes: RouteConfig[] = []
 
+  isReportsRoute(): boolean {
+    return this.router.url.includes('reports');
+  }
+
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
