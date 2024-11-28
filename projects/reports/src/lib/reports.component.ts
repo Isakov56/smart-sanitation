@@ -30,6 +30,8 @@ export class ReportsComponent implements OnInit{
     { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
     { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
     { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
+    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
+    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
    
   ];
 

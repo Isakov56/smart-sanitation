@@ -70,6 +70,10 @@
   width: 100%;
 }
 
+.routes{
+  min-height: 335px;
+}
+
 // .id-container{
 //   width: 80%;
 // }
@@ -129,7 +133,7 @@
 }
 .content{
   // flex: 1;
-  max-width: 950px; /* Optional: set a maximum width */
+  // max-width: 950px; /* Optional: set a maximum width */
   overflow: hidden;
   // word-wrap: break-word; /* Ensure long text breaks to the next line */
   // padding: 16px;

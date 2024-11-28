@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy, HostListener, OnInit } from '@angular/core';
 import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 
 @Component({
@@ -7,7 +7,7 @@ import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartComponent implements AfterViewInit, OnDestroy {
+export class PieChartComponent implements OnInit, OnDestroy {
   @Input() chartData!: ChartData<'pie'>;
   @Input() chartOptions: ChartOptions<'pie'> = {
     responsive: true,
@@ -22,7 +22,7 @@ export class PieChartComponent implements AfterViewInit, OnDestroy {
     Chart.register(...registerables);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.initializeChart();
   }
 

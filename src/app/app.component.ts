@@ -16,7 +16,7 @@ import { routeConfig } from './app.routes';
 })
 export class AppComponent implements OnInit{
   title = 'smart-sanitation';
-  isLogedIn: boolean = true;
+  isLogedIn: boolean = false;
 
   public routes = routeConfig;
 
