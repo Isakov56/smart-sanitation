@@ -5,6 +5,7 @@ import { maintenanceRouts } from 'maintenance';
 import { monitoringdRouts } from 'monitoring';
 import { reportsdRouts } from 'reports';
 import { RouteConfig } from 'isakov-shared';
+import { addDeviceRouts } from 'add-device'
 
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
     ...maintenanceRouts,
     ...monitoringdRouts,
     ...reportsdRouts,
+    ...addDeviceRouts,
     { path: '', redirectTo: '', pathMatch: 'full' }
 ];
 

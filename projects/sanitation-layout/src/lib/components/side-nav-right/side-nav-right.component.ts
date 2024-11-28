@@ -9,6 +9,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-side-nav-right',
@@ -21,8 +24,9 @@ import {MatInputModule} from '@angular/material/input';
     AsyncPipe,
     MatSlideToggleModule,
     MatAutocompleteModule,
-    MatInputModule
-    
+    MatInputModule,
+    RouterModule,
+    CommonModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './side-nav-right.component.html',
@@ -45,6 +49,11 @@ export class SideNavRightComponent implements OnInit {
     }
   }
 
+  constructor(private router: Router) {}
+  isExcludedRoute(): boolean {
+    const excludedRoutes = ['reports', 'add-device']; 
+    return excludedRoutes.some(route => this.router.url.includes(route));
+  }
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -57,4 +66,6 @@ export class SideNavRightComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+  
 }

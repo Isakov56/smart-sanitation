@@ -17,6 +17,9 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
+      "add-device": [
+        "./dist/add-device"
+      ],
       "charts-lib": [
         "./dist/charts-lib"
       ],

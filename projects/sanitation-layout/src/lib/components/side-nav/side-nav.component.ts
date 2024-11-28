@@ -53,6 +53,11 @@ export class SideNavComponent implements OnInit {
     return this.router.url.includes('reports');
   }
 
+  isExcludedRoute(): boolean {
+    const excludedRoutes = ['reports', 'aggiungi-dispositivo']; // Add more routes as needed
+    return excludedRoutes.some(route => this.router.url.includes(route));
+  }
+
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
