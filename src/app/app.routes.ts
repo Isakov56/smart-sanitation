@@ -23,5 +23,4 @@ export const routeConfig: RouteConfig[] = [
     { path: '/monitoring', label: 'Monitoraggio', icon: 'tv_icon' },
     { path: '/maintenance', label: 'Manutenzione', icon: 'build_icon' },
     { path: '/reports', label: 'Reports', icon: 'feed_icon' },
-    { path: '/login', label: 'Crea utente', icon: 'person_add_alt_icon' }
   ];

@@ -1,0 +1,33 @@
+.charts-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 18px; 
+    width: 100%; 
+  }
+  
+  .example-card {
+    flex: 1 1 calc(50% - 0px); 
+    max-width: calc(50% - 18px); 
+    margin: auto; 
+    margin-left: 0;
+    margin-top: 18px;
+  }
+  
+  @media (max-width: 1250px) {
+    .example-card {
+        flex: 1 1 calc(100% - 0px); 
+        max-width: calc(100% - 18px);
+    }
+  }
+
+  .text-medium{
+    font-size: 25px;
+    color: var(--primary-button);
+    font-weight: 500;
+}
+
+.text-small{
+    font-size: 20px;
+    color: var(--primary-button);
+    font-weight: 500;
+}

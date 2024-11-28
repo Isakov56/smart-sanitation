@@ -18,6 +18,6 @@ export class MaintenanceComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.generateCards(3);
+    this.generateCards(4);
   }
 }
