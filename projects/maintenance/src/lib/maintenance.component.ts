@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CardComponent } from 'shared';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-maintenance',
   standalone: true,
-  imports: [],
-  template: `
-    <p>
-      maintenance works!
-    </p>
-  `,
-  styles: ``
+  imports: [CardComponent, CommonModule],
+  templateUrl: './maintenance.components.html',
+  styleUrl: './maintenance.components.scss'
 })
-export class MaintenanceComponent {
+export class MaintenanceComponent implements OnInit{
 
+  cards: any[] = [];
+
+  generateCards(count: number): void {
+    this.cards = Array.from({ length: count }, () => ({  }));
+  }
+
+  ngOnInit(): void {
+    this.generateCards(3);
+  }
 }
