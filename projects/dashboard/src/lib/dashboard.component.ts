@@ -6,11 +6,13 @@ import { CardComponent } from 'shared';
 import { PieChartComponent } from 'charts-lib';
 import { BarChartComponent } from 'charts-lib';
 import { WeatherService } from 'core';
+import { CardLoaderComponent } from 'shared';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule, CardComponent, BarChartComponent, PieChartComponent],
+  imports: [MatCardModule, MatButtonModule, CommonModule, CardComponent, BarChartComponent, PieChartComponent, CardLoaderComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   styles: ``
@@ -29,15 +31,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getWeatherData(city: string): void {
-    this.weatherService.getWeatherData(city).subscribe(data => {
+    this.weatherService.getWeatherData(city). pipe(delay(1500)).subscribe(data => {
       this.weatherData = data; // Store weather data
-      this.prepareChartData();  // Prepare chart data based on weather data
+      this.prepareChartData(data);  // Prepare chart data based on weather data
       console.log(this.weatherData.main, 'kjhkjh')
     });
   }
 
-  prepareChartData(): void {
-    if (this.weatherData) {
+  prepareChartData(weatherData: any): void {
+    if (weatherData && weatherData.main) {
       // Example: prepare bar chart data using weather temperature data
       this.testChartData = {
         labels: ['Morning', 'Afternoon', 'Evening'],

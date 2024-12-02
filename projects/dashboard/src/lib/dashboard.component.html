@@ -19,45 +19,51 @@
           <div class="text-smaller p-0 m-0">Durata: 3 minuti</div>
       </div>
     </div>
+    <!-- <app-card-loader></app-card-loader> -->
   </app-card>
-    <div class=" w-100 pe-3 charts-container" *ngIf='testChartData'>
+  
+    <div class=" w-100 pe-3 charts-container">
       
-      <div class="w-100" *ngIf='testChartData'>
+      <div class="w-100" >
         <app-card>
-          <app-bar-chart [chartType]="'polarArea'"
+          <app-bar-chart *ngIf='testChartData' [chartType]="'polarArea'"
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
           }"></app-bar-chart>
+          <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
-      <div class="w-100" *ngIf='testChartData'>
+      <div class="w-100" >
         <app-card class="">
-          <app-bar-chart [chartType]="'bar'"
+          <app-bar-chart [chartType]="'bar'" *ngIf='testChartData'
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
           }"></app-bar-chart>
+          <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
-      <div class="w-100" *ngIf='testChartData'>
+      <div class="w-100" >
         <app-card>
-          <app-bar-chart [chartType]="'line'"
+          <app-bar-chart *ngIf='testChartData' [chartType]="'line'"
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
           }"></app-bar-chart>
+          <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
       <div class="w-100 mt-2" *ngIf="true">
         <app-card>
           <app-pie-chart 
+          *ngIf='testChartData'
           [chartData]="{
             labels: ['Red', 'Blue', 'Yellow'],
             datasets: [
@@ -70,8 +76,10 @@
           [chartOptions]="{
             plugins: { legend: { display: true } },
           }"></app-pie-chart>
+          <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
       
     </div>
+    <app-card-loader></app-card-loader>
 </div>

@@ -1,35 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, delay, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root', // Makes this service available in the app without importing it explicitly
+  providedIn: 'root',
 })
 export class ApiInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const modifiedReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.getToken()}`, // Replace with your token logic
-      },
-    });
-
-    return next.handle(modifiedReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('HTTP Error:', error);
-
-        // Add custom error handling, if needed
-        if (error.status === 401) {
-          console.error('Unauthorized error!');
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log('Interceptor Triggered for:', req.url);
+      
+        if (req.method === 'JSONP') {
+          // JSONP does not support headers, so skip adding Authorization
+          return next.handle(req);
         }
-
-        return throwError(() => new Error(error.message));
-      })
-    );
-  }
+      
+        const startTime = Date.now();
+        const modifiedReq = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${this.getToken()}`,
+          },
+        });
+      
+        return next.handle(modifiedReq).pipe(
+          delay(2000),  // Adding the 2-second delay
+          tap(() => {
+            const endTime = Date.now();
+            console.log(`Request delayed by: ${endTime - startTime}ms`); // Should log if interceptor is triggered
+          }),
+          catchError((error) => {
+            console.error('HTTP Error:', error);
+            return throwError(() => new Error(error.message));
+          })
+        );
+      }
 
   private getToken(): string {
-    // Replace with your logic to fetch a token
     return localStorage.getItem('authToken') || '';
   }
 }
+
+
+
