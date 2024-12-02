@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,13 @@ import { Injectable } from '@angular/core';
 export class ReportsService {
 
   constructor() { }
+  private isTableSubject = new BehaviorSubject<boolean>(false);
+  
+    setTableState(showTable: boolean): void {
+      this.isTableSubject.next(showTable);
+    }
+  
+    getTableState(): Observable<boolean> {
+      return this.isTableSubject.asObservable();
+    }
 }
