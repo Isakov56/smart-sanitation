@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <img class="logo" routerLink="/" src="https://s3-alpha-sig.figma.com/img/d21d/a5aa/0bef3a76f3522f1f74b33235c5c062e0?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LYLQFqWuUTsErdDhVRL9FVMSumbo8rOkCbQv7FQmwDnRWT7PiqHCNPyE2iCbNmVRlF1KlVMopuGyI0D3HFiS4G~c6JjTbJR2~tIZlo86HDpFqsamllmlHKZWHx2-G~61zMz6bRt5VjOtv54KxC0JcxBe~zAgxtyGzyCLWisK0IUCL7cgg9vAN5-~IE1SiUWsvIgpEGEmkcZud6y6StCcaxv~91bdP3wqdQgPb7SCf2TiargR~Bg0WRweDTmcH2w-ufdIyfhawSKn47BL7gvVMJBJemZm9z5kMT7QnVMYGh6KDQdUeWCkr2ZRvQ8wPuZIs8vhQCifha0LlAxdI3Qlrg__" alt="">
+    <img class="logo" routerLink="/" src="/assets/main-logo.png" alt="">
     <div class=" nav-link-container  d-flex justify-content-center align-items-center flex-column">
       <div class="d-flex align-items-center id-container p-2 w-100 ">
         <mat-icon  fontIcon="account_circle" class="account-circle mx-3"></mat-icon>
@@ -15,14 +15,14 @@
       <div class="d-flex routes flex-column justify-content-between">
         <div class="w-100 py-2  h-100 nav-link-border h-100">
           <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 my-2 px-2" routerLinkActive="active" [routerLink]="route.path">
-            <mat-icon  [fontIcon]="route.icon || 'default_icon'" class="nav-link-icon mx-3 "></mat-icon>
+            <mat-icon  class="nav-link-icon mx-3 ">{{route.icon || 'home'}}</mat-icon>
             <div *ngIf="route.path" class="nav-link mx-3">{{ route.label ? (route.label) : '' }}</div>
           </div>
         </div>
         <div class=" container log-out px-2 w-100 h-100 ">
           <div class="row align-items-end">
             <div class="col d-flex pt-2">
-              <mat-icon fontIcon="logout_icon" class="nav-link-icon mx-3 "></mat-icon>
+              <mat-icon fontIcon="logout_icon" class="nav-link-icon mx-3 ">home</mat-icon>
               <div class=" nav-link mx-3"> Log out</div>
             </div>
           </div>

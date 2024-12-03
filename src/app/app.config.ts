@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { ApiInterceptor } from 'core';
+import { MatIconModule } from '@angular/material/icon';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),  // Importing HttpClientModule
     importProvidersFrom(HttpClientJsonpModule),  // Importing HttpClientJsonpModule
+    importProvidersFrom(MatIconModule),
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
   ],
 };

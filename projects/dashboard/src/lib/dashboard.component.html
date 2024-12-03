@@ -24,39 +24,59 @@
   
     <div class=" w-100 pe-3 charts-container">
       
-      <div class="w-100" >
+      <app-chart  
+          class="w-100"
+          [chartType]="'polarArea'"
+          [data]="testChartData"
+          >
+      </app-chart>
+      <app-chart  
+          class="w-100"
+          [chartType]="'line'"
+          [data]="testChartData"
+          >
+      </app-chart>
+      <app-chart  
+          class="w-100"
+          [chartType]="'bar'"
+          [data]="testChartData"
+          >
+      </app-chart>
+      
+      <!-- <div class="w-100" >
+          
         <app-card>
-          <app-bar-chart *ngIf='testChartData' [chartType]="'polarArea'"
+          <app-chart *ngIf='testChartData' [chartType]="'polarArea'"
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
-          }"></app-bar-chart>
+          }"></app-chart>
           <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
       <div class="w-100" >
         <app-card class="">
-          <app-bar-chart [chartType]="'bar'" *ngIf='testChartData'
+          <app-chart [chartType]="'bar'" *ngIf='testChartData'
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
-          }"></app-bar-chart>
+          }"></app-chart>
           <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
       <div class="w-100" >
         <app-card>
-          <app-bar-chart *ngIf='testChartData' [chartType]="'line'"
+          <app-chart *ngIf='testChartData' [chartType]="'line'"
           [data]="testChartData"
           [gradientConfig]="{
             startColor: '#090979',
             endColor: '#0096b4',
             direction: 'horizontal'
-          }"></app-bar-chart>
+          }"></app-chart>
           <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
       </div>
@@ -78,7 +98,7 @@
           }"></app-pie-chart>
           <app-card-loader *ngIf='!testChartData'></app-card-loader>
         </app-card>
-      </div>
+      </div> -->
       
     </div>
     <app-card-loader></app-card-loader>
