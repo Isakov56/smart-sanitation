@@ -25,20 +25,10 @@ export class ReportsComponent implements OnInit{
     })
   }
 
-  columns: string[] = ['Sala operatoria', 'Data', 'Data del lavaggio', 'Esito lavaggio'];
-  data: any[] = [
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-    { 'Sala operatoria': 'John', Data: 30, 'Data del lavaggio': 'New York', 'Esito lavaggio': '87%' },
-   
+  columns = ['Sala operatoria', 'Data', 'Data del lavaggio', 'Esito lavaggio'];
+  data = [
+    { 'Sala operatoria': 'John', 'Data': 30, 'Data del lavaggio': '2021-12-01', 'Esito lavaggio': '87%' },
+    { 'Sala operatoria': 'Jane', 'Data': 25, 'Data del lavaggio': '2021-12-02', 'Esito lavaggio': '92%' }
   ];
 
   generateCards(count: number): void {

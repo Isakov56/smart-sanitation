@@ -52,8 +52,12 @@ export class SideNavComponent implements OnInit {
     return this.router.url.includes('reports');
   }
 
+  isAddUserRoute(): boolean {
+    return this.router.url.includes('add-user');
+  }
+
   isExcludedRoute(): boolean {
-    const excludedRoutes = ['reports', 'aggiungi-dispositivo']; // Add more routes as needed
+    const excludedRoutes = ['reports', 'aggiungi-dispositivo', 'add-user']; // Add more routes as needed
     return excludedRoutes.some(route => this.router.url.includes(route));
   }
 
@@ -73,24 +77,31 @@ export class SideNavComponent implements OnInit {
     }
 
     @Input() routes: RouteConfig[] = []
-    formattedRouteName: string = '';
     label: string = ''
-
-
+    
     capitalizeWords(str: string): string {
       return str
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(' ');
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
     }
+    formattedRouteName: string = '';
+    buttonName: string = ''
   ngOnInit() {
     // Get the current route path
     this.router.events.subscribe(() => {
       const routePath = this.router.url; // Get last segment of the route
+
+      if (routePath.includes('add-user')) {
+        this.buttonName = 'Crea Utente';
+      } else {
+        this.buttonName = 'Nuova Dispositvo'; // Set a default button name for other routes
+      }
+      
       console.log(routePath, 'rotue pateh')
       const matchedRoute = this.routes.find(route => route.path === routePath);
       this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : 'Default Label';
-      this.formattedRouteName = this.capitalize(routePath || ''); // Default to 'Dashboard' if undefined
+      this.formattedRouteName = routePath; // Default to 'Dashboard' if undefined
     });
   }
 

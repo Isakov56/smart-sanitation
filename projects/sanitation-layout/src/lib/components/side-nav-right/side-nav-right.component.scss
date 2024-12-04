@@ -104,5 +104,13 @@
   .pick::placeholder {
     color: var(--primary-button) !important;
   }
+
+  .add-btn{
+    background-color: var(--primary-button-dark);
+    color: white;
+    font-size: 17px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
   
   

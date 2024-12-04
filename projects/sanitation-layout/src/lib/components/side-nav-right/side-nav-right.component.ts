@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -49,12 +49,22 @@ export class SideNavRightComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   isExcludedRoute(): boolean {
     const excludedRoutes = ['reports', 'add-device']; 
     return excludedRoutes.some(route => this.router.url.includes(route));
   }
+
+  routePath: string = ""
+  isCrea: boolean = false
   ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.routePath = this.router.url;
+      console.log(this.routePath.includes('add-user'))
+      this.isCrea = this.routePath.includes('add-user')
+      this.cdr.detectChanges();
+      console.log(this.routePath, 'alskdjf;laskjdf;laskdjf;laskdjf;laksdjf;laksdf')
+    })
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

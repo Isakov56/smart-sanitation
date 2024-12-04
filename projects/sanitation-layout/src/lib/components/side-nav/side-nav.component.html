@@ -46,10 +46,10 @@
         }
         <h1 class="h1-content h-100 d-flex align-items-center">{{ label }}</h1>
       </mat-toolbar>
-      <div class="sidenav-right me-2" *ngIf="!isExcludedRoute()" routerLink="/aggiungi-dispositivo">
+      <div class="sidenav-right me-2" *ngIf=" !isExcludedRoute()" routerLink="/aggiungi-dispositivo">
         <div class="add-btn w-100 p-2 d-flex align-items-center justify-content-center flex-column">
           <div>AGGUNGI</div>
-          <div>NUOVO DISPOSITIVO</div>
+          <div>NUOVO DISPOSITIOVO</div>
         </div>
       </div>
     
@@ -60,10 +60,10 @@
       <ng-content></ng-content>
 
     </div>
-    <div class="empty-container-side" *ngIf="isReportsRoute() || !isExcludedRoute()">
+    <div class="empty-container-side" *ngIf="isReportsRoute() || !isExcludedRoute() || isAddUserRoute()">
 
     </div>
-    <app-side-nav-right *ngIf="isReportsRoute() || !isExcludedRoute()"></app-side-nav-right>
+    <app-side-nav-right *ngIf="isReportsRoute() || !isExcludedRoute() || isAddUserRoute()"></app-side-nav-right>
     
   </div>
   </mat-sidenav-content>
