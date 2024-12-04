@@ -5,7 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay, startWith } from 'rxjs/operators';
 import { RouteConfig } from 'isakov-shared';
@@ -19,7 +19,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SideNavRightComponent } from '../side-nav-right/side-nav-right.component';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -47,7 +47,6 @@ import { SideNavRightComponent } from '../side-nav-right/side-nav-right.componen
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
-  @Input() routes: RouteConfig[] = []
 
   isReportsRoute(): boolean {
     return this.router.url.includes('reports');
@@ -66,14 +65,31 @@ export class SideNavComponent implements OnInit {
       shareReplay()
     );
 
+    
+    constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+      iconRegistry.addSvgIconSet(
+        sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
+      );
+    }
+
+    @Input() routes: RouteConfig[] = []
     formattedRouteName: string = '';
+    label: string = ''
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
 
+    capitalizeWords(str: string): string {
+      return str
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+    }
   ngOnInit() {
     // Get the current route path
     this.router.events.subscribe(() => {
-      const routePath = this.router.url.split('/').pop(); // Get last segment of the route
+      const routePath = this.router.url; // Get last segment of the route
+      console.log(routePath, 'rotue pateh')
+      const matchedRoute = this.routes.find(route => route.path === routePath);
+      this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : 'Default Label';
       this.formattedRouteName = this.capitalize(routePath || ''); // Default to 'Dashboard' if undefined
     });
   }

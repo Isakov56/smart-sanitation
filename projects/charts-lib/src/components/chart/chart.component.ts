@@ -1,8 +1,10 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy, OnChanges, ChangeDetectorRef  } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy, OnChanges, ChangeDetectorRef, OnInit  } from '@angular/core';
 import { Chart, ChartType, ChartOptions, registerables  } from 'chart.js';
 import { MatCard } from '@angular/material/card';
 import { CardLoaderComponent } from 'shared';
 import { CommonModule } from '@angular/common';
+import { WeatherService } from 'core';
+// import { WeatherService } from 'core';
 
 Chart.register(...registerables);
 
@@ -13,7 +15,10 @@ Chart.register(...registerables);
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
 })
-export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
+export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnInit {
+  
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef) {}
+  
   @Input() chartType: ChartType = 'bar';
   @Input() data: any;
   @Input() isLoading: boolean = false;
@@ -22,13 +27,26 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
     startColor: '#090979', endColor: '#0096b4', direction: 'horizontal'
   };
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  chartData: any = { // Initialize chartData
+    labels: [],
+    datasets: []
+  };
 
+  ngOnInit(): void {
+    this.weatherService.testChartData$.subscribe((data: any) => {
+      if (data && data.datasets) {
+        this.chart.data = data; // Set new chart data
+        this.chart.update(); // Refresh the chart
+      }
+    });
+    
+  }
 
   @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   private chart!: Chart;
   ngAfterViewInit(): void {
-    this.cdr.detectChanges();
+    
+    // this.cdr.detectChanges();
     if (!this.chartCanvas) return; // Prevent running if canvas isn't available
     
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
@@ -36,14 +54,14 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
       console.error('Canvas context could not be initialized.');
       return;
     }
-
-    
+  
   
     this.chart = new Chart(ctx, {
       type: this.chartType,
-      data: this.data,
+      data: this.chartData,
       options: this.options,
     });
+
   
     // Add resize listener for manual resizing
     window.addEventListener('resize', this.onResize);
@@ -51,11 +69,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
 
 
   ngOnChanges(): void {
-    if (this.chart && this.data) {
-      this.chart.data = this.data;  // Update chart data
-      // this.updateChart()  // Re-render the chart with new data
-      this.chart.update();
-    }
+    // if (this.chart) {
+    //   this.chart.data = this.chartData;
+    //   this.chart.update(); // Refresh chart
+    // }
+    // this.weatherService.testChartData$.subscribe((data: any) => {
+    //   if (data && data.datasets) {
+    //     this.chart.data = data; // Set new chart data
+    //     this.chart.update(); // Refresh the chart
+    //   }
+    // });
   }
   private createGradient(ctx: CanvasRenderingContext2D): CanvasGradient {
     const canvas = ctx.canvas;

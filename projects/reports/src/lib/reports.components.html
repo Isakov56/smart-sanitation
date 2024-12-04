@@ -1,10 +1,10 @@
 <div class="me-1 pe-2">
     <div class="d-flex table-toggle">
         <div class=" d-flex justify-content-center align-items-center icon-container" [ngClass]="{'active-icon': !isTable, 'inactive-icon': isTable}">
-            <mat-icon class="table-toggle-icon"  aria-label="Side nav toggle  icon" (click)="setTableView(false)">grid_view_icon</mat-icon>
+            <mat-icon class="table-toggle-icon material-symbols-outlined"  aria-label="Side nav toggle  icon" (click)="setTableView(false)">grid_view_icon</mat-icon>
         </div>
         <div class=" d-flex justify-content-center align-items-center icon-container" [ngClass]="{'active-icon': isTable, 'inactive-icon': !isTable}">
-            <mat-icon class="table-toggle-icon"  aria-label="Side nav toggle icon"  (click)="setTableView(true)">menu</mat-icon>
+            <mat-icon class="table-toggle-icon material-symbols-outlined"  aria-label="Side nav toggle icon"  (click)="setTableView(true)">menu</mat-icon>
         </div>
     </div>
     <div *ngIf='isTable' class="mt-2">

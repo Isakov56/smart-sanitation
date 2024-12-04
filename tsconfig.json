@@ -20,6 +20,9 @@
       "add-device": [
         "./dist/add-device"
       ],
+      "add-user": [
+        "./dist/add-user"
+      ],
       "charts-lib": [
         "./dist/charts-lib"
       ],

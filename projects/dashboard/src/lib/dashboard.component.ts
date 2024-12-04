@@ -27,35 +27,35 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateCards(3);
-    this.getWeatherData('Rome');
-    
-
+    // this.weatherService.isAlive()
+    // this.weatherService.logEvery30Seconds()
+    this.weatherService.getWeatherDataTest('sydney')
   }
 
-  getWeatherData(city: string): void {
-    this.weatherService.getWeatherData(city). pipe(delay(0)).subscribe(data => {
-      this.weatherData = data; // Store weather data
-      this.prepareChartData(data);  // Prepare chart data based on weather data
-      this.isLoading = false;
-    });
-  }
+  // getWeatherData(city: string): void {
+  //   this.weatherService.getWeatherData(city). pipe(delay(0)).subscribe(data => {
+  //     this.weatherData = data; // Store weather data
+  //     this.prepareChartData(data);  // Prepare chart data based on weather data
+  //     this.isLoading = false;
+  //   });
+  // }
 
-  prepareChartData(weatherData: any): void {
-    if (weatherData && weatherData.main) {
-      this.testChartData = {
-        labels: ['Morning', 'Afternoon', 'Evening'],
-        datasets: [
-          {
-            label: 'Temperature (°C)',
-            data: [weatherData.main.temp, 23, 20],
-            borderColor: 'rgba(75,192,192,1)',
-            backgroundColor: 'rgba(75,192,192,0.2)',
-            fill: true,
-          }
-        ]
-      };
-    }
-  }
+  // prepareChartData(weatherData: any): void {
+  //   if (weatherData && weatherData.main) {
+  //     this.testChartData = {
+  //       labels: ['Morning', 'Afternoon', 'Evening'],
+  //       datasets: [
+  //         {
+  //           label: 'Temperature (°C)',
+  //           data: [weatherData.main.temp, 23, 20],
+  //           borderColor: 'rgba(75,192,192,1)',
+  //           backgroundColor: 'rgba(75,192,192,0.2)',
+  //           fill: true,
+  //         }
+  //       ]
+  //     };
+  //   }
+  // }
   
 
   generateCards(count: number): void {
