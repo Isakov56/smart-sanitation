@@ -3,9 +3,53 @@
     color: var(--primary-button);
     font-weight: 500;
 }
+.text-smaller{
+    font-size: 18px;
+    color: var(--primary-button);
+    font-weight: 500;
+}
+
+.sensori-right{
+    border-right: 2px solid var(--primary-button);
+}
 
 .text-area{
     background-color: var(--secondary-background);
     border-radius: 5px;
 }
+
+.plus{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Set a specific width */
+    height: 40px; /* Set a specific height */
+    font-size: 25px; /* Adjust size of the plus sign */
+    background-color: #cadfee; /* Optional: add a background color */
+    border-radius: 50%; /* Make it circular */
+    text-align: center; /* Center the content inside */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plus:hover {
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px -20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+.plus{
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.sensori-cont{
+    background-color: #cadfee;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input{
+    background-color: var(--secondary-background);
+    padding-left: 10px !important;
+}
+
   
