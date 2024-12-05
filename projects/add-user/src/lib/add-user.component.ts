@@ -8,18 +8,20 @@ import { TableComponent } from 'shared'
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, TableComponent, ],
   templateUrl: './add-user.component.html',
-  styles: ``
+  styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent {
   columns: string[] = ['Sala operatoria', 'Data', ];
   data: any[] = [
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    { 'Sala operatoria': '876598743', Data: 30,  },
-    
-   
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
   ];
+
+  public objectEntries(obj: any): [string, any][] {
+    return Object.entries(obj);  // Preserves key order
+  }
 }

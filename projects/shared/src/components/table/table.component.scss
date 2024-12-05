@@ -25,20 +25,20 @@ table {
   }
   
   /* Set alternating row colors */
-  tbody tr:nth-child(even) {
-    background-color: var(--table-color1); /* Light gray for every even row */
-  }
-
-  tbody tr:nth-child(even):hover {
-    background-color: var(--table-color1-hover); /* Light gray for every even row */
+  tbody tr.even-row {
+    background-color: var(--table-color1); /* Light gray for even rows */
   }
   
-  tbody tr:nth-child(odd) {
-    background-color: var(--table-color2); /* White background for every odd row */
+  tbody tr.even-row:hover {
+    background-color: var(--table-color1-hover); /* Hover effect for even rows */
   }
-
-  tbody tr:nth-child(odd):hover {
-    background-color: var(--table-color2-hover); /* White background for every odd row */
+  
+  tbody tr.odd-row {
+    background-color: var(--table-color2); /* White for odd rows */
+  }
+  
+  tbody tr.odd-row:hover {
+    background-color: var(--table-color2-hover); /* Hover effect for odd rows */
   }
 
   tbody tr td {
