@@ -1,0 +1,21 @@
+
+.generate{
+background-color: var(--primary-button);
+color: white;
+border-radius: 5px;
+font-size: 12px;
+}
+
+.tex-bigger{
+    color: var(--primary-button);
+}
+
+.cont {
+    flex: 1 1 47%; /* Allow each .cont div to take up 48% of the space and wrap */ /* Optional: add some space between rows */
+}
+
+.input-cont{
+    display: flex;
+    flex-wrap: wrap;
+}
+
