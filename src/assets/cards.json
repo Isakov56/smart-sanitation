@@ -1,0 +1,58 @@
+[
+    {
+      "title": "Sala Operatoria",
+      "subtitle": "N.1",
+      "percentage": "98%",
+      "date": "10/11/2024",
+      "duration": "3 minuti",
+      "x": 0,
+      "y": 0,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "title": "test position",
+      "subtitle": "N.2",
+      "percentage": "85%",
+      "date": "12/11/2024",
+      "duration": "5 minuti",
+      "x": 2,
+      "y": 0,
+      "width": 3,
+      "height": 1
+    },
+    {
+      "title": "position middle",
+      "subtitle": "N.2",
+      "percentage": "85%",
+      "date": "12/11/2024",
+      "duration": "5 minuti",
+      "x": 1,
+      "y": 0,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "title": "Sala Operatoria",
+      "subtitle": "N.2",
+      "percentage": "85%",
+      "date": "12/11/2024",
+      "duration": "5 minuti",
+      "x": 2,
+      "y": 1,
+      "width": 3,
+      "height": 1
+    },
+    {
+      "title": "new card",
+      "subtitle": "N.2",
+      "percentage": "85%",
+      "date": "12/11/2024",
+      "duration": "5 minuti",
+      "x": 3,
+      "y": 1,
+      "width": 3,
+      "height": 1
+    }
+  ]
+  

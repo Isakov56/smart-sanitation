@@ -8,6 +8,7 @@ import { ChartComponent } from 'charts-lib';
 import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
 import { delay } from 'rxjs';
+import { CardService } from 'core';
 
 @Component({
   selector: 'lib-dashboard',
@@ -23,13 +24,16 @@ export class DashboardComponent implements OnInit {
   testChartData?: any;
   isLoading = true;
   
-  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef) {}
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService) {}
 
   ngOnInit(): void {
-    this.generateCards(3);
+    // this.generateCards(3);
     // this.weatherService.isAlive()
     // this.weatherService.logEvery30Seconds()
     this.weatherService.getWeatherDataTest('sydney')
+    this.cardService.cards$.subscribe((data) => {
+      this.cards = data;
+    });
   }
 
   // getWeatherData(city: string): void {

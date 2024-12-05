@@ -77,7 +77,7 @@ export class SideNavComponent implements OnInit {
     }
 
     @Input() routes: RouteConfig[] = []
-    label: string = ''
+    label?: string = ''
     
     capitalizeWords(str: string): string {
       return str
@@ -100,7 +100,8 @@ export class SideNavComponent implements OnInit {
       
       console.log(routePath, 'rotue pateh')
       const matchedRoute = this.routes.find(route => route.path === routePath);
-      this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : 'Default Label';
+      this.label = matchedRoute ? this.capitalizeWords(matchedRoute?.label) : 'Default Label';
+      console.log(matchedRoute, 'label lable lable')
       this.formattedRouteName = routePath; // Default to 'Dashboard' if undefined
     });
   }
