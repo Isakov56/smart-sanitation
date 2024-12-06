@@ -4,6 +4,8 @@
     color: var(--primary-button);
 }
 
+
+
 // .example-card {
 //     flex: 1 1 calc(35% - 60px);
 //     max-width: calc(31% - 5px);
@@ -41,9 +43,17 @@
     
 // }
 
+.test{
+    height: 80vh !important;
+    background-color: transparent !important;
+}
+
+
+
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* Customize columns */
+    grid-auto-rows: 200px; ;
     gap: 18px;
   }
   

@@ -9,20 +9,35 @@ import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
 import { delay } from 'rxjs';
 import { CardService } from 'core';
+// import { GridComponent } from 'core'
+import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
 
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule, CardComponent, ChartComponent, PieChartComponent, CardLoaderComponent],
+  imports: [MatCardModule, MatButtonModule, CommonModule, CardComponent, ChartComponent, PieChartComponent, CardLoaderComponent, GridsterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   styles: ``
 })
 export class DashboardComponent implements OnInit {
+  options: GridsterConfig = {
+    draggable: { enabled: true },
+    resizable: { enabled: true },
+    gridType: 'fit',
+    pushItems: true,
+    displayGrid: 'onDrag&Resize',
+  };
+  gridItems: GridsterItem[] = [
+    { x: 0, y: 0, cols: 2, rows: 1, content: 'Card 1' },
+    { x: 2, y: 0, cols: 1, rows: 1, content: 'Card 2' },
+    { x: 0, y: 1, cols: 1, rows: 2, content: 'Card 3' },
+  ];
   cards: any[] = [];
   weatherData: any;
   testChartData?: any;
   isLoading = true;
+  
   
   constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService) {}
 
@@ -31,8 +46,8 @@ export class DashboardComponent implements OnInit {
     // this.weatherService.isAlive()
     // this.weatherService.logEvery30Seconds()
     this.weatherService.getWeatherDataTest('sydney')
-    this.cardService.cards$.subscribe((data) => {
-      this.cards = data;
+    this.cardService.getGridItems().subscribe((data) => {
+      this.gridItems = data;
     });
   }
 

@@ -13,12 +13,12 @@
     {
       "title": "test position",
       "subtitle": "N.2",
-      "percentage": "85%",
+      "percentage": "3%",
       "date": "12/11/2024",
       "duration": "5 minuti",
       "x": 2,
       "y": 0,
-      "width": 3,
+      "width": 1,
       "height": 1
     },
     {
@@ -27,31 +27,31 @@
       "percentage": "85%",
       "date": "12/11/2024",
       "duration": "5 minuti",
-      "x": 1,
+      "x": 4,
       "y": 0,
-      "width": 2,
+      "width": 1,
       "height": 1
     },
     {
       "title": "Sala Operatoria",
       "subtitle": "N.2",
-      "percentage": "85%",
+      "percentage": "9%",
       "date": "12/11/2024",
       "duration": "5 minuti",
-      "x": 2,
+      "x": 1,
       "y": 1,
-      "width": 3,
+      "width": 2,
       "height": 1
     },
     {
       "title": "new card",
       "subtitle": "N.2",
-      "percentage": "85%",
+      "percentage": "10%",
       "date": "12/11/2024",
       "duration": "5 minuti",
       "x": 3,
       "y": 1,
-      "width": 3,
+      "width": 2,
       "height": 1
     }
   ]

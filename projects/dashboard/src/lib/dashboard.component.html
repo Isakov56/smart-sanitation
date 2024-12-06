@@ -1,30 +1,32 @@
-<div class="w-100">
+<div class="w-100 h-100">
     <h6 class="message">Benvenuto nella admin dashboard di SMART SANISTATION</h6>
     
-    <div class="w-100 card-container mb-4">
-      <app-card
-        *ngFor="let card of cards"
-        class="example-card pe-3"
-        [style.grid-column]="card.x + 1" 
-        [style.grid-row]="card.y + 1" 
-        [style.grid-column-span]="card.width" 
-        [style.grid-row-span]="card.height"
-      >
-        <div class="px-3">
-          <div class="d-flex justify-content-between">
-            <h6 class="text-small">{{ card.title }}</h6>
-            <h6 class="text-small">{{ card.subtitle }}</h6>
+    <!-- <div class="w-100 card-container mb-4"> -->
+      <gridster [options]="options" class="h-100 test">
+        <gridster-item *ngFor="let item of gridItems" [item]="item" class="">
+      <!-- <app-card
+      class=""
+       
+      > -->
+        <div class="px-3 h-100 card">
+          <div class="d-flex justify-content-between h-100">
+            <h6 class="text-small">{{ item.title }}</h6>
+            <h6 class="text-small">{{ item.subtitle }}</h6>
           </div>
-          <div class="w-100 d-flex justify-content-center align-items-center">
-            <h1 class="text-success">{{ card.percentage }}</h1>
+          <div class="w-100 d-flex justify-content-center align-items-center h-100">
+            <h1 class="text-success">{{ item.percentage }}</h1>
           </div>
-          <div class="p-0 mb-1 ">
-            <div class="text-smaller p-0 m-0">Data: {{ card.date }}</div>
-            <div class="text-smaller p-0 m-0">Durata: {{ card.duration }}</div>
+          <div class="p-0 mb-1 h-100">
+            <div class="text-smaller p-0 m-0">Data: {{ item?.date }}</div>
+            <div class="text-smaller p-0 m-0">Durata: {{ item?.duration }}</div>
           </div>
         </div>
-      </app-card>
-    </div>
+      <!-- </app-card> -->
+      
+    </gridster-item>
+    
+  </gridster>
+    <!-- </div> -->
   
     <div class=" w-100 pe-3 charts-container">
       
@@ -37,7 +39,7 @@
           class="w-100"
           [chartType]="'line'"
           >
-      </app-chart>
+      </app-chart> 
       <!-- <app-chart  
           class="w-100"
           [chartType]="'line'"
