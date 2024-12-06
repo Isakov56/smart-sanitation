@@ -2,12 +2,9 @@
     <h6 class="message">Benvenuto nella admin dashboard di SMART SANISTATION</h6>
     
     <!-- <div class="w-100 card-container mb-4"> -->
-      <gridster [options]="options" class="h-100 test">
+      <gridster [options]="options" class="h-100 test mb-4">
         <gridster-item *ngFor="let item of gridItems" [item]="item" class="">
-      <!-- <app-card
-      class=""
-       
-      > -->
+      
         <div class="px-3 h-100 card">
           <div class="d-flex justify-content-between h-100">
             <h6 class="text-small">{{ item.title }}</h6>
@@ -21,7 +18,7 @@
             <div class="text-smaller p-0 m-0">Durata: {{ item?.duration }}</div>
           </div>
         </div>
-      <!-- </app-card> -->
+     
       
     </gridster-item>
     
@@ -110,6 +107,6 @@
         </app-card>
       </div> -->
       
-    </div>
+    <!-- </div> -->
     <!-- <app-card-loader></app-card-loader> -->
 </div>

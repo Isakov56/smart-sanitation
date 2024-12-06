@@ -9,7 +9,7 @@ import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
 import { delay } from 'rxjs';
 import { CardService } from 'core';
-// import { GridComponent } from 'core'
+import { GridComponent } from 'core'
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
 
 @Component({
