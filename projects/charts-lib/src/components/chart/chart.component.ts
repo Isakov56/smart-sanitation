@@ -4,6 +4,7 @@ import { MatCard } from '@angular/material/card';
 import { CardLoaderComponent } from 'shared';
 import { CommonModule } from '@angular/common';
 import { WeatherService } from 'core';
+import { animation } from '@angular/animations';
 // import { WeatherService } from 'core';
 
 Chart.register(...registerables);
@@ -33,13 +34,43 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnIn
   };
 
   ngOnInit(): void {
+    /*
     this.weatherService.testChartData$.subscribe((data: any) => {
       if (data && data.datasets) {
         this.chart.data = data; // Set new chart data
         this.chart.update(); // Refresh the chart
       }
     });
-    
+    */
+    if (!this.data) {
+      console.error('No data received in app-chart!');
+      return;
+    }
+      const chartData = this.transformToChartData(this.data); // Transform the data
+    if (chartData) {
+      this.chart.data = chartData; // Set the transformed data
+      this.chart.update(); // Refresh the chart
+    }
+    console.log(chartData, 'datatsdatadatadaatadatadtadatadata')
+  }
+
+  transformToChartData(data: any): any {
+    if (!data || !data.sensor) return null;
+  
+    const labels = data.sensor.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`);
+    const dataset = {
+      type: data.chartType,
+      label: data.title,
+      data: data.sensor.map((sensor: any) => sensor.id), // Example: Use sensor IDs as data points
+      backgroundColor: data.sensor.map((sensor: any) => sensor.color),
+      transition: 'none !imoprtant',
+      animation: 'none !important' // Colors from the data
+    };
+  
+    return {
+      labels: labels,
+      datasets: [dataset],
+    };
   }
 
   @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
@@ -61,7 +92,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnIn
       data: this.chartData,
       options: this.options,
     });
-
+    this.chart?.update();
   
     // Add resize listener for manual resizing
     window.addEventListener('resize', this.onResize);
@@ -69,6 +100,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnIn
 
 
   ngOnChanges(): void {
+    if (this.data) {
+      this.chartData = this.transformToChartData(this.data);
+    }
     // if (this.chart) {
     //   this.chart.data = this.chartData;
     //   this.chart.update(); // Refresh chart

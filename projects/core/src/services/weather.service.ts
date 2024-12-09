@@ -14,7 +14,10 @@ export class WeatherService {
   private chartDataSubject = new BehaviorSubject<any>(null);
   testChartData$ = this.weatherDataSubject.asObservable();  // Observable that components can subscribe to
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    
+
+  }
 
   // Method to fetch current weather data by city
   getWeatherData(city: string): Observable<any> {

@@ -1,10 +1,10 @@
-<div class="card-container mb-3">
-    <mat-card  class="example-card d-flex justify-content-center h-100" appearance="outlined">
+<div class="card-container mb-3 h-100">
+    <mat-card  class="example-card d-flex justify-content-center align-items-center h-100" appearance="outlined">
         <div class=" h-100">
-            <canvas [class.hidden]="!chartData" #chartCanvas class="p-2 card-transition h-100 w-100 justify-content-center"></canvas>
+            <canvas [class.hidden]="!data" #chartCanvas class="p-2 card-transition justify-content-center"></canvas>
         </div>     
         <div class="h-100">
-            <app-card-loader class="h-100" [class.hidden]="chartData"></app-card-loader>
+            <app-card-loader class="h-100" [class.hidden]="data"></app-card-loader>
         </div>
     </mat-card>
 </div>

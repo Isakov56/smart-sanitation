@@ -9,7 +9,8 @@ import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
 import { delay } from 'rxjs';
 import { CardService } from 'core';
-import { GridComponent } from 'core'
+import { ValuesService } from 'core';
+import { GridComponent } from 'core';
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
 
 @Component({
@@ -33,22 +34,33 @@ export class DashboardComponent implements OnInit {
     { x: 2, y: 0, cols: 1, rows: 1, content: 'Card 2' },
     { x: 0, y: 1, cols: 1, rows: 2, content: 'Card 3' },
   ];
+  values: any[] = [];
+  idValue: any = ''
   cards: any[] = [];
   weatherData: any;
   testChartData?: any;
   isLoading = true;
   
   
-  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService) {}
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService) {}
 
   ngOnInit(): void {
     // this.generateCards(3);
     // this.weatherService.isAlive()
     // this.weatherService.logEvery30Seconds()
+    // this.valuesService.loadvaluesfromDB()
     this.weatherService.getWeatherDataTest('sydney')
     this.cardService.getGridItems().subscribe((data) => {
       this.gridItems = data;
     });
+    this.valuesService.getValuesGrid().subscribe((data) => {
+      this.values = data;
+      console.log(data, 'my vlues')
+    });
+  }
+
+  idValueFunction(id: number): any {
+    this.idValue = this.valuesService.getValuesGridByID(id)
   }
 
   // getWeatherData(city: string): void {
