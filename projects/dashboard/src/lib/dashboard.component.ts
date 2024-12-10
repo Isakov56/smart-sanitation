@@ -46,34 +46,42 @@ export class DashboardComponent implements OnInit {
   isLoading = true;
   devicesWithSensors: any[] = [];
   layout: any[] = [];
+  chartData!: any[];
   
   
   constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService, 
     private sensorService: SensorService, private appStateService: AppStateService) {}
 
-  ngOnInit(): void {
-    this.weatherService.getWeatherDataTest('sydney')
-    this.cardService.getGridItems().subscribe((data) => {
-      this.gridItems = data;
-    });
-    this.valuesService.getValuesGrid().subscribe((data) => {
-      this.values = data;
-    });
-
-    this.cardService.getGridItems().subscribe((devices) => {
-      this.devices = devices; // Fetch devices only once and keep them static
-
-      if (this.layout.length === 0) {
-        this.layout = devices.map((device) => ({
+    ngOnInit(): void {
+      this.weatherService.getWeatherDataTest('sydney');
+    
+      // Check if devices are already stored
+      const devices = this.appStateService.getDevices();
+      if (devices.length === 0) {
+        this.cardService.getGridItems().subscribe((devices) => {
+          this.devices = devices;
+          this.appStateService.setDevices(devices);  // Save devices to AppStateService
+        });
+      } else {
+        this.devices = devices;
+      }
+    
+      // Check if grid layout is already stored
+      const layout = this.appStateService.getGridLayout();
+      if (layout.length === 0) {
+        this.layout = this.devices.map((device) => ({
           id: device.id,
           x: device.x || 0,
           y: device.y || 0,
           cols: device.cols || 1,
           rows: device.rows || 1,
         }));
+        this.appStateService.setGridLayout(this.layout);
+      } else {
+        this.layout = layout;
       }
     
-      // Subscribe to dynamic sensor updates
+      // Fetch sensors and update chart data when necessary
       this.sensorService.getSensors().subscribe((sensors) => {
         this.devicesWithSensors = this.devices.map((device) => {
           const deviceSensors = sensors.filter(
@@ -82,10 +90,48 @@ export class DashboardComponent implements OnInit {
           return { ...device, sensors: deviceSensors };
         });
     
-        console.log(this.devicesWithSensors, 'Updated Device-Sensor Data');
+        // Store the sensors if necessary
+        this.appStateService.setSensors(sensors);
+        
+        // Only update chart data when sensor values change
+        this.updateChartData(sensors);
       });
-    });
-  }
+    
+      // If chart data is available, use it
+      const savedChartData = this.appStateService.getChartData();
+      if (savedChartData.length === 0) {
+        this.fetchAndSaveChartData();  // Fetch and save chart data if not available
+      } else {
+        this.chartData = savedChartData;  // Use saved chart data
+      }
+    }
+    
+    // Fetch and save chart data when necessary
+    fetchAndSaveChartData(): void {
+      // Example logic for fetching chart data (replace with actual API call)
+      this.cardService.getGridItems().subscribe((data) => {
+        this.chartData = data;
+        this.appStateService.setChartData(data);  // Save chart data to AppStateService
+      });
+    }
+    
+    // Update chart data based on sensors
+    updateChartData(sensors: any[]): void {
+      const updatedChartData = this.chartData.map((data) => {
+        const correspondingSensor = sensors.find((sensor) => sensor.deviceId === data.deviceId);
+        if (correspondingSensor) {
+          return {
+            ...data,
+            value: correspondingSensor.value,  // Update value based on sensor
+          };
+        }
+        return data;
+      });
+    
+      this.appStateService.setChartData(updatedChartData);  // Save updated chart data
+    }
+    
+    
 
   onGridChange(newLayout: any): void {
   this.appStateService.setGridLayout(newLayout);

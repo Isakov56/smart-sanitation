@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Sala Operatoria 1",
+    "title": "Sala 1",
     "subtitle": "N.1",
     "measureType": "Temperature|duration|Kwh",
     "chartType": "polarArea",

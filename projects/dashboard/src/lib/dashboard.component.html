@@ -2,13 +2,11 @@
     <h6 class="message">Benvenuto nella admin dashboard di SMART SANISTATION</h6>
     
     <!-- <div class="w-100 card-container mb-4"> -->
-      <gridster [options]="options" class="h-100 test mb-4 ps-0">
-        <gridster-item *ngFor="let item of layout; let i = index" [item]="item">
-          <!-- Pass the device data to the chart component -->
-          <app-chart class="w-100" [data]="getDeviceData(item.id)"></app-chart>
+      <gridster [options]="options" class="h-100 test mb-4 ps-0" (itemChange)="onGridChange($event)">
+        <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
+          <app-chart  class="w-100" [data]="getDeviceData(item.id)"></app-chart>
         </gridster-item>
       </gridster>
-      
     <!-- </div> -->
   
     <div class=" w-100 pe-3 charts-container">
