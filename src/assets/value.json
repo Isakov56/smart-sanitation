@@ -1,26 +1,165 @@
 [
-
-  {
-    "id": 2,
-    "value": "43"
-  },
   {
     "id": 1,
-    "value": "7"
+    "deviceId": 1,
+    "name": "Temperature Sensor",
+    "type": "Temperature",
+    "value": 22.5,
+    "unit": "C",
+    "status": "active",
+    "color": "#FF5733"
+  },
+  {
+    "id": 2,
+    "deviceId": 1,
+    "name": "Humidity Sensor",
+    "type": "Humidity",
+    "value": 45.2,
+    "unit": "%",
+    "status": "active",
+    "color": "#33C1FF"
   },
   {
     "id": 3,
-    "value": "43"
+    "deviceId": 1,
+    "name": "CO2 Sensor",
+    "type": "Gas",
+    "value": 90,
+    "unit": "ppm",
+    "status": "active",
+    "color": "#33FF57"
   },
   {
     "id": 4,
-    "value": "43"
+    "deviceId": 1,
+    "name": "Sound Sensor",
+    "type": "Sound",
+    "value": 65,
+    "unit": "dB",
+    "status": "inactive",
+    "color": "#FF33A2"
   },
   {
     "id": 5,
-    "value": "43"
+    "deviceId": 2,
+    "name": "Pressure Sensor",
+    "type": "Pressure",
+    "value": 1012,
+    "unit": "hPa",
+    "status": "active",
+    "color": "#8D33FF"
+  },
+  {
+    "id": 6,
+    "deviceId": 2,
+    "name": "Light Sensor",
+    "type": "Light",
+    "value": 300,
+    "unit": "lux",
+    "status": "active",
+    "color": "#FFE933"
+  },
+  {
+    "id": 7,
+    "deviceId": 2,
+    "name": "Vibration Sensor",
+    "type": "Vibration",
+    "value": 12.3,
+    "unit": "m/s²",
+    "status": "inactive",
+    "color": "#33FFF3"
+  },
+  {
+    "id": 8,
+    "deviceId": 2,
+    "name": "Smoke Sensor",
+    "type": "Gas",
+    "value": 30,
+    "unit": "ppm",
+    "status": "active",
+    "color": "#FF6F33"
+  },
+  {
+    "id": 9,
+    "deviceId": 3,
+    "name": "Temperature Sensor",
+    "type": "Temperature",
+    "value": 25.1,
+    "unit": "C",
+    "status": "active",
+    "color": "#FF5733"
+  },
+  {
+    "id": 10,
+    "deviceId": 3,
+    "name": "Humidity Sensor",
+    "type": "Humidity",
+    "value": 50.5,
+    "unit": "%",
+    "status": "active",
+    "color": "#33C1FF"
+  },
+  {
+    "id": 11,
+    "deviceId": 3,
+    "name": "CO2 Sensor",
+    "type": "Gas",
+    "value": 20,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#33FF57"
+  },
+  {
+    "id": 12,
+    "deviceId": 3,
+    "name": "Sound Sensor",
+    "type": "Sound",
+    "value": 70,
+    "unit": "dB",
+    "status": "active",
+    "color": "#FF33A2"
+  },
+  {
+    "id": 13,
+    "deviceId": 4,
+    "name": "Pressure Sensor",
+    "type": "Pressure",
+    "value": 300,
+    "unit": "hPa",
+    "status": "inactive",
+    "color": "#8D33FF"
+  },
+  {
+    "id": 14,
+    "deviceId": 4,
+    "name": "Light Sensor",
+    "type": "Light",
+    "value": 350,
+    "unit": "lux",
+    "status": "active",
+    "color": "#FFE933"
+  },
+  {
+    "id": 15,
+    "deviceId": 4,
+    "name": "Vibration Sensor",
+    "type": "Vibration",
+    "value": 50,
+    "unit": "m/s²",
+    "status": "active",
+    "color": "#33FFF3"
+  },
+  {
+    "id": 16,
+    "deviceId": 4,
+    "name": "Smoke Sensor",
+    "type": "Gas",
+    "value": 90,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#FF6F33"
   }
-  
 ]
+
 
   

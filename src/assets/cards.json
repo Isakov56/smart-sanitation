@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Sala Operatoria",
+    "title": "Sala Operatoria 1",
     "subtitle": "N.1",
     "measureType": "Temperature|duration|Kwh",
     "chartType": "polarArea",
@@ -10,28 +10,11 @@
     "cols": 2,
     "rows": 2,
     "scalaMin" : 0,
-    "scalaMax" : 100,
-    "sensor":[
-       {
-         "id": 1,
-         "test": 1,
-         "color" : "rgba(52, 152, 219, 0.5)"
-       },
-       {
-        "id": 2,
-        "test": 2,
-        "color" : "rgba(46, 204, 113, 0.5)"
-       } ,
-       {
-        "id": 3,
-        "test": 3,
-        "color" : "rgba(241, 196, 15, 0.5)"
-       } 
-    ]
+    "scalaMax" : 100
   },
  
   {
-    "id": 1,
+    "id": 2,
     "title": "liner",
     "subtitle": "N.1",
     "measureType": "Temperature|duration|Kwh",
@@ -41,53 +24,11 @@
     "cols": 2,
     "rows": 1,
     "scalaMin" : 0,
-    "scalaMax" : 100,
-    "sensor":[
-       {
-         "id": 1,
-         "test": 1,
-         "color" : "blue"
-       },
-       {
-         "id": 2,
-         "test": 3,
-         "color" : "pink"
-       },
-       {
-         "id": 3,
-         "test": 2,
-         "color" : "orange"
-       },
-       {
-         "id": 6,
-         "test": 4,
-         "color" : "cyan"
-       },
-       {
-         "id": 4,
-         "test": 1,
-         "color" : "blue"
-       },
-       {
-         "id": 5,
-         "test": 3,
-         "color" : "pink"
-       },
-       {
-         "id": 2,
-         "test": 2,
-         "color" : "orange"
-       },
-       {
-         "id": 4,
-         "test": 4,
-         "color" : "cyan"
-       }
-    ]
+    "scalaMax" : 100
   },
   {
     "id": 3,
-    "title": "Sala Operatoria",
+    "title": "Sala Operatoria 2",
     "subtitle": "N.1",
     "measureType": "Temperature|duration|Kwh",
     "chartType": "line",
@@ -96,48 +37,12 @@
     "cols": 2,
     "rows": 1,
     "scalaMin" : 0,
-    "scalaMax" : 100,
-    "sensor":[
-      {
-        "id": 1,
-        "test": 1,
-        "color" : "magenta"
-      },
-      {
-        "id": 2,
-        "test": 2,
-        "color" : "purple"
-      },
-      {
-        "id": 3,
-        "test": 1,
-        "color" : "brown"
-      },
-      {
-        "id": 4,
-        "test": 4,
-        "color" : "maroon"
-      },
-      {
-        "id": 2,
-        "test": 3,
-        "color" : "pink"
-      },
-      {
-        "id": 3,
-        "test": 2,
-        "color" : "orange"
-      },
-      {
-        "id": 6,
-        "test": 4,
-        "color" : "cyan"
-      }
-    ]
+    "scalaMax" : 100
+    
   },
   {
-    "id": 3,
-    "title": "Sala Operatoria",
+    "id": 4,
+    "title": "Sala Operatoria 3",
     "subtitle": "N.1",
     "measureType": "Temperature|duration|Kwh",
     "chartType": "pie",
@@ -146,29 +51,7 @@
     "cols": 2,
     "rows": 2,
     "scalaMin" : 0,
-    "scalaMax" : 100,
-    "sensor":[
-      {
-        "id": 1,
-        "test": 1,
-        "color" : "#AEC6CF"
-      },
-      {
-        "id": 2,
-        "test": 2,
-        "color" : "#FFB6C1"
-      },
-      {
-        "id": 3,
-        "test": 3,
-        "color" : "#D9EAD3"
-      },
-      {
-        "id": 4,
-        "test": 4,
-        "color" : "#FFD700"
-      }
-    ]
+    "scalaMax" : 100
   }
 
   

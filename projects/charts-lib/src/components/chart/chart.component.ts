@@ -58,18 +58,37 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   private transformToChartData(data: any): any {
-    if (!data || !data.sensor) return null;
+    if (!data || !data.sensors) return null;
+
+    // Function to add transparency to colors
+    const addTransparency = (color: string, alpha: number): string => {
+        if (color.startsWith('#')) {
+            // Convert hex to rgba
+            const hex = color.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r},${g},${b},${alpha})`;
+        } else if (color.startsWith('rgb')) {
+            // If it's already rgb, add alpha
+            return color.replace('rgb', 'rgba').replace(')', `,${alpha})`);
+        }
+        return color; // Default case: return as is
+    };
 
     return {
-      labels: data.sensor.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`),
-      datasets: [{
-        type: data.chartType,
-        label: data.title,
-        data: data.sensor.map((sensor: any) => sensor.test),
-        backgroundColor: data.sensor.map((sensor: any) => sensor.color),
-      }]
+        labels: data.sensors.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`),
+        datasets: [{
+            type: data.chartType,
+            label: data.title,
+            data: data.sensors.map((sensor: any) => sensor.value),
+            backgroundColor: data.sensors.map((sensor: any) =>
+                data.chartType === 'polarArea' ? addTransparency(sensor.color, 0.5) : sensor.color
+            ),
+        }]
     };
-  }
+}
+
 
   private updateChartData(): void {
     if (this.chart) {

@@ -10,8 +10,11 @@ import { CardLoaderComponent } from 'shared';
 import { delay } from 'rxjs';
 import { CardService } from 'core';
 import { ValuesService } from 'core';
+import { SensorService } from 'core';
 import { GridComponent } from 'core';
+import { AppStateService } from 'core';
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'lib-dashboard',
@@ -37,18 +40,18 @@ export class DashboardComponent implements OnInit {
   values: any[] = [];
   idValue: any = ''
   cards: any[] = [];
+  devices: any[] = [];
   weatherData: any;
   testChartData?: any;
   isLoading = true;
+  devicesWithSensors: any[] = [];
+  layout: any[] = [];
   
   
-  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService) {}
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService, 
+    private sensorService: SensorService, private appStateService: AppStateService) {}
 
   ngOnInit(): void {
-    // this.generateCards(3);
-    // this.weatherService.isAlive()
-    // this.weatherService.logEvery30Seconds()
-    // this.valuesService.loadvaluesfromDB()
     this.weatherService.getWeatherDataTest('sydney')
     this.cardService.getGridItems().subscribe((data) => {
       this.gridItems = data;
@@ -56,11 +59,47 @@ export class DashboardComponent implements OnInit {
     this.valuesService.getValuesGrid().subscribe((data) => {
       this.values = data;
     });
+
+    this.cardService.getGridItems().subscribe((devices) => {
+      this.devices = devices; // Fetch devices only once and keep them static
+
+      if (this.layout.length === 0) {
+        this.layout = devices.map((device) => ({
+          id: device.id,
+          x: device.x || 0,
+          y: device.y || 0,
+          cols: device.cols || 1,
+          rows: device.rows || 1,
+        }));
+      }
+    
+      // Subscribe to dynamic sensor updates
+      this.sensorService.getSensors().subscribe((sensors) => {
+        this.devicesWithSensors = this.devices.map((device) => {
+          const deviceSensors = sensors.filter(
+            (sensor) => sensor.deviceId === device.id
+          );
+          return { ...device, sensors: deviceSensors };
+        });
+    
+        console.log(this.devicesWithSensors, 'Updated Device-Sensor Data');
+      });
+    });
+  }
+
+  onGridChange(newLayout: any): void {
+  this.appStateService.setGridLayout(newLayout);
+}
+
+  getDeviceData(deviceId: number): any {
+    return this.devicesWithSensors.find((device) => device.id === deviceId) || {};
   }
 
   idValueFunction(id: number): any {
     this.idValue = this.valuesService.getValuesGridByID(id)
   }
+
+  
 
   // getWeatherData(city: string): void {
   //   this.weatherService.getWeatherData(city). pipe(delay(0)).subscribe(data => {

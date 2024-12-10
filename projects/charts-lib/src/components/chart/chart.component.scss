@@ -18,8 +18,8 @@
 
 .hidden {
     display: none !important;
-    // transition: none !important;
-    // animation: none !important;
+    transition: none !important;
+    animation: none !important;
     opacity: 1 !important;
 }
 
@@ -35,4 +35,6 @@ canvas {
     display: block;
     width: 100% !important;
     height: auto !important;
+    transition: none !important;
+    animation: none !important;
   }
