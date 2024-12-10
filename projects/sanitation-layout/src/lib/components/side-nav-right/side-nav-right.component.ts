@@ -60,10 +60,8 @@ export class SideNavRightComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(() => {
       this.routePath = this.router.url;
-      console.log(this.routePath.includes('add-user'))
       this.isCrea = this.routePath.includes('add-user')
       this.cdr.detectChanges();
-      console.log(this.routePath, 'alskdjf;laskjdf;laskdjf;laskdjf;laksdjf;laksdf')
     })
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),

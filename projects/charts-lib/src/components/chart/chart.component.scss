@@ -1,8 +1,9 @@
-// .example-card {
-//     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
-//     transition: box-shadow 0.3s ease, transform 0.3s ease;
-//     border-radius: 12px;
-// }
+.example-card {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0px;
+}
 
 // .card-container:hover {
 //     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1), 0 10px 18px rgba(0, 0, 0, 0.1);
@@ -17,8 +18,8 @@
 
 .hidden {
     display: none !important;
-    transition: none !important;
-    animation: none !important;
+    // transition: none !important;
+    // animation: none !important;
     opacity: 1 !important;
 }
 

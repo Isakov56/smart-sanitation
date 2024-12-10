@@ -55,7 +55,6 @@ export class DashboardComponent implements OnInit {
     });
     this.valuesService.getValuesGrid().subscribe((data) => {
       this.values = data;
-      console.log(data, 'my vlues')
     });
   }
 

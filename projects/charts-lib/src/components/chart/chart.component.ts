@@ -16,104 +16,69 @@ Chart.register(...registerables);
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
 })
-export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnInit {
-  
-  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef) {}
+export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
   
   @Input() chartType: ChartType = 'bar';
   @Input() data: any;
-  @Input() isLoading: boolean = false;
   @Input() options: ChartOptions = { responsive: true, maintainAspectRatio: false };
-  @Input() gradientConfig: { startColor: string; endColor: string; direction: 'horizontal' | 'vertical' } = {
-    startColor: '#090979', endColor: '#0096b4', direction: 'horizontal'
+  @Input() gradientConfig = { 
+    startColor: '#090979', 
+    endColor: '#0096b4', 
+    direction: 'horizontal' 
   };
-
-  chartData: any = { // Initialize chartData
-    labels: [],
-    datasets: []
-  };
-
-  ngOnInit(): void {
-    /*
-    this.weatherService.testChartData$.subscribe((data: any) => {
-      if (data && data.datasets) {
-        this.chart.data = data; // Set new chart data
-        this.chart.update(); // Refresh the chart
-      }
-    });
-    */
-    if (!this.data) {
-      console.error('No data received in app-chart!');
-      return;
-    }
-      const chartData = this.transformToChartData(this.data); // Transform the data
-    if (chartData) {
-      this.chart.data = chartData; // Set the transformed data
-      this.chart.update(); // Refresh the chart
-    }
-    console.log(chartData, 'datatsdatadatadaatadatadtadatadata')
-  }
-
-  transformToChartData(data: any): any {
-    if (!data || !data.sensor) return null;
-  
-    const labels = data.sensor.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`);
-    const dataset = {
-      type: data.chartType,
-      label: data.title,
-      data: data.sensor.map((sensor: any) => sensor.id), // Example: Use sensor IDs as data points
-      backgroundColor: data.sensor.map((sensor: any) => sensor.color),
-      transition: 'none !imoprtant',
-      animation: 'none !important' // Colors from the data
-    };
-  
-    return {
-      labels: labels,
-      datasets: [dataset],
-    };
-  }
 
   @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   private chart!: Chart;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnChanges(): void {
+    if (this.data) {
+      this.updateChartData();
+    }
+  }
+
   ngAfterViewInit(): void {
-    
-    // this.cdr.detectChanges();
-    if (!this.chartCanvas) return; // Prevent running if canvas isn't available
-    
+    this.initializeChart();
+    window.addEventListener('resize', this.onResize);
+  }
+
+  private initializeChart(): void {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
     if (!ctx) {
       console.error('Canvas context could not be initialized.');
       return;
     }
-  
-  
+
     this.chart = new Chart(ctx, {
       type: this.chartType,
-      data: this.chartData,
+      data: this.transformToChartData(this.data),
       options: this.options,
     });
-    this.chart?.update();
-  
-    // Add resize listener for manual resizing
-    window.addEventListener('resize', this.onResize);
   }
 
+  private transformToChartData(data: any): any {
+    if (!data || !data.sensor) return null;
 
-  ngOnChanges(): void {
-    if (this.data) {
-      this.chartData = this.transformToChartData(this.data);
+    return {
+      labels: data.sensor.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`),
+      datasets: [{
+        type: data.chartType,
+        label: data.title,
+        data: data.sensor.map((sensor: any) => sensor.test),
+        backgroundColor: data.sensor.map((sensor: any) => sensor.color),
+      }]
+    };
+  }
+
+  private updateChartData(): void {
+    if (this.chart) {
+      this.chart.data = this.transformToChartData(this.data);
+      this.chart.update();
+      this.applyGradient()
     }
-    // if (this.chart) {
-    //   this.chart.data = this.chartData;
-    //   this.chart.update(); // Refresh chart
-    // }
-    // this.weatherService.testChartData$.subscribe((data: any) => {
-    //   if (data && data.datasets) {
-    //     this.chart.data = data; // Set new chart data
-    //     this.chart.update(); // Refresh the chart
-    //   }
-    // });
   }
+
   private createGradient(ctx: CanvasRenderingContext2D): CanvasGradient {
     const canvas = ctx.canvas;
     const gradient = this.gradientConfig.direction === 'horizontal'
@@ -125,9 +90,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnIn
     return gradient;
   }
 
-  private updateChart(): void {
+  private applyGradient(): void {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
-    if (ctx) {
+    if (ctx && this.data.datasets) {
       const gradient = this.createGradient(ctx);
       this.data.datasets.forEach((dataset: any) => {
         dataset.backgroundColor = gradient;
@@ -136,17 +101,13 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges, OnIn
     }
   }
 
-  private onResize = () => {
-    if (this.chart) {
-      this.chart.resize(); // Manually trigger chart resize
-    }
+  private onResize = (): void => {
+    this.chart?.resize();
   };
 
   ngOnDestroy(): void {
-    if (this.chart) {
-      this.chart.destroy(); // Clean up the chart instance
-    }
-    window.removeEventListener('resize', this.onResize); // Remove resize listener
+    this.chart?.destroy();
+    window.removeEventListener('resize', this.onResize);
   }
 }
 

@@ -1,19 +1,15 @@
 
 .wrapper {
     width: 100%;
-    height: 300px;
-    margin: 0 auto;
-    display: inline-block;
-    margin: 8px;
+    height: 100%;
   }
   
   .element {
     line-height: 1;
-    display: inline-block;
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 110%;
     background: #d4d4d4;
   
     &::before {
@@ -34,16 +30,16 @@
     }
   
     &.column {
-      display: block;
       margin: 6px 0 8px;
     }
     
     &.p {
-      height: 12px;
+      height: 20px !important;
       width: 90%;
       
       &:last-child {
         width: 70%;
+        margin-bottom: 0;
       }
     }
   }

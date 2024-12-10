@@ -30,7 +30,6 @@ export class WeatherService {
     this.getWeatherData(city).pipe(delay(0)).subscribe(data => {
       this.prepareChartData(data); // Prepare chart data
       this.weatherDataSubject.next(data); // Emit data via the BehaviorSubject
-      console.log(this.weatherDataSubject.value, 'jjjjj'); // Log the data
 
     });
   }
