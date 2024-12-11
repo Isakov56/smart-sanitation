@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject, Input, } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,7 @@ import { combineLatest } from 'rxjs';
 import { TableComponent } from 'shared'
 
 
+
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
@@ -26,7 +27,10 @@ import { TableComponent } from 'shared'
   styleUrl: './dashboard.component.scss',
   styles: ``
 })
+
 export class DashboardComponent implements OnInit {
+
+  
   options: GridsterConfig = {
     draggable: { 
       enabled: true,

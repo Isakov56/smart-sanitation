@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit  } from '@angular/core';
+import { Component, inject, Input, OnInit, TemplateRef   } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,7 +20,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SideNavRightComponent } from '../side-nav-right/side-nav-right.component';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-side-nav',
@@ -70,10 +70,14 @@ export class SideNavComponent implements OnInit {
     );
 
     
-    constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private modalService: NgbModal) {
       iconRegistry.addSvgIconSet(
         sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
       );
+    }
+
+    openModal(modalTemplate: TemplateRef<any>) {
+      this.modalService.open(modalTemplate, { centered: true });
     }
 
     @Input() routes: RouteConfig[] = []

@@ -48,7 +48,7 @@
       </mat-toolbar>
       <div class="sidenav-right me-2" 
       *ngIf=" !isExcludedRoute()" 
-      routerLink="/aggiungi-dispositivo" 
+      (click)="openModal(modalTemplate)"
       >
       <!-- <div class="sidenav-right me-2" 
       *ngIf=" false" 
@@ -73,5 +73,19 @@
     <app-side-nav-right *ngIf="false"></app-side-nav-right>
     
   </div>
+  <ng-template #modalTemplate let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Hello!</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>Hello, {{ name }}!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
   </mat-sidenav-content>
+  
 </mat-sidenav-container>
+
