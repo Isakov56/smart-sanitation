@@ -136,10 +136,19 @@
   // flex: 1;
   // max-width: 950px; /* Optional: set a maximum width */
   overflow: hidden;
+  // height: 90%;
   // word-wrap: break-word; /* Ensure long text breaks to the next line */
   // padding: 16px;
   // text-align: center;
 }
+
+.test{
+  height: 85vh !important;
+}
+
+// .scroll-test::-webkit-scrollbar {
+//   display: none; /* For Chrome, Safari, and Edge, hide scrollbars */
+// }
 
 ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field {
   padding: 0 !important;

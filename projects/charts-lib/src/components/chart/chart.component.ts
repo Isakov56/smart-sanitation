@@ -5,13 +5,15 @@ import { CardLoaderComponent } from 'shared';
 import { CommonModule } from '@angular/common';
 import { WeatherService } from 'core';
 import { animation } from '@angular/animations';
+import { TableComponent } from 'shared'
+
 // import { WeatherService } from 'core';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-chart',
-  imports: [MatCard, CardLoaderComponent, CommonModule],
+  imports: [MatCard, CardLoaderComponent, CommonModule, TableComponent],
   standalone: true,
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
@@ -80,10 +82,11 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
         labels: data.sensors.map((sensor: any, index: number) => `Sensor ${sensor.id || index + 1}`),
         datasets: [{
             type: data.chartType,
+            fill: true,
             label: data.title,
             data: data.sensors.map((sensor: any) => sensor.value),
             backgroundColor: data.sensors.map((sensor: any) =>
-                data.chartType === 'polarArea' ? addTransparency(sensor.color, 0.5) : sensor.color
+                data.chartType === 'polarArea' || data.chartType === 'radar' || data.chartType === 'line' ? addTransparency(sensor.color, 0.5) : sensor.color
             ),
         }]
     };

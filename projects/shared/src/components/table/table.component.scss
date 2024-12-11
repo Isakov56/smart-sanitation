@@ -23,23 +23,26 @@ table {
     padding: 0;
     
   }
+  tbody tr {
+    height: 10px; /* Set the height of each row */
+  }
   
   /* Set alternating row colors */
   tbody tr.even-row {
-    background-color: var(--table-color1); /* Light gray for even rows */
-  }
-  
-  tbody tr.even-row:hover {
-    background-color: var(--table-color1-hover); /* Hover effect for even rows */
-  }
-  
-  tbody tr.odd-row {
-    background-color: var(--table-color2); /* White for odd rows */
-  }
-  
-  tbody tr.odd-row:hover {
-    background-color: var(--table-color2-hover); /* Hover effect for odd rows */
-  }
+  background-color: var(--table-color1); /* Light gray for even rows */
+}
+
+tbody tr.even-row:hover {
+  background-color: var(--table-color1-hover); /* Hover effect for even rows */
+}
+
+tbody tr.odd-row {
+  background-color: var(--table-color2); /* White for odd rows */
+}
+
+tbody tr.odd-row:hover {
+  background-color: var(--table-color2-hover); /* Hover effect for odd rows */
+}
 
   tbody tr td {
     background-color: transparent;   
