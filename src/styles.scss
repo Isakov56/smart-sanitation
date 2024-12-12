@@ -29,3 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+.cdk-overlay-container {
+    z-index: 20000 !important; /* Higher than Bootstrap modal */
+  }

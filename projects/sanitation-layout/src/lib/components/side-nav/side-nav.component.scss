@@ -172,6 +172,21 @@
   color: var(--primary-button);
 }
 
+div.cdk-overlay-container {
+  z-index: 20000 !important; /* Higher than Bootstrap modal */
+}
+.modal {
+  overflow: visible !important;
+
+}
+
+.pick{
+  padding-left: 0.5rem !important;
+}
+
+.modal-dialog {
+  overflow: visible !important;
+}
 
 
 

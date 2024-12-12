@@ -158,7 +158,68 @@
     "unit": "ppm",
     "status": "inactive",
     "color": "#FF6F33"
+  },
+  {
+    "id": 16,
+    "deviceId": 5,
+    "name": "Smoke Sensor",
+    "type": "Gas",
+    "value": 90,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#33FFF3"
+  },
+  {
+    "id": 16,
+    "deviceId": 5,
+    "name": "Smoke Sensor",
+    "type": "Gas",
+    "value": 190,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#FF6F33"
+  },
+  {
+    "id": 16,
+    "deviceId": 5,
+    "name": "Smoke Sensor",
+    "type": "Gas",
+    "value": 290,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#FFE933"
+  },
+  {
+    "id": 10,
+    "deviceId": 6,
+    "name": "Humidity Sensor",
+    "type": "Humidity",
+    "value": 50.5,
+    "unit": "%",
+    "status": "active",
+    "color": "#33C1FF"
+  },
+  {
+    "id": 11,
+    "deviceId": 6,
+    "name": "CO2 Sensor",
+    "type": "Gas",
+    "value": 20,
+    "unit": "ppm",
+    "status": "inactive",
+    "color": "#33FF57"
+  },
+  {
+    "id": 12,
+    "deviceId": 6,
+    "name": "Sound Sensor",
+    "type": "Sound",
+    "value": 70,
+    "unit": "dB",
+    "status": "active",
+    "color": "#FF33A2"
   }
+
 ]
 
 

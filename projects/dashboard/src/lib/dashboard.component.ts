@@ -7,14 +7,14 @@ import { PieChartComponent } from 'charts-lib';
 import { ChartComponent } from 'charts-lib';
 import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
-import { delay } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { CardService } from 'core';
 import { ValuesService } from 'core';
 import { SensorService } from 'core';
 import { GridComponent } from 'core';
 import { AppStateService } from 'core';
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
-import { combineLatest } from 'rxjs';
+import { combineLatest,  } from 'rxjs';
 import { TableComponent } from 'shared'
 
 
@@ -62,75 +62,110 @@ export class DashboardComponent implements OnInit {
   devicesWithSensors: any[] = [];
   layout: any[] = [];
   chartData!: any[];
-
+  
+  devicesWithSensors$!: Observable<any[]>;
 
   constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService,
     private sensorService: SensorService, private appStateService: AppStateService) { }
 
-    onGridChange(): void {
-      console.log('Grid layout changed:', this.layout);
-      this.appStateService.setGridLayout(this.layout); // Save updated layout to state
-    }
+    
 
 
   ngOnInit(): void {
-    this.weatherService.getWeatherDataTest('sydney');
+    // Fetch and set devices with sensors as an Observable
+    this.devicesWithSensors$ = this.appStateService.devicesWithSensors$;
 
-    // Ensure devices are loaded before layout
+    // Subscribe to layout changes and update layout dynamically
+    this.appStateService.devices$.subscribe((devices) => {
+      this.initializeLayout(devices);
+      this.onGridChange()
+      this.updateDevicesWithSensors(devices);
+    });
+
+    // Fetch initial devices if not already loaded
     const devices = this.appStateService.getDevices();
-    if (devices.length === 0) {
-      this.cardService.getGridItems().subscribe((fetchedDevices) => {
-        this.devices = fetchedDevices;
-        this.appStateService.setDevices(fetchedDevices);
+  if (devices.length === 0) {
+    this.cardService.getGridItems().subscribe((fetchedDevices) => {
+      this.devices = fetchedDevices;
+      console.log('Fetched devices:', fetchedDevices);
+      this.appStateService.setDevices(fetchedDevices);
+      this.cdr.detectChanges();
 
-        this.initializeLayout(fetchedDevices); // Initialize layout with fetched devices
-        this.initializeSensors(fetchedDevices); // Fetch sensors for these devices
-      });
-    } else {
-      this.devices = devices;
-      this.initializeLayout(devices); // Use stored devices to initialize layout
-      this.initializeSensors(devices); // Fetch sensors for stored devices
-    }
+      this.initializeLayout(fetchedDevices);
+      this.initializeSensors(devices);
+    });
+  } else {
+    this.devices = devices;
+    this.initializeLayout(devices);
+    this.initializeSensors(devices);
+  }
+  }
+
+  
+
+  onGridChange(): void {
+    console.log('Grid layout changed:', this.layout);
+    this.appStateService.setGridLayout(this.layout); // Save updated layout
+    this.cdr.detectChanges();
   }
 
   private initializeLayout(devices: any[]): void {
-    const layout = this.appStateService.getGridLayout();
-    if (layout.length === 0) {
-      this.layout = devices.map((device) => ({
-        id: device.id,
-        x: device.x || 0,
-        y: device.y || 0,
-        cols: device.cols || 1,
-        rows: device.rows || 1,
+    const currentLayout = this.appStateService.getGridLayout();
+    const newLayout = devices.map((device) => ({
+      id: device.id,
+      x: device.x || 0,
+      y: device.y || 0,
+      cols: device.cols || 1,
+      rows: device.rows || 1,
+    }));
+  
+    // Merge layouts: retain existing device positions and add new ones
+    this.layout = [
+      ...currentLayout.filter(layoutItem =>
+        devices.some(device => device.id === layoutItem.id)
+      ),
+      ...newLayout.filter(newLayoutItem =>
+        !currentLayout.some(layoutItem => layoutItem.id === newLayoutItem.id)
+      )
+    ];
+  
+    this.appStateService.setGridLayout(this.layout);
+  }
+
+  private updateDevicesWithSensors(devices: any[]): void {
+    this.sensorService.getSensors().subscribe((sensors) => {
+      const devicesWithSensors = devices.map((device) => ({
+        ...device,
+        sensors: sensors.filter((sensor) => sensor.deviceId === device.id),
       }));
-      this.appStateService.setGridLayout(this.layout);
-    } else {
-      this.layout = layout;
-    }
+      this.appStateService.setDevicesWithSensors(devicesWithSensors);
+    });
   }
 
   private initializeSensors(devices: any[]): void {
+    if (!devices || devices.length === 0) {
+      console.log('No devices to initialize sensors for.');
+      return;
+    }
+  
     this.sensorService.getSensors().subscribe((sensors) => {
+      // Map sensors to the respective devices
       this.devicesWithSensors = devices.map((device) => ({
         ...device,
         sensors: sensors.filter((sensor) => sensor.deviceId === device.id),
       }));
+  
+      console.log('Updated devices with sensors:', this.devicesWithSensors);
+  
+      // Update the app state with the new devicesWithSensors
       this.appStateService.setDevicesWithSensors(this.devicesWithSensors);
     });
-
-    // If chart data is available, use it
-    // const savedChartData = this.appStateService.getChartData();
-    // if (savedChartData.length === 0) {
-    //   this.fetchAndSaveChartData();  // Fetch and save chart data if not available
-    // } else {
-    //   this.chartData = savedChartData;  // Use saved chart data
-    // }
   }
+  
 
-  getDeviceData(deviceId: number): any {
-    return (
-      this.devicesWithSensors?.find((device) => device.id === deviceId) || {}
-    );
+  getDeviceFromObservable(devices: any[] | null, id: number): any | null {
+    if (!devices) return null; // Handle null case for the Observable
+    return devices.find((device) => device.id === id) || null;
   }
   // Fetch and save chart data when necessary
   fetchAndSaveChartData(): void {
