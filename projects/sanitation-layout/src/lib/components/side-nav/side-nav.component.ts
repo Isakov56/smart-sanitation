@@ -68,6 +68,8 @@ export class SideNavComponent implements OnInit {
 
   private devicesSubscription!: Subscription;
 
+  isDashboardPage = false;
+
   modalRef: any;
 
   addDevice(): void {
@@ -153,7 +155,9 @@ export class SideNavComponent implements OnInit {
     this.devicesSubscription = this.appStateService.devices$.subscribe(devices => {
       console.log('Devices updated:', devices);
     });
-    
+
+    this.isDashboardPage = this.router.url.includes('dashboard');
+    console.log(this.isDashboardPage, 'dashboard')
     this.myControl.valueChanges.subscribe(value => {
       this.filteredOptions = this.options.filter(option =>
         option.toLowerCase()
