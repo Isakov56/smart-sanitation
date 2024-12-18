@@ -24,6 +24,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppStateService } from 'core';
 import {  FormGroup, Validators } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SensorService } from 'core'
 
 
 @Component({
@@ -48,20 +50,24 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     SideNavRightComponent,
     NgbModalModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
 
+  sensors: any[] = [];
+
   myControl = new FormControl('');
-  options: string[] = ['Option 1', 'Option 2', 'Option 3'];
-  filteredOptions = this.options;
+  options: string[] = ['Pie', 'Bar', 'Line'];
+  filteredOptions: Observable<string[]> | undefined;
 
   deviceForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    id: new FormControl(5, Validators.required),  // Default value for 'type'
-    chartType: new FormControl('pie', Validators.required),
+    id: new FormControl(5, Validators.required),
+    chartType: new FormControl('', Validators.required),
     cols: new FormControl(4, Validators.required),
     rows: new FormControl(4, Validators.required),
   });
@@ -71,28 +77,78 @@ export class SideNavComponent implements OnInit {
   isDashboardPage = false;
 
   modalRef: any;
+  checkboxStates: { [key: number]: boolean } = {};
+
+  clearClose(): void {
+    this.sensors.forEach(sensor => (sensor.selected = false));
+  const currentDevices = this.appStateService.getDevices();
+  this.closeModal();
+  this.cdr.detectChanges();
+  this.deviceForm.reset({
+    title: '',
+    chartType: '',
+    id: currentDevices.length + 2,
+    cols: 4,
+    rows: 4
+  });
+  }
 
   addDevice(): void {
     if (this.deviceForm.valid) {
       const currentDevices = this.appStateService.getDevices();
-      // Dynamically set the id to be the number of current devices + 1
-      const newDevice = { ...this.deviceForm.value, id: currentDevices.length + 1 };
-  
-      // Add the new device to the list of devices
+      const newDevice = { ...this.deviceForm.value, id: currentDevices.length + 1 }
       this.appStateService.setDevices([...currentDevices, newDevice]);
-  
+
       this.closeModal();
-      // Trigger change detection to ensure the UI updates
       this.cdr.detectChanges();
       this.deviceForm.reset({
-        title: '', // Optional: provide default values
-        id: currentDevices.length + 2, // Or simply reset to the next id (optional)
-        chartType: 'pie',
-        cols: 4,
+        title: '',
+        id: currentDevices.length + 2,
+        chartType: '',
+        cols: 4 ,
         rows: 4
       });
     }
   }
+
+  addDeviceTest(): void {
+    if (this.deviceForm.valid) {
+      const currentDevices = this.appStateService.getDevices();
+    
+      // Extract selected sensors
+      const selectedSensors = this.sensors
+        .filter(sensor => sensor.control.value) // Only include selected sensors
+        .map(sensor => ({
+          id: sensor.id,
+          name: sensor.name,
+          type: sensor.type,
+          value: sensor.value, // Include all necessary fields from the sensor
+          unit: sensor.unit,
+          status: sensor.status,
+          color: sensor.color
+        }));
+    
+      const newDevice = {
+        ...this.deviceForm.value,
+        id: currentDevices.length + 1, // Auto-generate a new ID
+        sensors: selectedSensors // Attach selected sensors to the new device
+      };
+    
+      // Update the devices list in the app state
+      this.appStateService.setDevices([...currentDevices, newDevice]);
+      this.appStateService.setDevicesWithSensors([...currentDevices, newDevice]);
+  
+      // Optional: Log the new device
+      console.log('New Device Created:', [...currentDevices, newDevice]);
+  
+      // Reset form and close modal
+      this.clearClose();
+    }
+  }
+  
+  
+  
+  
 
   // close(): void {
   //   this.activeModal.dismiss();
@@ -121,7 +177,7 @@ export class SideNavComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef) {
+    private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef, private sensorService: SensorService,) {
     iconRegistry.addSvgIconSet(
       sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
     );
@@ -152,17 +208,47 @@ export class SideNavComponent implements OnInit {
   buttonName: string = ''
   ngOnInit() {
 
+    this.sensorService.getSensors(true).subscribe((sensors) => {
+      this.sensors = sensors.map((sensor) => ({
+        ...sensor,
+        control: new FormControl(this.checkboxStates[sensor.id] || false),
+      }));
+  
+      // Preserve checkbox state
+      this.sensors.forEach((sensor) => {
+        sensor.control.valueChanges.subscribe((isChecked: any) => {
+          this.checkboxStates[sensor.id] = isChecked;
+        });
+      });
+    });
+
+    this.appStateService.devicesWithSensors$.subscribe(devices => {
+      // console.log('Devices updated:', devices);
+      // Here you can update the layout or other relevant state based on devices
+    });
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || ''))
+    );
+
+    this.myControl.valueChanges.subscribe(selectedValue => {
+      if (selectedValue && this.options.includes(selectedValue)) {
+        this.deviceForm.get('chartType')?.setValue(selectedValue.toLowerCase());
+      }
+    })
+
     this.devicesSubscription = this.appStateService.devices$.subscribe(devices => {
-      console.log('Devices updated:', devices);
+      // console.log('Devices updated:', devices);
     });
 
     this.isDashboardPage = this.router.url.includes('dashboard');
     console.log(this.isDashboardPage, 'dashboard')
-    this.myControl.valueChanges.subscribe(value => {
-      this.filteredOptions = this.options.filter(option =>
-        option.toLowerCase()
-      );
-    });
+    // this.myControl.valueChanges.subscribe(value => {
+    //   this.filteredOptions = this.options.filter(option =>
+    //     option.toLowerCase()
+    //   );
+    // });
 
     // Get the current route path
     this.router.events.subscribe(() => {
@@ -181,8 +267,9 @@ export class SideNavComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 
   // Helper method to capitalize the first letter of the string

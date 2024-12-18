@@ -7,6 +7,38 @@
     "chartType": "polarArea",
     "x": 0,
     "y": 0,
+    "sensors": [
+      {
+        "id": 1,
+        "deviceId": 1,
+        "name": "Temperature Sensor",
+        "type": "Temperature",
+        "value": 22.5,
+        "unit": "C",
+        "status": "active",
+        "color": "#FF5743"
+      },
+      {
+        "id": 2,
+        "deviceId": 1,
+        "name": "Humidity Sensor",
+        "type": "Humidity",
+        "value": 45.2,
+        "unit": "%",
+        "status": "active",
+        "color": "#33C1FF"
+      },
+      {
+        "id": 3,
+        "deviceId": 1,
+        "name": "CO2 Sensor",
+        "type": "Gas",
+        "value": 90,
+        "unit": "ppm",
+        "status": "active",
+        "color": "#33FF57"
+      }
+    ],
     "cols": 4,
     "rows": 4,
     "scalaMin" : 0,

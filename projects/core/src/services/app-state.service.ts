@@ -30,6 +30,13 @@ export class AppStateService {
   getGridLayout(): any[] {
     return this.gridLayoutSubject.getValue();
   }
+
+  getDevicesWithSensors(sensors: any[]): any[] {
+    return this.getDevices().map(device => ({
+      ...device,
+      sensors: sensors.filter(sensor => sensor.deviceId === device.id)
+    }));
+  }
 }
 
 

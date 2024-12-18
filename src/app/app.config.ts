@@ -4,7 +4,7 @@ import {
   importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule, } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -18,8 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),  // Importing HttpClientModule
-    importProvidersFrom(HttpClientJsonpModule),  // Importing HttpClientJsonpModule
+    // importProvidersFrom(HttpClientJsonpModule),  // Importing HttpClientJsonpModule
     importProvidersFrom(MatIconModule),
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
   ],
 };

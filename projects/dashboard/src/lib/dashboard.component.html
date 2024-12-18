@@ -1,14 +1,32 @@
 <div class="w-100 h-100 height pb-3">
     <h6 class="message">Benvenuto nella admin dashboard di SMART SANISTATION</h6>
+    <!-- <div class="mb-3">
+      <button (click)="toggleStream()"> 
+        {{ isStreaming ? 'Stop Streaming' : 'Start Streaming' }}
+      </button>
+    </div>
+    <h6 *ngIf="subscribeId">Subscription ID: {{ subscribeId }}</h6>
+    <img *ngIf="videoStreamUrl" [src]="videoStreamUrl" alt="Video Stream" class="w-100 h-100" /> -->
+        <!-- <iframe 
+          class="video-frame w-100 h-100"
+          src="http://192.168.25.16:8094/stream"
+          frameborder="0"
+          allowfullscreen>
+        </iframe> -->
+
+    
     
     <!-- <div class="w-100 card-container mb-4"> -->
       <gridster [options]="options" class=" test ps-0 pe-3 pb-5">
         <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
           <app-chart  class="w-100" [data]="getDeviceFromObservable(devicesWithSensors$ | async, item.id)"></app-chart>
+          
         </gridster-item>
       </gridster>
     <!-- </div> -->
-     
+    
+        
+      
     <div class=" w-100 pe-3 charts-container">
       
       <!-- <app-chart  
