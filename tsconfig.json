@@ -38,6 +38,9 @@
       "monitoring": [
         "./dist/monitoring"
       ],
+      "ngrx-store": [
+        "./dist/ngrx-store"
+      ],
       "reports": [
         "./dist/reports"
       ],

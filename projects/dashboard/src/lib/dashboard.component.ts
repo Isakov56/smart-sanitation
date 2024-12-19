@@ -17,16 +17,21 @@ import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2'
 import { combineLatest,  } from 'rxjs';
 import { TableComponent } from 'shared'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Store } from '@ngrx/store';
+import { loadSensors } from 'ngrx-store';
 
 
 
 @Component({
   selector: 'lib-dashboard',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule,
+  imports: [
+    MatCardModule, MatButtonModule, CommonModule,
     //  CardComponent, 
     // PieChartComponent, CardLoaderComponent, TableComponent, 
-    ChartComponent,  GridsterModule],
+    ChartComponent,  GridsterModule,
+    
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   styles: ``
@@ -74,7 +79,7 @@ export class DashboardComponent implements OnInit {
   devicesWithSensors$!: Observable<any[]>;
 
   constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private cardService: CardService, private valuesService: ValuesService,
-    private sensorService: SensorService, private appStateService: AppStateService, private http: HttpClient) { }
+    private sensorService: SensorService, private appStateService: AppStateService, private http: HttpClient, private store: Store) { }
 
     subscribeId: string | null = null; // Store subscription ID
   isStreaming: boolean = false; // Toggle streaming
@@ -114,6 +119,8 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
 
+      this.store.dispatch(loadSensors());
+      
       this.getSubscriptionId();
 
       // this.http.head('http://192.168.25.16:8094/stream', { observe: 'response' })

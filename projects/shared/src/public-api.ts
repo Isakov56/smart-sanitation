@@ -7,3 +7,5 @@ export * from './lib/shared.component';
 export * from './components/card/card.component'
 export * from './components/table/table.component'
 export * from './components/card-loader/card-loader.component'
+export * from './models/device.model'
+export * from './models/sensor.model'
