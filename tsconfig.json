@@ -52,6 +52,9 @@
       ],
       "shared": [
         "./dist/shared"
+      ],
+      "test-store-lib": [
+        "./dist/test-store-lib"
       ]
     },
     "importHelpers": true,

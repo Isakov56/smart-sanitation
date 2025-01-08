@@ -12,6 +12,13 @@
   // top: -50px;
   // left: 5px;
 }
+.logo.bigger{
+  width: 75px;
+  height: 75px;
+  // position: relative;
+  // top: -50px;
+  // left: 5px;
+}
 
 .logo:focus-visible{
   border: none !important;
@@ -77,6 +84,15 @@
   // width: 80px !important;
 }
 
+.nav-link-container.height{
+  // position: relative;
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+  height: 85%;
+  // height: 100%;
+  // width: 80px !important;
+}
+
 .routes{
   min-height: 335px;
 }
@@ -115,7 +131,7 @@
 }
 
 .sidenav.persistent .routes-nav {
-  width: 250px !important;
+  width: 255px !important;
 }
 
 .sidenav.persistent{
