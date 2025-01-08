@@ -4,7 +4,7 @@ import {
   importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { HttpClientModule, } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -14,10 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { provideNgrxStoreLib  } from 'ngrx-store'
 
-import { StoreModule } from '@ngrx/store';
+import { provideStore, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from 'ngrx-store'; // Path to your reducers
 import { SensorEffects } from 'ngrx-store';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,11 +28,13 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),  // Importing HttpClientModule
     // importProvidersFrom(HttpClientJsonpModule),  // Importing HttpClientJsonpModule
     importProvidersFrom(MatIconModule),
-    // { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
     // ...provideNgrxStoreLib,
     importProvidersFrom(
       StoreModule.forRoot(reducers),
       EffectsModule.forRoot([SensorEffects])
     ),
+    provideStore(reducers),
+    provideEffects([SensorEffects]),
   ],
 };

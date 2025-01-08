@@ -20,13 +20,14 @@ export class SensorService {
   }
 
   getSensors(skipPeriodicUpdates: boolean = false): Observable<any[]> {
-    if (skipPeriodicUpdates) {
-      return this.http.get<any[]>(this.sensorsUrl).pipe(
-        tap((data) => {
-          this.sensors = data;
-        })
-      );
-    }
+    skipPeriodicUpdates = false;
+    // if (skipPeriodicUpdates) {
+    //   return this.http.get<any[]>(this.sensorsUrl).pipe(
+    //     tap((data) => {
+    //       this.sensors = data;
+    //     })
+    //   );
+    // }
     return this.sensorsSubject.asObservable();
   }
 
@@ -35,19 +36,22 @@ export class SensorService {
   }
 
   private loadSensors(): void {
+    /*
     this.http.get<any[]>(this.sensorsUrl).subscribe((data) => {
       this.sensorsSubject.next(data); // Emit loaded sensors
     });
+    */
   }
 
   private setupPeriodicUpdates(): void {
-    interval(5000) // Update every 5 seconds
+    /*interval(5000) // Update every 5 seconds
       .pipe(
         switchMap(() => this.http.get<any[]>(this.sensorsUrl)) // Fetch updated sensor data
       )
       .subscribe((data) => {
         this.sensorsSubject.next(data); // Emit updated sensors
       });
+      */
   }
 
   assignSensorsToDevice(deviceId: number, sensorIds: number[]): void {

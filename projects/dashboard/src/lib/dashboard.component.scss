@@ -4,6 +4,26 @@
     color: var(--primary-button);
 }
 
+/* Styles for the status message */
+.paused-state {
+  color: red;
+  background-color: #ffe6e6;
+}
+
+.resumed-state {
+  color: green;
+  background-color: #e6ffe6;
+}
+
+.paused {
+  color: red;
+}
+
+.resumed {
+  color: green;
+}
+
+
 
 
 // .example-card {

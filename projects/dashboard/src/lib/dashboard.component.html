@@ -1,12 +1,8 @@
 <div class="w-100 h-100 height pb-3">
-    <h6 class="message">Benvenuto nella admin dashboard di SMART SANISTATION</h6>
-    <!-- <div class="mb-3">
-      <button (click)="toggleStream()"> 
-        {{ isStreaming ? 'Stop Streaming' : 'Start Streaming' }}
-      </button>
-    </div>
-    <h6 *ngIf="subscribeId">Subscription ID: {{ subscribeId }}</h6>
-    <img *ngIf="videoStreamUrl" [src]="videoStreamUrl" alt="Video Stream" class="w-100 h-100" /> -->
+  <!-- <div class="mjpeg-stream">
+    <img [src]="imgSrc" alt="MJPEG Stream" />
+  </div> -->
+    <!-- <img *ngIf="videoStreamUrl" [src]="videoStreamUrl" alt="Video Stream" class="w-100 h-100" /> -->
         <!-- <iframe 
           class="video-frame w-100 h-100"
           src="http://192.168.25.16:8094/stream"
@@ -14,12 +10,42 @@
           allowfullscreen>
         </iframe> -->
 
-    
+        <div>
+          <h2>Live Stream</h2>
+          <!-- <h6 *ngFor="let key of headersKeys">{{ key }}: {{ headers[key] }}</h6> -->
+          <!-- <img src="http://158.58.130.148/mjpg/video.mjpg" alt=""> -->
+        </div>
+        
+        <!-- Option 1: Use an <img> tag -->
+        <!-- <img [src]="currentImage" alt="Video Stream" />
+        <div *ngIf="streamUrl">
+          <img [src]="streamUrl" alt="Live Stream" />
+        </div> -->
+
+      <!-- Option 2: Use a <canvas> element -->
+        <div *ngIf="statusMessage"  [ngClass]="{ 'paused': isStreamPaused, 'resumed': !isStreamPaused }">
+        </div>
+        
+        <!-- Add a visual cue for paused state -->
+        <div [ngClass]="{ 'paused-state': isStreamPaused, 'resumed-state': !isStreamPaused }">
+          Stream status: <strong>{{ statusMessage }}</strong>
+        </div>
+        <canvas #videoCanvas id="videoCanvas" width="640" height="480" style="border: 1px solid black;">
+          
+        </canvas>
+        <div>
+          <button (click)="pauseStream()">Pause Stream</button>
+          <button (click)="resumeStream()">Resume Stream</button>
+        </div>
+
+        
+        <!-- <img src="blob:http://localhost:4200/5b35cf69-fee5-458e-832e-92460c96498f"> -->
+         
     
     <!-- <div class="w-100 card-container mb-4"> -->
       <gridster [options]="options" class=" test ps-0 pe-3 pb-5">
         <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
-          <app-chart  class="w-100" [data]="getDeviceFromObservable(devicesWithSensors$ | async, item.id)"></app-chart>
+          <!-- <app-chart  class="w-100" [data]="getDeviceFromObservable(devicesWithSensors$ | async, item.id)"></app-chart> -->
           
         </gridster-item>
       </gridster>

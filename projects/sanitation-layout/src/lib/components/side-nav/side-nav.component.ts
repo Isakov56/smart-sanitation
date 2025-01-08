@@ -57,7 +57,7 @@ import { SensorService } from 'core'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
-
+  isPersistent = true;
   sensors: any[] = [];
 
   myControl = new FormControl('');
@@ -79,6 +79,15 @@ export class SideNavComponent implements OnInit {
   modalRef: any;
   checkboxStates: { [key: number]: boolean } = {};
 
+  onPersistenceChange(): void {
+    if (this.isPersistent) {
+      // Open the drawer if persistence is enabled
+      console.log('Sidenav persistence enabled');
+    } else {
+      console.log('Sidenav persistence disabled');
+    }
+  }
+
   clearClose(): void {
     this.sensors.forEach(sensor => (sensor.selected = false));
   const currentDevices = this.appStateService.getDevices();
@@ -91,6 +100,24 @@ export class SideNavComponent implements OnInit {
     cols: 4,
     rows: 4
   });
+  }
+
+  getRole(): string {
+    return this.isHandset$ ? 'navigation' : 'navigation';
+  }
+
+  // This method returns the sidenav mode based on the isPersistent flag and the handset mode
+  getSidenavMode(): string {
+    return this.isPersistent ? 'side' : 'over';
+  }
+
+  // This method determines whether the sidenav is opened or not
+  getSidenavOpened(): boolean {
+    return this.isPersistent 
+  }
+
+  toggleSidenav(): void {
+    this.isPersistent = !this.isPersistent;  // Toggle the persistent state
   }
 
   addDevice(): void {
@@ -243,7 +270,7 @@ export class SideNavComponent implements OnInit {
     });
 
     this.isDashboardPage = this.router.url.includes('dashboard');
-    console.log(this.isDashboardPage, 'dashboard')
+    // console.log(this.isDashboardPage, 'dashboard')
     // this.myControl.valueChanges.subscribe(value => {
     //   this.filteredOptions = this.options.filter(option =>
     //     option.toLowerCase()

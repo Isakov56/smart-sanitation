@@ -1,29 +1,65 @@
 <mat-sidenav-container class="sidenav-container px-4 pt-4 pe-2">
-  <mat-sidenav #drawer class="sidenav " fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
-    <img class="logo" routerLink="/" src="/assets/main-logo.png" alt="">
-    <div class=" nav-link-container  d-flex justify-content-center align-items-center flex-column">
-      <div class="d-flex align-items-center id-container p-2 w-100 ">
-        <mat-icon fontIcon="account_circle" class="account-circle mx-3 material-symbols-outlined"></mat-icon>
-        <div class="mx-2">
-          <div class="icon id">ID:</div>
-          <div class="icon id">763487563</div>
+  
+  <mat-sidenav 
+  #drawer 
+  class="sidenav"  
+  [class.persistent]="isPersistent"
+  fixedInViewport 
+  [attr.role]="getRole()"
+  [mode]="getSidenavMode()"
+  [opened]="(isHandset$ | async) === false"
+  (mouseenter)="isHovered = true" 
+  (mouseleave)="isHovered = false">
+    <div class="d-flex justify-content-center align-items-center mt-3 w-100">
+      
+        <div class=" d-flex justify-content-center align-items-center" [ngClass]="{' ps-4': isHovered || isPersistent}">
+          <img class="logo" routerLink="/" src="/assets/sanitation-logo-it.png" alt="">
         </div>
+        <div class="d-flex justify-content-end d-flex align-items-center w-100" *ngIf="isHovered || isPersistent">
+          <mat-slide-toggle [(ngModel)]="isPersistent" (change)="onPersistenceChange()">
+  
+          </mat-slide-toggle>
+        </div>
+    </div>
+    
+    <div class=" nav-link-container d-flex justify-content-center align-items-center flex-column">
+      <div class="d-flex routes-nav flex-column justify-content-between">
+        <div class="w-100 py-2 h-100">
+            <div class="d-flex align-items-center nav-link-div w-100 p-2 px-2"
+              routerLinkActive="active" [routerLink]="route.path" >
+              <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
+                <mat-icon fontIcon="account_circle"
+                  class="account-circle material-symbols-outlined"></mat-icon>
+              </div>
+                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-3">
+                  <div class="mx-3">
+                    <div class="icon id">ID:</div>
+                    <div class="icon id">763487563</div>
+                  </div>
+                </div>
+            </div>
       </div>
-      <div class="d-flex routes flex-column justify-content-between">
-        <div class="w-100 py-2  h-100 nav-link-border h-100">
-          <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 my-2 px-2"
-            routerLinkActive="active" [routerLink]="route.path">
-            <mat-icon [fontIcon]="route.icon || 'default_icon'"
-              class="nav-link-icon mx-3 material-symbols-outlined"></mat-icon>
-            <div *ngIf="route.path" class="nav-link mx-3">{{ route.label ? (route.label) : '' }}</div>
+      </div>
+      <div class="d-flex routes-nav flex-column justify-content-between h-100">
+        <div class="w-100 py-2  h-100 nav-link-border">
+          <div >
+            <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 px-2"
+              routerLinkActive="active" [routerLink]="route.path" >
+              <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
+                <mat-icon [fontIcon]="route.icon || 'default_icon'"
+                  class="nav-link-icon material-symbols-outlined"></mat-icon>
+              </div>
+                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-4">
+                  <div *ngIf="route.path" class="nav-link mx-3 d-flex align-items-center">{{ route.label ? (route.label) : '' }}</div>
+                </div>
+            </div>
           </div>
         </div>
-        <div class=" container log-out px-2 w-100 h-100 ">
+        <div class=" container log-out px-2 w-100 mb-2">
           <div class="row align-items-end">
-            <div class="col d-flex pt-2">
-              <mat-icon fontIcon="logout_icon" class="nav-link-icon mx-3 material-symbols-outlined"></mat-icon>
-              <div class=" nav-link mx-3 p-0 my-0"> Log out</div>
+            <div class=" d-flex pt-2 justify-content-center align-items-center">
+              <mat-icon fontIcon="logout_icon" class="nav-link-icon material-symbols-outlined "></mat-icon>
+              <div class=" nav-link mx-3 p-0 my-0" *ngIf="false"> Log out</div>
             </div>
           </div>
         </div>
@@ -31,14 +67,18 @@
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content class="scroll-test">
+  <mat-sidenav-content class="scroll-test" [class.pr-40]="!isPersistent">
     <div class="d-flex justify-content-between ms-3 entry-container">
-      <mat-toolbar color="primary h-100 d-flex align-items-center">
-        @if (true) {
-        <button class="" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-          <mat-icon fontIcon="menu" class="menu material-symbols-outlined"></mat-icon>
-        </button>
-        }
+      <mat-toolbar color="primary h-100 d-flex align-items-center" >
+        <button
+        class=""
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isPersistent">
+        <mat-icon fontIcon="menu"  class="menu material-symbols-outlined"></mat-icon>
+      </button>
         <h1 class="h1-content h-100 d-flex align-items-center">{{ label }}</h1>
       </mat-toolbar>
       <div class="sidenav-right me-2" *ngIf=" !isExcludedRoute()" (click)="openModal(modalTemplate)">

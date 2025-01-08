@@ -1,16 +1,21 @@
 .sidenav-container {
-  height: 100%;
+  // height: %;
   background-color: var(--primary-background-color);
-  width: 100%;
+  // width: 100%;
  
 }
 
 .logo{
-  width: 270px;
-  height: 270px;
-  position: relative;
-  top: -50px;
-  left: 5px;
+  width: 45px;
+  height: 45px;
+  // position: relative;
+  // top: -50px;
+  // left: 5px;
+}
+
+.logo:focus-visible{
+  border: none !important;
+  outline: none !important;
 }
 
 .h1-content{
@@ -26,6 +31,7 @@
 
 .nav-link-div{
   // border: 2px solid var(--primary-button);
+  
   border-radius: 10px;
   cursor: pointer;
 }
@@ -35,9 +41,9 @@
 }
 
 .nav-link-icon{
-  font-size: 30px;
-  width: 30px;
-  height: 30px;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
   color: var(--primary-button);
 }
 
@@ -56,19 +62,19 @@
 
 
 .account-circle{
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
   color: var(--primary-button);
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
 }
 
 .nav-link-container{
-  position: relative;
-  top: -90px;
+  // position: relative;
   padding-right: 1.5rem !important;
   padding-left: 1.5rem !important;
+  height: 90%;
   // height: 100%;
-  width: 100%;
+  // width: 80px !important;
 }
 
 .routes{
@@ -80,13 +86,40 @@
 // }
 
 .sidenav {
-  width: 280px;
+  width: 70px;
   background-color: var(--side-background-color);
   margin-top: auto;
   margin-bottom: auto;
   border-radius: 20px;
   height: 92%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease; /* Smooth transition */
+  overflow: hidden; /* Hide content when collapsed */
+}
+
+.sidenav:hover {
+  width: 280px; /* Expanded width on hover */
+}
+
+.sidenav.over {
+  position: static !important;  /* No overlay behavior, stay in the flow of content */
+  width: 70px !important;  /* Smaller width when closed in 'over' mode */
+  z-index: auto !important;  /* Ensure it stays in the layout flow */
+}
+
+.routes-nav{
+  width: 55px !important;
+}
+.sidenav:hover .routes-nav{
+  width: 255px !important;
+}
+
+.sidenav.persistent .routes-nav {
+  width: 250px !important;
+}
+
+.sidenav.persistent{
+  width: 280px !important;
 }
 
 .sidenav .mat-toolbar {
@@ -94,14 +127,22 @@
 }
 
 .mat-toolbar.mat-primary {
-  position: sticky;
+  // position: sticky;
   top: 0;
   z-index: 1;
   background-color: transparent
 }
 
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown{
+ position: unset !important;
+}
+
+.scroll-test.pr-40 {
+  padding-left: 70px !important;
+}
+
 .log-out{
-  position: relative;
+  // position: relative;
   bottom: -75px;
   border-top: 2px solid var(--primary-button);
 }
