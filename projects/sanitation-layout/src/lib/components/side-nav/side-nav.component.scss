@@ -47,6 +47,10 @@
   background-color: var(--primary-button-hover);
 }
 
+.hover-active.active {
+  background-color: transparent; /* Your hover color */
+}
+
 .nav-link-icon{
   font-size: 28px;
   width: 28px;

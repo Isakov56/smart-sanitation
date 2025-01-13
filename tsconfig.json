@@ -50,6 +50,9 @@
       "session": [
         "./dist/session"
       ],
+      "settings": [
+        "./dist/settings"
+      ],
       "shared": [
         "./dist/shared"
       ],

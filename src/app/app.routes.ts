@@ -7,6 +7,7 @@ import { reportsdRouts } from 'reports';
 import { RouteConfig } from 'isakov-shared';
 import { addDeviceRouts } from 'add-device';
 import { addUserRouts } from 'add-user'
+import { settingsRouts } from 'settings'
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
     ...reportsdRouts,
     ...addDeviceRouts,
     ...addUserRouts,
+    ...settingsRouts,
     { path: '**', redirectTo: 'report' }
 ];
 

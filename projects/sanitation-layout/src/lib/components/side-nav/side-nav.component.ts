@@ -206,7 +206,7 @@ export class SideNavComponent implements OnInit {
   }
 
   isExcludedRoute(): boolean {
-    const excludedRoutes = ['reports', 'aggiungi-dispositivo', 'add-user']; // Add more routes as needed
+    const excludedRoutes = ['reports', 'aggiungi-dispositivo', 'add-user', 'user', 'infrastructure', 'asset', 'sensors']; // Add more routes as needed
     return excludedRoutes.some(route => this.router.url.includes(route));
   }
 
@@ -297,13 +297,17 @@ export class SideNavComponent implements OnInit {
     this.router.events.subscribe(() => {
       const routePath = this.router.url; // Get last segment of the route
 
-      if (routePath.includes('add-user')) {
-        this.buttonName = 'Crea Utente';
+      if (routePath.includes('infrastructure')) {
+        this.label = 'Infrastructure';
+      } else if (routePath.includes('asset')) {
+        this.label = 'Assets';
+      } else if (routePath.includes('sensors')) {
+        this.label = 'Sensors';
       } else {
-        this.buttonName = 'Nuova Dispositvo'; // Set a default button name for other routes
+        // Check against your routes array for other matches
+        const matchedRoute = this.routes.find(route => route.path === routePath);
+        this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : ''; // Default to empty string
       }
-      const matchedRoute = this.routes.find(route => route.path === routePath);
-      this.label = matchedRoute ? this.capitalizeWords(matchedRoute?.label) : '';
       this.formattedRouteName = routePath; // Default to 'Dashboard' if undefined
 
       this.cdr.detectChanges();

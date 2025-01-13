@@ -44,7 +44,7 @@
         <div class="w-100 py-2  h-100 nav-link-border">
           <div >
             <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 px-2"
-              routerLinkActive="active" [routerLink]="route.path" (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
+              routerLinkActive="active" [ngClass]="{ 'hover-active': route.label === 'Settings' }"  (click)="route.label === 'Settings' ? $event.preventDefault() : null" [routerLink]="route.label !== 'Settings' ? route.path : null"  (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
               <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
                 <mat-icon [fontIcon]="route.icon || 'default_icon'"
                   class="nav-link-icon material-symbols-outlined"></mat-icon>
@@ -59,9 +59,9 @@
                   class="d-inline-block ms-3 settings-drop"
                 >
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu show" (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
-            <button ngbDropdownItem>Infrastruttura</button>
-            <button ngbDropdownItem>Asset</button>
-            <button ngbDropdownItem>Sensori</button>
+            <button ngbDropdownItem routerLink="infrastructure">Infrastruttura</button>
+            <button ngbDropdownItem routerLink="asset">Asset</button>
+            <button ngbDropdownItem routerLink="sensors">Sensori</button>
           </div>
         </div>
             </div>
@@ -72,7 +72,7 @@
           <div class="row align-items-end">
             <div class=" d-flex pt-2 justify-content-center align-items-center">
               <mat-icon fontIcon="logout_icon" class="nav-link-icon material-symbols-outlined "></mat-icon>
-              <div class=" nav-link mx-3 p-0 my-0" *ngIf="false"> Log out</div>
+              <div class=" nav-link mx-3 p-0 my-0" *ngIf="false" > Log out</div>
             </div>
           </div>
         </div>

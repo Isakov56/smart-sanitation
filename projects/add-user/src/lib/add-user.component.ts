@@ -4,11 +4,12 @@ import {MatInputModule} from '@angular/material/input';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableComponent } from 'shared'
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'lib-add-user',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, TableComponent, MatSlideToggle],
+  imports: [MatFormFieldModule, MatInputModule, TableComponent, MatSlideToggle, NgbModalModule],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.scss'
 })
@@ -34,7 +35,7 @@ export class AddUserComponent {
 
   constructor(private modalService: NgbModal) {}
 
-  openModal(content: TemplateRef<any>) {
+  openModal(content: any) {
       // Store the reference of the opened modal
       this.modalRef = this.modalService.open(content, { centered: true });
     }
