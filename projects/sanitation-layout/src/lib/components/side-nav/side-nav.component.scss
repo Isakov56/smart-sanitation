@@ -67,6 +67,13 @@
   color: var(--primary-button);
 }
 
+.settings-drop{
+  position: absolute;
+  right: 100px;
+  z-index: 999;
+  overflow: visible;
+}
+
 
 .account-circle{
   font-size: 38px;
@@ -110,7 +117,7 @@
   height: 92%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease; /* Smooth transition */
-  overflow: hidden; /* Hide content when collapsed */
+  overflow: visible; /* Hide content when collapsed */
 }
 
 .sidenav:hover {
@@ -165,9 +172,7 @@
 
 .sidenav-right{
   min-width: 236px;
-  position: fixed;
   z-index: 9999 !important;
-  right: 30px;
   // position: absolute;
   // height: 50vh;
   // right: 0px;
@@ -188,6 +193,7 @@
   font-size: 17px;
   border-radius: 10px;
   cursor: pointer;
+
 }
 
 

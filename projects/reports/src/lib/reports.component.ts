@@ -4,11 +4,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'shared';
 import { ReportsService } from './reports.service';
+import { FiltersComponent } from 'shared';
 
 @Component({
   selector: 'lib-reports',
   standalone: true,
-  imports: [TableComponent, MatIconModule, CommonModule, CardComponent],
+  imports: [TableComponent, MatIconModule, CommonModule, CardComponent, FiltersComponent],
   templateUrl: './reports.components.html',
   styleUrl: './reports.component.scss'
 })

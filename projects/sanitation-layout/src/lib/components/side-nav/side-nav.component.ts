@@ -26,6 +26,7 @@ import {  FormGroup, Validators } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SensorService } from 'core'
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -52,17 +53,21 @@ import { SensorService } from 'core'
     NgbModalModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    
+    NgbDropdownModule,
+
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent implements OnInit {
+  isHovered: boolean = false
   isPersistent = true;
   sensors: any[] = [];
 
   myControl = new FormControl('');
   options: string[] = ['Pie', 'Bar', 'Line'];
   filteredOptions: Observable<string[]> | undefined;
+
+  settingsHovered: boolean = false;
 
   deviceForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -71,6 +76,17 @@ export class SideNavComponent implements OnInit {
     cols: new FormControl(4, Validators.required),
     rows: new FormControl(4, Validators.required),
   });
+
+  onMouseEnter(label: string): void {
+    if (label === 'Settings') {
+      this.settingsHovered = true;
+    }
+  }
+
+  // Method to handle mouseleave event
+  onMouseLeave(): void {
+    this.settingsHovered = false;
+  }
 
   private devicesSubscription!: Subscription;
 
@@ -107,7 +123,7 @@ export class SideNavComponent implements OnInit {
   }
 
   // This method returns the sidenav mode based on the isPersistent flag and the handset mode
-  getSidenavMode(): string {
+  getSidenavMode(): 'over' | 'push' | 'side' {
     return this.isPersistent ? 'side' : 'over';
   }
 

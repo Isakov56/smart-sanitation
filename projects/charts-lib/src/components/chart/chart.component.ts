@@ -41,6 +41,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   ngAfterViewInit(): void {
+    console.log(this.data, 'from charts')
     this.initializeChart();
     window.addEventListener('resize', this.onResize);
   }

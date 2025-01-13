@@ -1,6 +1,6 @@
 <div class="mt-4">
     <div class="charts-container pb-4">
-        <app-card
+        <!-- <app-card
           *ngFor="let card of cards"
           class="example-card pe-3"
         >
@@ -23,6 +23,10 @@
               <div class="my-2">- Lorem ipsum dolor sit, 87%</div>
         </div>
         </div>
-      </app-card>
+      </app-card> -->
+      <lib-filters class="w-100 pe-4"></lib-filters>
+    </div>
+    <div class="pe-4">
+      <app-table [columns]="columns" [data]="data" class="w-100" [showToggle]="true"></app-table>
     </div>
 </div>

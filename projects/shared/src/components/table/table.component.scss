@@ -9,6 +9,7 @@ table {
   th, td {
     padding: 15px;
     text-align: center;
+    vertical-align: middle;
     border: 1px solid var(--primary-button);
     color: var(--primary-button);
     border-top: none;
@@ -67,6 +68,14 @@ tbody tr.odd-row:hover {
     border-right: none;
     border-top: none;
     border-bottom: none;
+  }
+
+  .icon{
+    font-size: 35px;
+  width: 35px;
+  height: 35px;
+  color: var(--primary-button);
+  cursor: pointer;
   }
   
 //   tbody tr:last-child td:first-child {

@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit, OnDestroy  {
   testChartData?: any;
   isLoading = true;
   devicesWithSensors: any[] = [];
-  layout: any[] = [];
+  
   chartData!: any[];
 
   devicesWithSensors$!: Observable<any[]>;
@@ -481,8 +481,78 @@ ngOnDestroy(): void {
   
   currentImage: SafeUrl | null = null;
   private previousUrl: string | null = null;
-  
+  layout: any[] = [];
+
+  private initializeLayout(devices: any[]): void {
+    this.cardService.getGridItems().subscribe((currentLayout) => {
+      const newLayout = devices.map((device) => ({
+        id: device.id,
+        x: device.x || 0,
+        y: device.y || 0,
+        cols: device.cols || 1,
+        rows: device.rows || 1,
+      }));
+
+      this.layout = [
+        ...currentLayout.filter((layoutItem: { id: any }) =>
+          devices.some(device => device.id === layoutItem.id)
+        ),
+        ...newLayout.filter(newLayoutItem =>
+          !currentLayout.some((layoutItem: { id: any }) => layoutItem.id === newLayoutItem.id)
+        )
+      ];
+    });
+    this.appStateService.setGridLayout(this.layout);
+  }
   ngOnInit(): void {
+
+
+    // this.appStateService.devices$.subscribe((devices) => {
+    //   this.initializeLayout(devices);
+    //   this.layout = devices;
+    //   console.log(this.layout, 'devices kjhkh');
+    //   this.onGridChange();
+    //   this.updateDevicesWithSensors(devices);
+    // });
+
+/*
+ this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
+      
+    })
+ */
+
+    this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
+
+    })
+      .subscribe(
+        (data) => {
+          console.log('Response Data:', data); // Logs the response data
+        },
+        (error) => {
+          console.error('Error:', error); // Logs the error if the request fails
+        }
+      );
+
+    // const devices = this.appStateService.getDevices();
+
+    // if (devices.length === 0) {
+    //   this.cardService.getGridItems().subscribe((fetchedDevices) => {
+    //     this.devices = fetchedDevices;
+    //     this.layout = fetchedDevices;
+    //     console.log('Fetched devices:', fetchedDevices);
+    //     this.appStateService.setDevices(fetchedDevices);
+    //     this.cdr.detectChanges();
+    //     this.initializeLayout(fetchedDevices);
+    //     this.initializeSensors(fetchedDevices); // Initial sensors assignment
+    //   });
+    // } else {
+    //   this.devices = devices;
+    //   this.initializeLayout(devices);
+    //   this.initializeSensors(devices); // Initial sensors assignment
+    // }
+
+
+
     // this.startStreaming();
     // this.streamService.getStream('http://localhost:3000/proxy/mjpg').subscribe({
     //   next: (blob) => {
@@ -558,25 +628,27 @@ ngOnDestroy(): void {
     // Subscribe to layout changes and update layout dynamically
     // this.appStateService.devices$.subscribe((devices) => {
     //   this.initializeLayout(devices);
-    //   console.log(devices, 'devices kjhkh');
     //   this.layout = devices;
+    //   console.log(this.layout, 'devices kjhkh');
+
 
     //   this.onGridChange();
     //   this.updateDevicesWithSensors(devices); // Ensure devices and sensors are synchronized here
     // });
 
-    // Fetch initial devices if not already loaded
+    // // Fetch initial devices if not already loaded
     // const devices = this.appStateService.getDevices();
 
     // if (devices.length === 0) {
-    //   // this.cardService.getGridItems().subscribe((fetchedDevices) => {
-    //   //   this.devices = fetchedDevices;
-    //   //   console.log('Fetched devices:', fetchedDevices);
-    //   //   this.appStateService.setDevices(fetchedDevices);
-    //   //   this.cdr.detectChanges();
-    //   //   this.initializeLayout(fetchedDevices);
-    //   //   this.initializeSensors(fetchedDevices); // Initial sensors assignment
-    //   // });
+    //   this.cardService.getGridItems().subscribe((fetchedDevices) => {
+    //     this.devices = fetchedDevices;
+    //     this.layout = fetchedDevices;
+    //     console.log('Fetched devices:', fetchedDevices);
+    //     this.appStateService.setDevices(fetchedDevices);
+    //     this.cdr.detectChanges();
+    //     this.initializeLayout(fetchedDevices);
+    //     this.initializeSensors(fetchedDevices); // Initial sensors assignment
+    //   });
     // } else {
     //   this.devices = devices;
     //   this.initializeLayout(devices);
@@ -590,27 +662,32 @@ ngOnDestroy(): void {
     this.cdr.detectChanges();
   }
 
-  private initializeLayout(devices: any[]): void {
-    // this.cardService.getGridItems().subscribe((currentLayout) => {
-    //   const newLayout = devices.map((device) => ({
-    //     id: device.id,
-    //     x: device.x || 0,
-    //     y: device.y || 0,
-    //     cols: device.cols || 1,
-    //     rows: device.rows || 1,
-    //   }));
-    // Merge layouts: retain existing device positions and add new ones
-    //   this.layout = [
-    //     ...currentLayout.filter((layoutItem: { id: any }) =>
-    //       devices.some(device => device.id === layoutItem.id)
-    //     ),
-    //     ...newLayout.filter(newLayoutItem =>
-    //       !currentLayout.some((layoutItem: { id: any }) => layoutItem.id === newLayoutItem.id)
-    //     )
-    //   ];
-    // });
-    // this.appStateService.setGridLayout(this.layout);
-  }
+  // private initializeLayout(devices: any[]): void {
+  //   this.cardService.getGridItems().subscribe((currentLayout) => {
+  //     const newLayout = devices.map((device) => ({
+  //       id: device.id,
+  //       x: device.x || 0,
+  //       y: device.y || 0,
+  //       cols: device.cols || 1,
+  //       rows: device.rows || 1,
+  //     }));
+  //   // Merge layouts: retain existing device positions and add new ones
+  //     this.layout = [
+  //       ...currentLayout.filter((layoutItem: { id: any }) =>
+  //         devices.some(device => device.id === layoutItem.id)
+  //       ),
+  //       ...newLayout.filter(newLayoutItem =>
+  //         !currentLayout.some((layoutItem: { id: any }) => layoutItem.id === newLayoutItem.id)
+  //       )
+  //     ];
+  //   });
+  //   this.appStateService.setGridLayout(this.layout);
+  // }
+  private initializeSensors(devices: any[]): void {
+    if (!devices || devices.length === 0) {
+      console.log('No devices to initialize sensors for.');
+      return;
+    }}
 
   private updateDevicesWithSensors(devices: any[]): void {
     // Set flag to prevent update from overwriting new devices
@@ -628,11 +705,6 @@ ngOnDestroy(): void {
     // });
   }
 
-  // private initializeSensors(devices: any[]): void {
-  //   if (!devices || devices.length === 0) {
-  //     console.log('No devices to initialize sensors for.');
-  //     return;
-  //   }
 
   //   this.sensorService.getSensors().subscribe((sensors) => {
   //     // Map sensors to the respective devices

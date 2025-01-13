@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-table',
-  standalone: true,  // Mark this component as standalone
-  imports: [CommonModule],
+  standalone: true, // Mark this component as standalone
+  imports: [CommonModule, MatIcon, MatSlideToggle],
   template: `
     <table class="table">
       <thead *ngIf="columns.length > 0">
@@ -18,8 +20,23 @@ import { CommonModule } from '@angular/common';
               'even-row': (i % 2 === 0) !== startWithEven, 
               'odd-row': (i % 2 !== 0) !== startWithEven
             }">
-          <td *ngFor="let key of columns.length > 0 ? columns : objectKeys(row)">
+          <td *ngFor="let key of columns.length > 0 ? columns : objectKeys(row)" >
             {{ row[key] }}
+          </td>
+          <!-- Add an additional cell for the icon if provided -->
+          <td *ngIf="icon">
+            <!-- <i [class]="icon"></i>  -->
+            <mat-icon [fontIcon]="icon"
+                  class="material-symbols-outlined w-100 h-100 icon d-flex align-items-center justify-content-center"></mat-icon>
+          </td>
+          <td *ngIf="icon2">
+            <!-- <i [class]="icon"></i>  -->
+            <mat-icon [fontIcon]="icon2"
+                  class="material-symbols-outlined w-100 h-100 icon d-flex align-items-center justify-content-center"></mat-icon>
+          </td>
+          <td *ngIf="showToggle">
+            <mat-slide-toggle >
+            </mat-slide-toggle>
           </td>
         </tr>
       </tbody>
@@ -31,6 +48,10 @@ export class TableComponent implements OnInit {
   @Input() columns: string[] = [];
   @Input() data: any[] = [];
   @Input() startWithEven: boolean = true;
+  @Input() icon: string | null = null; // Accept an optional icon class
+  @Input() icon2: string | null = null; // Accept an optional icon class
+  @Input() showToggle: boolean = false;
+  toggleState: { [key: string]: boolean } = {}; // Store toggle states
   objectKeys = Object.keys;
 
   // Default values for columns and data
@@ -46,6 +67,7 @@ export class TableComponent implements OnInit {
       this.data = this.defaultData;
       this.columns = this.columns.length === 0 ? this.defaultColumns : this.columns;
     }
+
   }
 }
 

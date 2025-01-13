@@ -10,23 +10,14 @@
           allowfullscreen>
         </iframe> -->
 
-        <div>
+        <!-- <div> 
           <h2>Live Stream</h2>
-          <!-- <h6 *ngFor="let key of headersKeys">{{ key }}: {{ headers[key] }}</h6> -->
-          <!-- <img src="http://158.58.130.148/mjpg/video.mjpg" alt=""> -->
         </div>
         
-        <!-- Option 1: Use an <img> tag -->
-        <!-- <img [src]="currentImage" alt="Video Stream" />
-        <div *ngIf="streamUrl">
-          <img [src]="streamUrl" alt="Live Stream" />
-        </div> -->
 
-      <!-- Option 2: Use a <canvas> element -->
         <div *ngIf="statusMessage"  [ngClass]="{ 'paused': isStreamPaused, 'resumed': !isStreamPaused }">
         </div>
         
-        <!-- Add a visual cue for paused state -->
         <div [ngClass]="{ 'paused-state': isStreamPaused, 'resumed-state': !isStreamPaused }">
           Stream status: <strong>{{ statusMessage }}</strong>
         </div>
@@ -36,7 +27,7 @@
         <div>
           <button (click)="pauseStream()">Pause Stream</button>
           <button (click)="resumeStream()">Resume Stream</button>
-        </div>
+        </div> -->
 
         
         <!-- <img src="blob:http://localhost:4200/5b35cf69-fee5-458e-832e-92460c96498f"> -->
@@ -46,6 +37,7 @@
       <gridster [options]="options" class=" test ps-0 pe-3 pb-5">
         <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
           <!-- <app-chart  class="w-100" [data]="getDeviceFromObservable(devicesWithSensors$ | async, item.id)"></app-chart> -->
+          <!-- <app-chart [data]="item.chartData" [options]="item.chartOptions"></app-chart> -->
           
         </gridster-item>
       </gridster>
