@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
@@ -11,7 +11,7 @@ import { TableComponent } from 'shared'
   templateUrl: './report.component.html',
   styleUrl: './report.component.css'
 })
-export class ReportComponent {
+export class ReportComponent implements OnInit {
   rowData: any = null;
 
   constructor(private route: ActivatedRoute) {}
