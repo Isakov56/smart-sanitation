@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ReportsService {
 
   constructor() { }
-  private isTableSubject = new BehaviorSubject<boolean>(false);
+  private isTableSubject = new BehaviorSubject<boolean>(true);
   
     setTableState(showTable: boolean): void {
       this.isTableSubject.next(showTable);

@@ -303,8 +303,10 @@ export class SideNavComponent implements OnInit {
         this.buttonName = 'Nuova Dispositvo'; // Set a default button name for other routes
       }
       const matchedRoute = this.routes.find(route => route.path === routePath);
-      this.label = matchedRoute ? this.capitalizeWords(matchedRoute?.label) : 'Default Label';
+      this.label = matchedRoute ? this.capitalizeWords(matchedRoute?.label) : '';
       this.formattedRouteName = routePath; // Default to 'Dashboard' if undefined
+
+      this.cdr.detectChanges();
     });
   }
 

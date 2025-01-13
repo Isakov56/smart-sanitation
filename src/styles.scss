@@ -11,10 +11,30 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
+.btn{
+  background-color: var(--primary-button-dark) !important;
+  color: white !important;
+  font-size: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .text-medium{
     font-size: 25px;
     color: var(--primary-button);
     font-weight: 500;
+}
+
+.text-bigger{
+  font-size: 30px;
+  color: var(--primary-button);
+  font-weight: 500;
+}
+
+.text-small{
+  font-size: 20px;
+  color: var(--primary-button);
+  font-weight: 500;
 }
 
 @font-face {

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -19,7 +20,7 @@ import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-to
             [ngClass]="{
               'even-row': (i % 2 === 0) !== startWithEven, 
               'odd-row': (i % 2 !== 0) !== startWithEven
-            }">
+            }" (click)="onRowClick(row)">
           <td *ngFor="let key of columns.length > 0 ? columns : objectKeys(row)" >
             {{ row[key] }}
           </td>
@@ -51,8 +52,24 @@ export class TableComponent implements OnInit {
   @Input() icon: string | null = null; // Accept an optional icon class
   @Input() icon2: string | null = null; // Accept an optional icon class
   @Input() showToggle: boolean = false;
+  @Output() rowSelected = new EventEmitter<any>();
+  @Input() targetRoute?: string;
   toggleState: { [key: string]: boolean } = {}; // Store toggle states
   objectKeys = Object.keys;
+
+  constructor(private router: Router) {}
+
+  onRowClick(row: any) {
+    // Emit the row data to the parent component (optional)
+    this.rowSelected.emit(row);
+
+    // Navigate to the route and pass row data as query params
+    if (this.targetRoute) {
+      this.router.navigate([this.targetRoute], {
+        queryParams: { rowData: JSON.stringify(row) },
+      });
+    }
+  }
 
   // Default values for columns and data
   defaultColumns: string[] = ['Column 1', 'Column 2', 'Column 3'];

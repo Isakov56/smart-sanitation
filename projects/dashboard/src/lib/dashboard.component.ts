@@ -521,17 +521,17 @@ ngOnDestroy(): void {
     })
  */
 
-    this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
+    // this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
 
-    })
-      .subscribe(
-        (data) => {
-          console.log('Response Data:', data); // Logs the response data
-        },
-        (error) => {
-          console.error('Error:', error); // Logs the error if the request fails
-        }
-      );
+    // })
+    //   .subscribe(
+    //     (data) => {
+    //       console.log('Response Data:', data); // Logs the response data
+    //     },
+    //     (error) => {
+    //       console.error('Error:', error); // Logs the error if the request fails
+    //     }
+    //   );
 
     // const devices = this.appStateService.getDevices();
 

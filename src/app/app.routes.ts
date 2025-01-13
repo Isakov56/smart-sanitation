@@ -17,7 +17,7 @@ export const routes: Routes = [
     ...reportsdRouts,
     ...addDeviceRouts,
     ...addUserRouts,
-    { path: '', redirectTo: '', pathMatch: 'full' }
+    { path: '**', redirectTo: 'report' }
 ];
 
 export const routeConfig: RouteConfig[] = [

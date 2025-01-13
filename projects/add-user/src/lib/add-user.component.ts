@@ -11,14 +11,16 @@ import { TableComponent } from 'shared'
   styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent {
-  columns: string[] = ['Sala operatoria', 'Data', ];
+  columns = ['ID', 'Puo Leggere', 'Puo Scrivere', 'Amministratore'];
   data: any[] = [
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
-    { 'user-id': '879879', 'delete-icon': "delete-icon",   },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+    { 'ID': '275397', 'Puo Leggere': 'Si', 'Puo Scrivere': 'No', 'Amministratore': 'No' },
+   
   ];
 
   public objectEntries(obj: any): [string, any][] {
