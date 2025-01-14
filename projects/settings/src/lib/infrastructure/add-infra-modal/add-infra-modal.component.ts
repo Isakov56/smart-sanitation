@@ -7,11 +7,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatRadioGroup } from '@angular/material/radio';
 import { MatRadioButton } from '@angular/material/radio';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'lib-add-infra-modal',
   standalone: true,
-  imports: [MatFormField, MatAutocompleteModule, MatInputModule, CommonModule, MatRadioGroup, MatRadioButton, MatCheckbox],
+  imports: [MatFormField, MatAutocompleteModule, MatInputModule, CommonModule, MatRadioGroup, MatRadioButton, MatCheckbox, MatSlideToggle],
   templateUrl: './add-infra-modal.component.html',
   styleUrl: './add-infra-modal.component.css'
 })
