@@ -5,11 +5,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableComponent } from 'shared'
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'lib-add-user',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, TableComponent, MatSlideToggle, NgbModalModule],
+  imports: [MatFormFieldModule, MatInputModule, TableComponent, MatSlideToggle, NgbModalModule, MatIcon],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.scss'
 })

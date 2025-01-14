@@ -43,14 +43,14 @@
       <div class="d-flex routes-nav flex-column justify-content-between h-100">
         <div class="w-100 py-2  h-100 nav-link-border">
           <div >
-            <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 px-2"
-              routerLinkActive="active" [ngClass]="{ 'hover-active': route.label === 'Settings' }"  (click)="route.label === 'Settings' ? $event.preventDefault() : null" [routerLink]="route.label !== 'Settings' ? route.path : null"  (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
+            <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 px-2" ngbDropdown
+              routerLinkActive="active"  [ngClass]="{ 'hover-active': route.label === 'Settings' }"  (click)="route.label === 'Settings' ? $event.preventDefault() : null" [routerLink]="route.label !== 'Settings' ? route.path : null"  (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
               <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
                 <mat-icon [fontIcon]="route.icon || 'default_icon'"
                   class="nav-link-icon material-symbols-outlined"></mat-icon>
               </div>
-                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-4" >
-                  <div *ngIf="route.path" class="nav-link mx-3 d-flex align-items-center" 
+                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-4" [attr.ngbDropdownToggle]="route.label === 'Settings' ? '' : ''">
+                  <div *ngIf="route.path" class="nav-link mx-3 d-flex align-items-center"  
                   >{{ route.label ? (route.label) : '' }}</div>
                 </div>
                 <div
