@@ -206,7 +206,7 @@ export class SideNavComponent implements OnInit {
   }
 
   isExcludedRoute(): boolean {
-    const excludedRoutes = ['reports', 'aggiungi-dispositivo', 'add-user', 'user', 'infrastructure', 'asset', 'sensors']; // Add more routes as needed
+    const excludedRoutes = ['reports', 'aggiungi-dispositivo', 'add-user', 'user', 'infrastruttura', 'asset', 'sensori']; // Add more routes as needed
     return excludedRoutes.some(route => this.router.url.includes(route));
   }
 
@@ -297,12 +297,12 @@ export class SideNavComponent implements OnInit {
     this.router.events.subscribe(() => {
       const routePath = this.router.url; // Get last segment of the route
 
-      if (routePath.includes('infrastructure')) {
-        this.label = 'Infrastructure';
+      if (routePath.includes('infrastruttura')) {
+        this.label = 'Infrastruttura';
       } else if (routePath.includes('asset')) {
-        this.label = 'Assets';
-      } else if (routePath.includes('sensors')) {
-        this.label = 'Sensors';
+        this.label = 'Asset';
+      } else if (routePath.includes('sensori')) {
+        this.label = 'Sensori';
       } else {
         // Check against your routes array for other matches
         const matchedRoute = this.routes.find(route => route.path === routePath);

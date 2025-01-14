@@ -2,7 +2,7 @@ import { Route } from "@angular/router";
 
 export const settingsRouts: Route[] =[
     {
-        path: 'infrastructure',
+        path: 'infrastruttura',
     loadComponent: () => import('./infrastructure/infrastructure.component').then(c => c.InfrastructureComponent)
     },
     {
@@ -10,11 +10,11 @@ export const settingsRouts: Route[] =[
     loadComponent: () => import('./asset/asset.component').then(c => c.AssetComponent)
     },
     {
-        path: 'sensors',
+        path: 'sensori',
     loadComponent: () => import('./sensors/sensors.component').then(c => c.SensorsComponent)
     },
     {
-        path: 'infrastructure/details',
+        path: 'infrastruttura/details',
     loadComponent: () => import('./infrastructure/details/details.component').then(c => c.DetailsComponent)
     },
     {
@@ -22,7 +22,7 @@ export const settingsRouts: Route[] =[
     loadComponent: () => import('./asset/asset-details/asset-details.component').then(c => c.AssetDetailsComponent)
     },
     {
-        path: 'sensors/details',
+        path: 'sensori/details',
     loadComponent: () => import('./sensors/sensor-details/sensor-details.component').then(c => c.SensorDetailsComponent)
     },
 ]
