@@ -17,4 +17,12 @@ export const settingsRouts: Route[] =[
         path: 'infrastructure/details',
     loadComponent: () => import('./infrastructure/details/details.component').then(c => c.DetailsComponent)
     },
+    {
+        path: 'asset/details',
+    loadComponent: () => import('./asset/asset-details/asset-details.component').then(c => c.AssetDetailsComponent)
+    },
+    {
+        path: 'sensors/details',
+    loadComponent: () => import('./sensors/sensor-details/sensor-details.component').then(c => c.SensorDetailsComponent)
+    },
 ]

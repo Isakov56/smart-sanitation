@@ -507,13 +507,13 @@ ngOnDestroy(): void {
   ngOnInit(): void {
 
 
-    // this.appStateService.devices$.subscribe((devices) => {
-    //   this.initializeLayout(devices);
-    //   this.layout = devices;
-    //   console.log(this.layout, 'devices kjhkh');
-    //   this.onGridChange();
-    //   this.updateDevicesWithSensors(devices);
-    // });
+    this.appStateService.devices$.subscribe((devices) => {
+      this.initializeLayout(devices);
+      this.layout = devices;
+      // console.log(this.layout, 'devices kjhkh');
+      this.onGridChange();
+      this.updateDevicesWithSensors(devices);
+    });
 
 /*
  this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
@@ -533,23 +533,23 @@ ngOnDestroy(): void {
     //     }
     //   );
 
-    // const devices = this.appStateService.getDevices();
+    const devices = this.appStateService.getDevices();
 
-    // if (devices.length === 0) {
-    //   this.cardService.getGridItems().subscribe((fetchedDevices) => {
-    //     this.devices = fetchedDevices;
-    //     this.layout = fetchedDevices;
-    //     console.log('Fetched devices:', fetchedDevices);
-    //     this.appStateService.setDevices(fetchedDevices);
-    //     this.cdr.detectChanges();
-    //     this.initializeLayout(fetchedDevices);
-    //     this.initializeSensors(fetchedDevices); // Initial sensors assignment
-    //   });
-    // } else {
-    //   this.devices = devices;
-    //   this.initializeLayout(devices);
-    //   this.initializeSensors(devices); // Initial sensors assignment
-    // }
+    if (devices.length === 0) {
+      this.cardService.getGridItems().subscribe((fetchedDevices) => {
+        this.devices = fetchedDevices;
+        this.layout = fetchedDevices;
+        console.log('Fetched devices:', fetchedDevices);
+        this.appStateService.setDevices(fetchedDevices);
+        this.cdr.detectChanges();
+        this.initializeLayout(fetchedDevices);
+        this.initializeSensors(fetchedDevices); // Initial sensors assignment
+      });
+    } else {
+      this.devices = devices;
+      this.initializeLayout(devices);
+      this.initializeSensors(devices); // Initial sensors assignment
+    }
 
 
 

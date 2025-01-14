@@ -11,7 +11,7 @@ export class ApiInterceptor {
 
   
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('Interceptor Triggered for:', req.url);
+        // console.log('Interceptor Triggered for:', req.url);
       
         if (req.method === 'JSONP') {
           // JSONP does not support headers, so skip adding Authorization
@@ -25,14 +25,14 @@ export class ApiInterceptor {
           },
         });
 
-        console.log('request', req.url)
+        // console.log('request', req.url)
 
         return next.handle(req).pipe(
           map((response: HttpEvent<any>) => {
             if (response instanceof HttpResponse) {
-              console.log('received response ', response.headers.get('Content-Type'))
+              // console.log('received response ', response.headers.get('Content-Type'))
             }else{
-              console.log('received response ............',response.type)
+              // console.log('received response ............',response.type)
             }
             
             return response;
