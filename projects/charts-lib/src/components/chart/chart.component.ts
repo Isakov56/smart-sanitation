@@ -34,6 +34,28 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
+  layout1 = [
+    {
+      x: 0,
+      y: 0,
+      rows: 2,
+      cols: 2,
+      chartData: {
+        title: 'Temperature',
+        chartType: 'line',
+        sensors: [
+          { id: 1, value: 22, color: '#FF6384' },
+          { id: 2, value: 24, color: '#36A2EB' },
+        ],
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    },
+    // Add more items as needed
+  ];
+
   ngOnChanges(): void {
     if (this.data) {
       this.updateChartData();
@@ -41,9 +63,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.data, 'from charts')
+    // console.log(this.data, 'from charts')
     this.initializeChart();
     window.addEventListener('resize', this.onResize);
+    console.log(this.data, 'data data dat dad atad afjhgkjhghjgjh')
   }
 
   private initializeChart(): void {

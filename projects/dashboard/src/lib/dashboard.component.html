@@ -36,8 +36,8 @@
     <!-- <div class="w-100 card-container mb-4"> -->
       <gridster [options]="options" class=" test ps-0 pe-3 pb-5">
         <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
-          <!-- <app-chart  class="w-100" [data]="getDeviceFromObservable(devicesWithSensors$ | async, item.id)"></app-chart> -->
-          <!-- <app-chart [data]="item.chartData" [options]="item.chartOptions"></app-chart> -->
+          <app-chart  class="w-100" [data]="getDeviceFromObservable((data$ | async) || [], item.id)"></app-chart>
+          <!-- <app-chart [data]="item"></app-chart> -->
           
         </gridster-item>
       </gridster>

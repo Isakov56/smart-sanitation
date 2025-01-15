@@ -34,6 +34,9 @@ import { loadSensors } from 'ngrx-store';
 import { Subscription } from 'rxjs';
 import { StreamService } from '../stream.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { loadData } from 'test-store-lib';
+import { selectAllDataItems, selectDataLoading, selectDataError } from 'test-store-lib';
+import { DataState } from 'test-store-lib'; 
 
 @Component({
   selector: 'lib-dashboard',
@@ -44,7 +47,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
     CommonModule,
     //  CardComponent,
     // PieChartComponent, CardLoaderComponent, TableComponent,
-    // ChartComponent,
+    ChartComponent,
     GridsterModule,
   ],
   templateUrl: './dashboard.component.html',
@@ -52,6 +55,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styles: ``,
 })
 export class DashboardComponent implements OnInit, OnDestroy  {
+
+  data$: Observable<any[] | undefined>;
+  loading$: Observable<boolean> | undefined;
+  error$: Observable<string | null> | undefined;
 
   // @ViewChild('canvas', { static: false }) canvas!: ElementRef<HTMLCanvasElement>;
 
@@ -116,7 +123,18 @@ export class DashboardComponent implements OnInit, OnDestroy  {
     private store: Store,
     private streamService: StreamService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) { 
+    this.data$ = this.store.select(selectAllDataItems);  // Select data
+    this.loading$ = this.store.select(selectDataLoading);  // Select loading state
+    this.error$ = this.store.select(selectDataError);
+ 
+  }
+
+  reload() {
+    this.store.dispatch(loadData());  // Dispatch the action to load data
+  }
+
+  
 
   subscribeId: string | null = null; // Store subscription ID
   isStreaming: boolean = false; // Toggle streaming
@@ -483,37 +501,56 @@ ngOnDestroy(): void {
   private previousUrl: string | null = null;
   layout: any[] = [];
 
-  private initializeLayout(devices: any[]): void {
-    this.cardService.getGridItems().subscribe((currentLayout) => {
-      const newLayout = devices.map((device) => ({
-        id: device.id,
-        x: device.x || 0,
-        y: device.y || 0,
-        cols: device.cols || 1,
-        rows: device.rows || 1,
-      }));
+  // private initializeLayout(devices: any[]): void {
+  //   this.cardService.getGridItems().subscribe((currentLayout) => {
+  //     const newLayout = devices.map((device) => ({
+  //       id: device.id,
+  //       x: device.x || 0,
+  //       y: device.y || 0,
+  //       cols: device.cols || 1,
+  //       rows: device.rows || 1,
+  //     }));
 
-      this.layout = [
-        ...currentLayout.filter((layoutItem: { id: any }) =>
-          devices.some(device => device.id === layoutItem.id)
-        ),
-        ...newLayout.filter(newLayoutItem =>
-          !currentLayout.some((layoutItem: { id: any }) => layoutItem.id === newLayoutItem.id)
-        )
-      ];
-    });
-    this.appStateService.setGridLayout(this.layout);
-  }
+  //     this.layout = [
+  //       ...currentLayout.filter((layoutItem: { id: any }) =>
+  //         devices.some(device => device.id === layoutItem.id)
+  //       ),
+  //       ...newLayout.filter(newLayoutItem =>
+  //         !currentLayout.some((layoutItem: { id: any }) => layoutItem.id === newLayoutItem.id)
+  //       )
+  //     ];
+  //   });
+  //   this.appStateService.setGridLayout(this.layout);
+  // }
+  
   ngOnInit(): void {
-
-
-    this.appStateService.devices$.subscribe((devices) => {
-      this.initializeLayout(devices);
-      this.layout = devices;
-      // console.log(this.layout, 'devices kjhkh');
-      this.onGridChange();
-      this.updateDevicesWithSensors(devices);
+    this.store.dispatch(loadData());
+    this.data$.subscribe(data => {
+      if (data) {
+        console.log('Data received from store:', data);
+      } else {
+        console.log('No data available yet.');
+      }
     });
+
+    this.store.select(selectAllDataItems).subscribe(data => {
+      console.log('Data from store:', data);
+
+      if (data) {
+        // Populate the layout array with chart data and options
+        this.layout = data
+        console.log(this.layout, 'sajf;ldjflaksjdfklas pqowieutr laksjhdf')
+        this.cdr.detectChanges();
+      }
+    });
+
+    // this.appStateService.devices$.subscribe((devices) => {
+    //   this.initializeLayout(devices);
+    //   this.layout = devices;
+    //   // console.log(this.layout, 'devices kjhkh');
+    //   this.onGridChange();
+    //   this.updateDevicesWithSensors(devices);
+    // });
 
 /*
  this.http.post('http://192.168.25.16:8090/infrastructure-service/api/test', {
@@ -533,23 +570,23 @@ ngOnDestroy(): void {
     //     }
     //   );
 
-    const devices = this.appStateService.getDevices();
+    // const devices = this.appStateService.getDevices();
 
-    if (devices.length === 0) {
-      this.cardService.getGridItems().subscribe((fetchedDevices) => {
-        this.devices = fetchedDevices;
-        this.layout = fetchedDevices;
-        console.log('Fetched devices:', fetchedDevices);
-        this.appStateService.setDevices(fetchedDevices);
-        this.cdr.detectChanges();
-        this.initializeLayout(fetchedDevices);
-        this.initializeSensors(fetchedDevices); // Initial sensors assignment
-      });
-    } else {
-      this.devices = devices;
-      this.initializeLayout(devices);
-      this.initializeSensors(devices); // Initial sensors assignment
-    }
+    // if (devices.length === 0) {
+    //   this.cardService.getGridItems().subscribe((fetchedDevices) => {
+    //     this.devices = fetchedDevices;
+    //     this.layout = fetchedDevices;
+    //     console.log('Fetched devices:', fetchedDevices);
+    //     this.appStateService.setDevices(fetchedDevices);
+    //     this.cdr.detectChanges();
+    //     this.initializeLayout(fetchedDevices);
+    //     this.initializeSensors(fetchedDevices); // Initial sensors assignment
+    //   });
+    // } else {
+    //   this.devices = devices;
+    //   this.initializeLayout(devices);
+    //   this.initializeSensors(devices); // Initial sensors assignment
+    // }
 
 
 
@@ -720,10 +757,10 @@ ngOnDestroy(): void {
   //   });
   // }
 
-  // getDeviceFromObservable(devices: any[] | null, id: number): any | null {
-  //   if (!devices) return null; // Handle null case for the Observable
-  //   return devices.find((device) => device.id === id) || null;
-  // }
+  getDeviceFromObservable(devices: any[] | null, id: number): any | null {
+    if (!devices) return null; // Handle null case for the Observable
+    return devices.find((device) => device.id === id) || null;
+  }
   // Fetch and save chart data when necessary
   fetchAndSaveChartData(): void {
     // Example logic for fetching chart data (replace with actual API call)

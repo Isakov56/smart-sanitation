@@ -20,9 +20,9 @@ export class ValuesService {
 //     this.data = this.http.get<any[]>(this.jsonUrl);
 //   }
   loadvaluesfromDB(){
-    this.http.get<any[]>(this.jsonUrl).subscribe(data => {
-        this.dataSubject.next(data); // Update the BehaviorSubject
-      });
+    // this.http.get<any[]>(this.jsonUrl).subscribe(data => {
+    //     this.dataSubject.next(data); // Update the BehaviorSubject
+    //   });
   }
   getValuesGridByID(id: number): any {
     const currentData = this.dataSubject.getValue();
