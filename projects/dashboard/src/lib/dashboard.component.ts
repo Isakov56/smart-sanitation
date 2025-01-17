@@ -22,6 +22,7 @@ import { SensorService } from 'core';
 import { GridComponent } from 'core';
 import { AppStateService } from 'core';
 import {
+  GridsterComponent,
   GridsterConfig,
   GridsterItem,
   GridsterModule,
@@ -34,9 +35,10 @@ import { loadSensors } from 'ngrx-store';
 import { Subscription } from 'rxjs';
 import { StreamService } from '../stream.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { loadData } from 'test-store-lib';
+import { loadDevices } from 'test-store-lib';
 import { selectAllDataItems, selectDataLoading, selectDataError } from 'test-store-lib';
 import { DataState } from 'test-store-lib'; 
+import { LayoutService } from 'core';
 
 @Component({
   selector: 'lib-dashboard',
@@ -57,6 +59,7 @@ import { DataState } from 'test-store-lib';
 export class DashboardComponent implements OnInit, OnDestroy  {
 
   data$: Observable<any[] | undefined>;
+  devices$: Observable<any[] | undefined>;
   loading$: Observable<boolean> | undefined;
   error$: Observable<string | null> | undefined;
 
@@ -116,16 +119,17 @@ export class DashboardComponent implements OnInit, OnDestroy  {
     private http: HttpClient,
     private store: Store,
     private streamService: StreamService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private layoutService: LayoutService
   ) { 
     this.data$ = this.store.select(selectAllDataItems);  // Select data
     this.loading$ = this.store.select(selectDataLoading);  // Select loading state
     this.error$ = this.store.select(selectDataError);
- 
+    this.devices$ = this.store.select(selectAllDataItems);
   }
 
   reload() {
-    this.store.dispatch(loadData());  // Dispatch the action to load data
+    this.store.dispatch(loadDevices());  // Dispatch the action to load data
   }
 
   
@@ -294,6 +298,9 @@ ngOnDestroy(): void {
   if (this.xhr) {
     this.xhr.abort();
   }
+  if (this.sidebarToggleSubscription) {
+    this.sidebarToggleSubscription.unsubscribe();
+  }
 }
   
   
@@ -304,10 +311,27 @@ ngOnDestroy(): void {
   currentImage: SafeUrl | null = null;
   private previousUrl: string | null = null;
   layout: any[] = [];
+  private sidebarToggleSubscription: Subscription | undefined;
+
+  @ViewChild(GridsterComponent) gridsterComponent!: GridsterComponent;
+
+  adjustGridOnResize(): void {
+    // Logic to adjust the grid size when the sidebar is toggled
+    // You can trigger gridster's resize method here if necessary
+    const gridster = this.gridsterComponent; // Reference to your GridsterComponent
+    if (this.gridsterComponent) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }
+  
   
   ngOnInit(): void {
-    this.store.dispatch(loadData());
-    this.data$.subscribe(data => {
+    this.sidebarToggleSubscription = this.layoutService.sidebarToggled$.subscribe(() => {
+      console.log('Sidebar toggled - adjusting grid');
+      this.adjustGridOnResize(); // Adjust the grid layout based on the sidebar state
+    });
+    this.store.dispatch(loadDevices());
+    this.devices$.subscribe(data => {
       if (data) {
         console.log('Data received from store:', data);
       } else {

@@ -1,23 +1,25 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
-import { loadData, loadDataSuccess, loadDataFailure } from '../actions/data.actions';
+import { loadDevices, loadDevicesSuccess, loadDevicesFailure, loadSensors, loadSensorsSuccess,  loadSensorsFailure} from '../actions/data.actions';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { DataService } from '../../services/data.service';
 import { EMPTY, of } from 'rxjs';
 
 @Injectable()
 export class DataEffects {
-  loadData$ = createEffect(() =>{
+  loadDevices$ = createEffect(() =>{
 
       return inject(Actions).pipe(
-          ofType(loadData),
+          ofType(loadDevices),
           tap(action => console.log('Action received in effect:', action)), // Log the incoming action
-          mergeMap(() => this.http.get<any[]>('http://localhost:4200/assets/cards.json').pipe(
-              map(data => loadDataSuccess({ data })),
-              catchError(error => {
-                  console.error('Error loading data', error);
-                  return of(loadDataFailure({ error: error.message }));
-              })
+          mergeMap(() => 
+            this.dataService.getDevices().pipe( // Use the service to fetch data
+                map(data => loadDevicesSuccess({ data })), // Dispatch `loadDevicesSuccess` with the data
+                catchError(error => {
+                  console.error('Error loading data', error); // Log the error
+                  return of(loadDevicesFailure({ error: error.message })); // Dispatch `loadDataFailure` with the error
+                })
           )
           ),
           tap(() => console.log('loadData action handled successfully'))
@@ -25,7 +27,24 @@ export class DataEffects {
   }
   );
 
-  constructor( private http: HttpClient) {}
+  // Effect for sensors
+  loadSensors$ = createEffect(() =>
+    inject(Actions).pipe(
+      ofType(loadSensors),
+      tap(() => console.log('Sensors load action received')),
+      mergeMap(() =>
+        this.dataService.getSensors().pipe(
+          map(data => loadSensorsSuccess({ data })),
+          catchError(error => {
+            console.error('Error loading sensors:', error);
+            return of(loadSensorsFailure({ error: error.message }));
+          })
+        )
+      )
+    )
+  );
+
+  constructor( private http: HttpClient, private dataService: DataService) {}
 }
 
 

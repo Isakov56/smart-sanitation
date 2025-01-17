@@ -83,12 +83,13 @@
   <mat-sidenav-content class="scroll-test" [class.pr-40]="!isPersistent">
     <div class="d-flex justify-content-between ms-3 entry-container">
       <mat-toolbar color="primary h-100 d-flex align-items-center" >
+        
         <button
         class=""
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
+        (click)="toggleSidenav()"
         *ngIf="isPersistent">
         <mat-icon fontIcon="menu"  class="menu material-symbols-outlined"></mat-icon>
       </button>

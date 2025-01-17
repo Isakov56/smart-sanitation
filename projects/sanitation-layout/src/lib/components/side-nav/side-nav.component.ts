@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, TemplateRef, ChangeDetectorRef  } from '@angular/core';
+import { Component, inject, Input, OnInit, TemplateRef, ChangeDetectorRef, ViewChild, AfterViewInit   } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,7 +27,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SensorService } from 'core'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { LayoutService } from 'core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-side-nav',
@@ -58,7 +59,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, AfterViewInit  {
   isHovered: boolean = false
   isPersistent = true;
   sensors: any[] = [];
@@ -77,6 +78,7 @@ export class SideNavComponent implements OnInit {
     rows: new FormControl(4, Validators.required),
   });
 
+  @ViewChild('drawer') drawer!: MatDrawer;
   onMouseEnter(label: string): void {
     if (label === 'Settings') {
       this.settingsHovered = true;
@@ -96,6 +98,7 @@ export class SideNavComponent implements OnInit {
   checkboxStates: { [key: number]: boolean } = {};
 
   onPersistenceChange(): void {
+    this.layoutService.toggleSidebar();
     if (this.isPersistent) {
       // Open the drawer if persistence is enabled
       console.log('Sidenav persistence enabled');
@@ -133,7 +136,11 @@ export class SideNavComponent implements OnInit {
   }
 
   toggleSidenav(): void {
-    this.isPersistent = !this.isPersistent;  // Toggle the persistent state
+    // this.isPersistent = !this.isPersistent;  // Toggle the persistent state
+    this.cdr.detectChanges();
+    // this.test.toggle(); // Toggle the mat-drawer visibility
+    this.layoutService.toggleSidebar();
+    this.drawer.toggle();
   }
 
   addDevice(): void {
@@ -220,7 +227,10 @@ export class SideNavComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef, private sensorService: SensorService,) {
+    private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef, private sensorService: SensorService,
+    private layoutService: LayoutService, 
+    // private test: MatDrawer
+  ) {
     iconRegistry.addSvgIconSet(
       sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
     );
@@ -249,7 +259,16 @@ export class SideNavComponent implements OnInit {
   }
   formattedRouteName: string = '';
   buttonName: string = ''
+  private sidebarToggleSubscription: Subscription | undefined;
+  ngAfterViewInit() {
+    console.log('Drawer is initialized:', this.drawer);
+    
+  }
   ngOnInit() {
+
+    // console.log('Drawer is initialized:', this.drawer);
+    if (this.drawer) {
+    }
 
     this.sensorService.getSensors(true).subscribe((sensors) => {
       this.sensors = sensors.map((sensor) => ({

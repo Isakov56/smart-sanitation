@@ -2,15 +2,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataItem } from '../state/models/data.model';
+import { DevicesItem, SensorsItem } from '../state/models/data.model';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  private apiUrl = 'https://api.example.com/data'; // Replace with your API endpoint
+  private devicesUrl = 'http://localhost:4200/assets/cards.json'; // Replace with your API endpoint
+  private sensorsUrl = 'http://localhost:4200/assets/value.json'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
-  getData(): Observable<DataItem[]> {
-    return this.http.get<DataItem[]>(this.apiUrl);
+  getDevices(): Observable<DevicesItem[]> {
+    return this.http.get<DevicesItem[]>(this.devicesUrl);
+  }
+  getSensors(): Observable<SensorsItem[]> {
+    return this.http.get<SensorsItem[]>(this.sensorsUrl);
   }
 }

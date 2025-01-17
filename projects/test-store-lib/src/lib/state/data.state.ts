@@ -1,8 +1,8 @@
 // data.state.ts
 import { EntityState } from '@ngrx/entity';
-import { DataItem } from './models/data.model';
+import { DevicesItem } from './models/data.model';
 
-export interface DataState extends EntityState<DataItem> {
+export interface DataState extends EntityState<DevicesItem> {
   loading: boolean;
   error: string | null;
 }
