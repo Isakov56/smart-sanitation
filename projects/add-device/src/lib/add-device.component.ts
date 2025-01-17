@@ -55,8 +55,11 @@ export class AddDeviceComponent implements OnInit {
     this.saveSensors();
   }
 
-  removeSensor(index: number) {
-    this.sensors.splice(index, 1);
+  // removeSensor(index: number) {
+  //   this.sensors.splice(index, 1);
+  //   this.saveSensors();
+  // }
+  removeSensor() {
     this.saveSensors();
   }
 

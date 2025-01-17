@@ -13,7 +13,7 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-chart',
-  imports: [MatCard, CardLoaderComponent, CommonModule, TableComponent],
+  imports: [MatCard, CardLoaderComponent, CommonModule,],
   standalone: true,
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
@@ -29,7 +29,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
     direction: 'horizontal' 
   };
 
-  @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   private chart!: Chart;
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -57,8 +57,11 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
   ];
 
   ngOnChanges(): void {
-    if (this.data) {
-      this.updateChartData();
+    // console.log('Data received in ChartComponent:', this.data);
+    if (this.chart) {
+      this.updateChartData(); // Update data if the chart already exists
+    } else {
+      // this.initializeChart(); // Initialize the chart for the first time
     }
   }
 
@@ -66,16 +69,21 @@ export class ChartComponent implements AfterViewInit, OnDestroy, OnChanges {
     // console.log(this.data, 'from charts')
     this.initializeChart();
     window.addEventListener('resize', this.onResize);
-    console.log(this.data, 'data data dat dad atad afjhgkjhghjgjh')
+    // console.log(this.data, 'data data dat dad atad afjhgkjhghjgjh')
   }
 
   private initializeChart(): void {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
+    // console.log('Canvas Context:', ctx);
     if (!ctx) {
       console.error('Canvas context could not be initialized.');
       return;
     }
-
+  
+    if (this.chart) {
+      this.chart.destroy(); // Destroy any existing chart
+    }
+  
     this.chart = new Chart(ctx, {
       type: this.chartType,
       data: this.transformToChartData(this.data),
