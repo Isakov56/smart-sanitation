@@ -69,7 +69,7 @@
           
         </div>
         <div class=" container log-out px-2 w-100 mb-2">
-          <div class="row align-items-end">
+          <div class="row align-items-end" (click)="logout()">
             <div class=" d-flex pt-2 justify-content-center align-items-center">
               <mat-icon fontIcon="logout_icon" class="nav-link-icon material-symbols-outlined "></mat-icon>
               <div class=" nav-link mx-3 p-0 my-0" *ngIf="false" > Log out</div>
@@ -110,6 +110,7 @@
     <div class=" d-flex test justify-content w-100 h-100 mt-1 dashboard-page" [ngClass]="{ 'dashboard-page': true }">
       <div class="content ms-2 ps-4 pb-4 w-100">
         <!-- Add Content Here -->
+         <router-outlet></router-outlet>
         <ng-content></ng-content>
 
       </div>

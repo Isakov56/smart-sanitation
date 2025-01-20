@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { RouteConfig } from 'isakov-shared';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lib-sanitation-layout',
@@ -11,6 +12,13 @@ import { RouteConfig } from 'isakov-shared';
   `,
   styles: ``
 })
-export class SanitationLayoutComponent {
+export class SanitationLayoutComponent implements OnInit {
+
+  constructor(private route: ActivatedRoute) {}
   @Input() routes: RouteConfig[] =[];
+
+  ngOnInit(): void {
+    // Retrieve the routeConfig from the route's data property
+    this.routes = this.route.snapshot.data['routeConfig'] || [];
+  }
 }

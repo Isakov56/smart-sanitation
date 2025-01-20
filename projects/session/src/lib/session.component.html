@@ -5,36 +5,56 @@
     class="icon-container w-100 h-100 d-flex align-items-center justify-content-center"
   >
     <img
-      src="https://s3-alpha-sig.figma.com/img/d21d/a5aa/0bef3a76f3522f1f74b33235c5c062e0?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LYLQFqWuUTsErdDhVRL9FVMSumbo8rOkCbQv7FQmwDnRWT7PiqHCNPyE2iCbNmVRlF1KlVMopuGyI0D3HFiS4G~c6JjTbJR2~tIZlo86HDpFqsamllmlHKZWHx2-G~61zMz6bRt5VjOtv54KxC0JcxBe~zAgxtyGzyCLWisK0IUCL7cgg9vAN5-~IE1SiUWsvIgpEGEmkcZud6y6StCcaxv~91bdP3wqdQgPb7SCf2TiargR~Bg0WRweDTmcH2w-ufdIyfhawSKn47BL7gvVMJBJemZm9z5kMT7QnVMYGh6KDQdUeWCkr2ZRvQ8wPuZIs8vhQCifha0LlAxdI3Qlrg__"
+      src="/assets/sanitation-logo-it.png"
       alt=""
+      class="logo"
     />
   </div>
   <div
-    class="input-container w-100 h-100 d-flex flex-column align-items-center justify-content-center"
-  >
-    <h1 class='login-h1'>LOG IN</h1>
-    <div class="border p-4">
+  class="input-container w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+>
+  <h1 class="login-h1">LOG IN</h1>
+  <div class="border p-4">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div>
         <h6>ID</h6>
-        <mat-form-field appearance="outline" class="w-100 ">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label class="smaller d-flex">Enter ID</mat-label>
-          <input matInput placeholder="" class="smaller in" />
+          <input
+            matInput
+            placeholder="Enter your ID"
+            class="smaller in"
+            [(ngModel)]="id"
+            name="id"
+            required
+          />
         </mat-form-field>
       </div>
       <div>
         <h6>Password</h6>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label class="smaller d-flex">Password</mat-label>
-          <input matInput placeholder="" />
+          <input
+            matInput
+            type="password"
+            placeholder="Enter your password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
         </mat-form-field>
       </div>
-      <button mat-flat-button class="w-100 mt-3">Login</button>
-      <div
-        class="password-dom d-flex justify-content-center mt-3"
-        routerLink=""
-      >
-        Password dominticata?
-      </div>
+      <button mat-flat-button color="primary" class="w-100 mt-3" type="submit">
+        Login
+      </button>
+    </form>
+    <div
+      class="password-dom d-flex justify-content-center mt-3"
+      routerLink="/forgot-password"
+    >
+      Forgot Password?
     </div>
   </div>
+</div>
+
 </div>

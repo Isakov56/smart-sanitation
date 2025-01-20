@@ -283,16 +283,6 @@ export class DashboardComponent implements OnInit, OnDestroy  {
 @ViewChild('canvasElement') canvasElement!: ElementRef<HTMLCanvasElement>;
 
 
-
-
-
-
-
-
-
-
-
-
 ngOnDestroy(): void {
   // Cleanup when component is destroyed
   if (this.xhr) {
@@ -331,20 +321,20 @@ ngOnDestroy(): void {
       this.adjustGridOnResize(); // Adjust the grid layout based on the sidebar state
     });
     this.store.dispatch(loadDevices());
-    this.devices$.subscribe(data => {
-      if (data) {
-        console.log('Data received from store:', data);
-      } else {
-        console.log('No data available yet.');
-      }
-    });
+    // this.devices$.subscribe(data => {
+    //   if (data) {
+    //     console.log('Data received from store:', data);
+    //   } else {
+    //     console.log('No data available yet.');
+    //   }
+    // });
 
     this.store.select(selectAllDataItems).subscribe(data => {
       console.log('Data from store:', data);
 
       if (data) {
        this.layout = data.map(item => ({ ...item }));
-        console.log(this.layout, 'sajf;ldjflaksjdfklas pqowieutr laksjhdf')
+        // console.log(this.layout, 'sajf;ldjflaksjdfklas pqowieutr laksjhdf')
         this.cdr.detectChanges();
       }
     });

@@ -4,23 +4,13 @@ import { dashboardRouts } from 'dashboard';
 import { maintenanceRouts } from 'maintenance';
 import { monitoringdRouts } from 'monitoring';
 import { reportsdRouts } from 'reports';
-import { RouteConfig } from 'isakov-shared';
 import { addDeviceRouts } from 'add-device';
-import { addUserRouts } from 'add-user'
-import { settingsRouts } from 'settings'
-
-
-export const routes: Routes = [
-    ...sessionRouts,
-    ...dashboardRouts,
-    ...maintenanceRouts,
-    ...monitoringdRouts,
-    ...reportsdRouts,
-    ...addDeviceRouts,
-    ...addUserRouts,
-    ...settingsRouts,
-    { path: '**', redirectTo: 'report' }
-];
+import { addUserRouts } from 'add-user';
+import { settingsRouts } from 'settings';
+import { SessionComponent } from 'session'; // Ensure you have the LoginComponent
+import { AuthGuard } from 'core'; // AuthGuard to protect routes
+import { SanitationLayoutComponent } from 'sanitation-layout'; // Your layout component
+import { RouteConfig } from 'isakov-shared';
 
 export const routeConfig: RouteConfig[] = [
     { path: '/dashboard', label: 'Dashboard', icon: 'home' },
@@ -29,4 +19,34 @@ export const routeConfig: RouteConfig[] = [
     { path: '/reports', label: 'Reports', icon: 'feed' },
     { path: '/add-user', label: 'Crea utente', icon: 'person_add_alt_icon' },
     { path: '/settings', label: 'Settings', icon: 'settings' },
-  ];
+  ]
+
+export const routes: Routes = [
+  {
+    path: 'login', // Public route without layout
+    component: SessionComponent,
+  },
+  {
+    path: '', // Authenticated route group with layout
+    component: SanitationLayoutComponent, // Layout that includes sidebar, header, etc.
+    canActivate: [AuthGuard], // Protect all routes inside this layout
+    children: [
+      ...dashboardRouts,
+      ...maintenanceRouts,
+      ...monitoringdRouts,
+      ...reportsdRouts,
+      ...addDeviceRouts,
+      ...addUserRouts,
+      ...settingsRouts,
+    ],
+    data: {
+        routeConfig: routeConfig,  // Pass the routeConfig data to SanitationLayoutComponent
+      },
+  },
+  {
+    path: '**', // Fallback route
+    redirectTo: 'login', // Redirect to login if no matching route is found
+  },
+];
+
+;

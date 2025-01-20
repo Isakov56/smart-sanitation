@@ -29,6 +29,8 @@ import { SensorService } from 'core'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutService } from 'core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { RouterOutlet } from '@angular/router';
+import { AuthService } from 'core';
 
 @Component({
   selector: 'app-side-nav',
@@ -55,7 +57,7 @@ import { MatDrawer } from '@angular/material/sidenav';
     ReactiveFormsModule,
     MatCheckboxModule,
     NgbDropdownModule,
-
+    RouterOutlet
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -77,6 +79,11 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     cols: new FormControl(4, Validators.required),
     rows: new FormControl(4, Validators.required),
   });
+
+  logout() {
+    this.authService.logout();  // Clear the token from localStorage
+    this.router.navigate(['/login']);  // Navigate to the login page
+  }
 
   @ViewChild('drawer') drawer!: MatDrawer;
   onMouseEnter(label: string): void {
@@ -228,7 +235,7 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
 
   constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
     private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef, private sensorService: SensorService,
-    private layoutService: LayoutService, 
+    private layoutService: LayoutService, private authService: AuthService
     // private test: MatDrawer
   ) {
     iconRegistry.addSvgIconSet(
