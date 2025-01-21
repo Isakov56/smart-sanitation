@@ -35,8 +35,8 @@ import { loadSensors } from 'ngrx-store';
 import { Subscription } from 'rxjs';
 import { StreamService } from '../stream.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { loadDevices } from 'test-store-lib';
-import { selectAllDataItems, selectDataLoading, selectDataError } from 'test-store-lib';
+import { loadDevices, selectDeviceById } from 'test-store-lib';
+import { selectAllDevices, selectDevicesLoading, selectDevicesError } from 'test-store-lib';
 import { DataState } from 'test-store-lib'; 
 import { LayoutService } from 'core';
 
@@ -58,7 +58,7 @@ import { LayoutService } from 'core';
 })
 export class DashboardComponent implements OnInit, OnDestroy  {
 
-  data$: Observable<any[] | undefined>;
+
   devices$: Observable<any[] | undefined>;
   loading$: Observable<boolean> | undefined;
   error$: Observable<string | null> | undefined;
@@ -122,15 +122,13 @@ export class DashboardComponent implements OnInit, OnDestroy  {
     private sanitizer: DomSanitizer,
     private layoutService: LayoutService
   ) { 
-    this.data$ = this.store.select(selectAllDataItems);  // Select data
-    this.loading$ = this.store.select(selectDataLoading);  // Select loading state
-    this.error$ = this.store.select(selectDataError);
-    this.devices$ = this.store.select(selectAllDataItems);
+    
+    this.devices$ = this.store.select(selectAllDevices);
   }
 
-  reload() {
-    this.store.dispatch(loadDevices());  // Dispatch the action to load data
-  }
+  // reload() {
+  //   this.store.dispatch(loadDevices());  // Dispatch the action to load data
+  // }
 
   
 
@@ -321,6 +319,7 @@ ngOnDestroy(): void {
       this.adjustGridOnResize(); // Adjust the grid layout based on the sidebar state
     });
     this.store.dispatch(loadDevices());
+    this.devices$ = this.store.select(selectAllDevices);
     // this.devices$.subscribe(data => {
     //   if (data) {
     //     console.log('Data received from store:', data);
@@ -329,7 +328,7 @@ ngOnDestroy(): void {
     //   }
     // });
 
-    this.store.select(selectAllDataItems).subscribe(data => {
+    this.store.select(selectAllDevices).subscribe(data => {
       console.log('Data from store:', data);
 
       if (data) {
@@ -338,7 +337,12 @@ ngOnDestroy(): void {
         this.cdr.detectChanges();
       }
     });
+    this.store.select(selectAllDevices).subscribe(data => {
+          console.log('tests tests tesst tests tests tse:', data);
+        });
     
+    const specificDevice$ = this.store.select(selectDeviceById('1'));
+    specificDevice$.subscribe((device) => console.log('Specific device:', device));
     
   }
 

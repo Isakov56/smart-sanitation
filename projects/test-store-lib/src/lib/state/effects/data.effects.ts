@@ -8,23 +8,20 @@ import { EMPTY, of } from 'rxjs';
 
 @Injectable()
 export class DataEffects {
-  loadDevices$ = createEffect(() =>{
-
-      return inject(Actions).pipe(
-          ofType(loadDevices),
-          tap(action => console.log('Action received in effect:', action)), // Log the incoming action
-          mergeMap(() => 
-            this.dataService.getDevices().pipe( // Use the service to fetch data
-                map(data => loadDevicesSuccess({ data })), // Dispatch `loadDevicesSuccess` with the data
-                catchError(error => {
-                  console.error('Error loading data', error); // Log the error
-                  return of(loadDevicesFailure({ error: error.message })); // Dispatch `loadDataFailure` with the error
-                })
-          )
-          ),
-          tap(() => console.log('loadData action handled successfully'))
-      );
-  }
+  loadDevices$ = createEffect(() =>
+    inject(Actions).pipe(
+      ofType(loadDevices), // Listen for the `loadDevices` action
+      tap(() => console.log('Devices load action received')), // Optional logging
+      mergeMap(() =>
+        this.dataService.getDevices().pipe( // Fetch devices from the service
+          map((devices) => loadDevicesSuccess({ devices })), // Dispatch success action
+          catchError((error) => {
+            console.error('Error loading devices:', error); // Log error
+            return of(loadDevicesFailure({ error: error.message })); // Dispatch failure action
+          })
+        )
+      )
+    )
   );
 
   // Effect for sensors
@@ -34,7 +31,7 @@ export class DataEffects {
       tap(() => console.log('Sensors load action received')),
       mergeMap(() =>
         this.dataService.getSensors().pipe(
-          map(data => loadSensorsSuccess({ data })),
+          map(sensors => loadSensorsSuccess({ sensors })),
           catchError(error => {
             console.error('Error loading sensors:', error);
             return of(loadSensorsFailure({ error: error.message }));

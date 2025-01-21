@@ -13,7 +13,7 @@
     <div class="d-flex justify-content-center align-items-center mt-3 w-100">
       
         <div class=" d-flex justify-content-center align-items-center" [ngClass]="{' ps-4': isHovered || isPersistent}">
-          <img class="logo" routerLink="/" src="/assets/sanitation-logo-it.png" alt="" [ngClass]="{' bigger': isHovered || isPersistent}">
+          <img class="logo" routerLink="/dashboard" src="/assets/sanitation-logo-it.png" alt="" [ngClass]="{' bigger': isHovered || isPersistent}">
         </div>
         <div class="d-flex justify-content-end d-flex align-items-center w-100 pe-1" *ngIf="isHovered || isPersistent">
           <mat-slide-toggle [(ngModel)]="isPersistent" (change)="onPersistenceChange()">

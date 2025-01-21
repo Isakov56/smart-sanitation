@@ -31,6 +31,10 @@ import { LayoutService } from 'core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from 'core';
+import { selectAllSensors, selectSensorsLoading, selectSensorsError, selectAllDevices } from 'test-store-lib';
+import { DataState } from 'test-store-lib'; 
+import { loadSensors, loadDevices } from 'test-store-lib';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-side-nav',
@@ -63,7 +67,7 @@ import { AuthService } from 'core';
 })
 export class SideNavComponent implements OnInit, AfterViewInit  {
   isHovered: boolean = false
-  isPersistent = true;
+  isPersistent = false;
   sensors: any[] = [];
 
   myControl = new FormControl('');
@@ -79,6 +83,9 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     cols: new FormControl(4, Validators.required),
     rows: new FormControl(4, Validators.required),
   });
+
+  sensors$: Observable<any[]> | undefined;
+  devices$: Observable<any[]> | undefined;
 
   logout() {
     this.authService.logout();  // Clear the token from localStorage
@@ -235,12 +242,15 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
 
   constructor(private router: Router, private route: ActivatedRoute, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
     private modalService: NgbModal, private appStateService: AppStateService, private cdr: ChangeDetectorRef, private sensorService: SensorService,
-    private layoutService: LayoutService, private authService: AuthService
+    private layoutService: LayoutService, private authService: AuthService, private store: Store
     // private test: MatDrawer
   ) {
     iconRegistry.addSvgIconSet(
       sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
     );
+    this.sensors$ = this.store.select(selectAllSensors);
+    this.devices$ = this.store.select(selectAllDevices);
+    console.log(this.sensors$, 'sensores, senosro sensores ')
   }
 
   openModal(modalTemplate: TemplateRef<any>) {
@@ -273,6 +283,16 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
   }
   ngOnInit() {
 
+    this.store.dispatch(loadSensors());
+    this.store.select(selectAllSensors).subscribe(data => {
+      console.log('tests tests tesst tests tests tse:', data);
+    });
+    this.store.select(selectAllDevices).subscribe(data => {
+      console.log('devices deivcies deivcceis $$$$$:', data);
+    });
+    
+    this.store.dispatch(loadDevices());
+    console.log(this.devices$, 'devices deivcies deivcceis $$$$$')
     // console.log('Drawer is initialized:', this.drawer);
     if (this.drawer) {
     }

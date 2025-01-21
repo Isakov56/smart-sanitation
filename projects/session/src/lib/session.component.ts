@@ -45,7 +45,7 @@ export class SessionComponent implements OnInit {
       .login({ email: this.id, password: this.password })
       .subscribe({
         next: () => {
-          this.router.navigate(['/dashboard']); // Navigate to the dashboard or any secure route
+          this.router.navigate(['/monitoring']); // Navigate to the dashboard or any secure route
         },
         error: (err) => {
           alert('Invalid credentials. Please try again.');
