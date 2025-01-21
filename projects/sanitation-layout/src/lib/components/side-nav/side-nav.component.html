@@ -157,9 +157,9 @@
           </div>
           <div class="d-flex flex-column">
             <div>Sensors:</div>
-            <div *ngFor="let sensor of sensors">
-              <mat-checkbox [formControl]="sensor.control" class="example-ripple-checkbox">
-                {{ sensor.name }} ({{ sensor.type }})
+            <div *ngFor="let sensor of sensors$">
+              <mat-checkbox  class="example-ripple-checkbox">
+                {{ sensor.name }} 
               </mat-checkbox>
             </div>
           </div>

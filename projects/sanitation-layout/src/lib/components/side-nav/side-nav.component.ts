@@ -9,7 +9,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay, startWith } from 'rxjs/operators';
 import { RouteConfig } from 'isakov-shared';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -35,6 +35,7 @@ import { selectAllSensors, selectSensorsLoading, selectSensorsError, selectAllDe
 import { DataState } from 'test-store-lib'; 
 import { loadSensors, loadDevices } from 'test-store-lib';
 import { Store } from '@ngrx/store';
+import { SensorsItem } from 'test-store-lib'
 
 @Component({
   selector: 'app-side-nav',
@@ -84,7 +85,7 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     rows: new FormControl(4, Validators.required),
   });
 
-  sensors$: Observable<any[]> | undefined;
+  sensors$: SensorsItem[] = [];
   devices$: Observable<any[]> | undefined;
 
   logout() {
@@ -248,9 +249,6 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     iconRegistry.addSvgIconSet(
       sanitizer.bypassSecurityTrustResourceUrl('/assets/material-icons.svg')
     );
-    this.sensors$ = this.store.select(selectAllSensors);
-    this.devices$ = this.store.select(selectAllDevices);
-    console.log(this.sensors$, 'sensores, senosro sensores ')
   }
 
   openModal(modalTemplate: TemplateRef<any>) {
@@ -266,7 +264,7 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
   }
 
   @Input() routes: RouteConfig[] = []
-  label?: string = ''
+  label: string = ''
 
   capitalizeWords(str: string): string {
     return str
@@ -279,42 +277,56 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
   private sidebarToggleSubscription: Subscription | undefined;
   ngAfterViewInit() {
     console.log('Drawer is initialized:', this.drawer);
-    
+    this.cdr.detectChanges();
   }
+
+  private setLabelFromRoute(routePath: string): void {
+    if (routePath.includes('infrastruttura')) {
+      this.label = 'Infrastruttura';
+    } else if (routePath.includes('asset')) {
+      this.label = 'Asset';
+    } else if (routePath.includes('sensori')) {
+      this.label = 'Sensori';
+    } else {
+      const matchedRoute = this.routes.find(route => route.path === routePath);
+      this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : '';
+    }
+    this.formattedRouteName = routePath;
+    this.cdr.detectChanges();
+  }
+  
   ngOnInit() {
 
     this.store.dispatch(loadSensors());
     this.store.select(selectAllSensors).subscribe(data => {
-      console.log('tests tests tesst tests tests tse:', data);
+      if (data) {
+        this.sensors$ = data;
+         this.cdr.detectChanges();
+       }
     });
-    this.store.select(selectAllDevices).subscribe(data => {
-      console.log('devices deivcies deivcceis $$$$$:', data);
-    });
-    
-    this.store.dispatch(loadDevices());
-    console.log(this.devices$, 'devices deivcies deivcceis $$$$$')
+
     // console.log('Drawer is initialized:', this.drawer);
     if (this.drawer) {
     }
 
-    this.sensorService.getSensors(true).subscribe((sensors) => {
-      this.sensors = sensors.map((sensor) => ({
-        ...sensor,
-        control: new FormControl(this.checkboxStates[sensor.id] || false),
-      }));
+    // this.sensorService.getSensors(true).subscribe((sensors) => {
+    //   this.sensors = sensors.map((sensor) => ({
+    //     ...sensor,
+    //     control: new FormControl(this.checkboxStates[sensor.id] || false),
+    //   }));
   
-      // Preserve checkbox state
-      this.sensors.forEach((sensor) => {
-        sensor.control.valueChanges.subscribe((isChecked: any) => {
-          this.checkboxStates[sensor.id] = isChecked;
-        });
-      });
-    });
+    //   // Preserve checkbox state
+    //   this.sensors.forEach((sensor) => {
+    //     sensor.control.valueChanges.subscribe((isChecked: any) => {
+    //       this.checkboxStates[sensor.id] = isChecked;
+    //     });
+    //   });
+    // });
 
-    this.appStateService.devicesWithSensors$.subscribe(devices => {
-      // console.log('Devices updated:', devices);
-      // Here you can update the layout or other relevant state based on devices
-    });
+    // this.appStateService.devicesWithSensors$.subscribe(devices => {
+    //   // console.log('Devices updated:', devices);
+    //   // Here you can update the layout or other relevant state based on devices
+    // });
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -340,24 +352,15 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     // });
 
     // Get the current route path
-    this.router.events.subscribe(() => {
-      const routePath = this.router.url; // Get last segment of the route
+    this.setLabelFromRoute(this.router.url);
 
-      if (routePath.includes('infrastruttura')) {
-        this.label = 'Infrastruttura';
-      } else if (routePath.includes('asset')) {
-        this.label = 'Asset';
-      } else if (routePath.includes('sensori')) {
-        this.label = 'Sensori';
-      } else {
-        // Check against your routes array for other matches
-        const matchedRoute = this.routes.find(route => route.path === routePath);
-        this.label = matchedRoute ? this.capitalizeWords(matchedRoute.label) : ''; // Default to empty string
+    // Subscribe to router events to update label on navigation
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.setLabelFromRoute(this.router.url);
       }
-      this.formattedRouteName = routePath; // Default to 'Dashboard' if undefined
-
-      this.cdr.detectChanges();
     });
+    this.cdr.detectChanges();
   }
 
   private _filter(value: string): string[] {

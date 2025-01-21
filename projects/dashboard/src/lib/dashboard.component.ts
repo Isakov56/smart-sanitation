@@ -319,27 +319,13 @@ ngOnDestroy(): void {
       this.adjustGridOnResize(); // Adjust the grid layout based on the sidebar state
     });
     this.store.dispatch(loadDevices());
-    this.devices$ = this.store.select(selectAllDevices);
-    // this.devices$.subscribe(data => {
-    //   if (data) {
-    //     console.log('Data received from store:', data);
-    //   } else {
-    //     console.log('No data available yet.');
-    //   }
-    // });
-
+    // this.devices$ = this.store.select(selectAllDevices);
     this.store.select(selectAllDevices).subscribe(data => {
-      console.log('Data from store:', data);
-
       if (data) {
        this.layout = data.map(item => ({ ...item }));
-        // console.log(this.layout, 'sajf;ldjflaksjdfklas pqowieutr laksjhdf')
         this.cdr.detectChanges();
       }
     });
-    this.store.select(selectAllDevices).subscribe(data => {
-          console.log('tests tests tesst tests tests tse:', data);
-        });
     
     const specificDevice$ = this.store.select(selectDeviceById('1'));
     specificDevice$.subscribe((device) => console.log('Specific device:', device));
