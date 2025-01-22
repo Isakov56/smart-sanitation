@@ -6,8 +6,10 @@ import {
   loadSensors,
   loadSensorsSuccess,
   loadSensorsFailure,
+  saveLayout
 } from '../actions/data.actions';
 import { DataState, initialDataState } from '../data.state';
+import { GridsterItem } from 'angular-gridster2';
 
 export const dataReducer = createReducer(
   initialDataState,
@@ -37,5 +39,22 @@ export const dataReducer = createReducer(
     ...state, 
     loadingSensors: false, 
     sensorsError: error 
+  }))
+);
+
+
+export interface LayoutState {
+  layout: GridsterItem[];
+}
+
+export const initialState: LayoutState = {
+  layout: [] // Start with an empty layout
+};
+
+export const layoutReducer = createReducer(
+  initialState,
+  on(saveLayout, (state, { layout }) => ({
+    ...state,
+    layout: layout // Update layout in the state
   }))
 );

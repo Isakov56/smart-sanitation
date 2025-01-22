@@ -28,6 +28,7 @@ import { RouterModule } from '@angular/router';
 export class SessionComponent implements OnInit {
   id: string = '';
   password: string = '';
+  type: string = 'login'
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -42,7 +43,7 @@ export class SessionComponent implements OnInit {
     }
 
     this.authService
-      .login({ email: this.id, password: this.password })
+      .login({ username: this.id, password: this.password, type: this.type })
       .subscribe({
         next: () => {
           this.router.navigate(['/dashboard']); // Navigate to the dashboard or any secure route

@@ -13,7 +13,7 @@ export class ApiInterceptor implements HttpInterceptor {
     if (token) {
       console.log('JWT Token received:', token);
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
+        headers: req.headers.set('Authorization', token)
       });
       return next.handle(cloned);
     }

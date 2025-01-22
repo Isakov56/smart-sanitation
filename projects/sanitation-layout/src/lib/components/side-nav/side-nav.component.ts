@@ -68,7 +68,7 @@ import { SensorsItem } from 'test-store-lib'
 })
 export class SideNavComponent implements OnInit, AfterViewInit  {
   isHovered: boolean = false
-  isPersistent = false;
+  isPersistent = true;
   sensors: any[] = [];
 
   myControl = new FormControl('');
@@ -276,7 +276,6 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
   buttonName: string = ''
   private sidebarToggleSubscription: Subscription | undefined;
   ngAfterViewInit() {
-    console.log('Drawer is initialized:', this.drawer);
     this.cdr.detectChanges();
   }
 

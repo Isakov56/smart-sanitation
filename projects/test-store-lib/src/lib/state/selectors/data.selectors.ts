@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DataState } from '../data.state';
+import { LayoutState } from '../reducers/data.reducer';
 
 // Feature key for the DataState (adjust this to match your store setup)
 export const selectDataState = createFeatureSelector<DataState>('data');
@@ -63,3 +64,6 @@ export const selectAllSensors = createSelector(
 // Select a specific sensor by ID
 export const selectSensorById = (sensorId: string) =>
   createSelector(selectDataState, (state: DataState) => state.sensorEntities[sensorId]);
+
+
+export const selectLayoutState = createFeatureSelector<LayoutState>('layout');;

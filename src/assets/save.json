@@ -1,0 +1,50 @@
+{
+    "header": {
+        "code": 200,
+        "message": "OK"
+    },
+    "response": {
+        "type": "user",
+        "id": "8aa2d59f-9735-4084-b1cb-6cdc3766ab51",
+        "firstname": "Antonio",
+        "lastname": "Spatera",
+        "email": "antonio.spatera@example.com",
+        "username": "spat",
+        "displayName": "Antonio Spatera",
+        "role": [
+            {
+                "type": "role",
+                "code": "COD_01"
+            }
+        ],
+        "permission": [
+            {
+                "type": "permission",
+                "module": "COD_01",
+                "function": "INFR_01",
+                "role": "COD_01"
+            },
+            {
+                "type": "permission",
+                "module": "COD_01",
+                "function": "INFR_02",
+                "role": "COD_01"
+            },
+            {
+                "type": "permission",
+                "module": "COD_01",
+                "function": "INFR_03",
+                "role": "COD_01"
+            },
+            {
+                "type": "permission",
+                "module": "COD_01",
+                "function": "INFR_04",
+                "role": "COD_01"
+            }
+        ],
+        "createdAt": 1737393658802,
+        "updatedAt": 1737393658802,
+        "enabled": true
+    }
+}

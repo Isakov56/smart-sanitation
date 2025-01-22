@@ -1,10 +1,18 @@
 .sidenav-container {
-  // height: %;
+  height: 100%;
   background-color: var(--primary-background-color);
   // width: 100%;
  
 }
 
+
+.entry-container{
+ height: 7% !important;
+}
+
+.test{
+ height: 90% !important;
+}
 .logo{
   width: 45px;
   height: 45px;
@@ -177,6 +185,7 @@
 .sidenav-right{
   min-width: 236px;
   z-index: 9999 !important;
+  overflow: visible;
   // position: absolute;
   // height: 50vh;
   // right: 0px;
@@ -185,11 +194,9 @@
 
 .empty-container-side{
   min-width: 270px;
+  height: 10%;
 }
 
-.entry-container{
-  height: 45px;
-}
 
 .add-btn{
   background-color: var(--primary-button-dark);
@@ -197,13 +204,17 @@
   font-size: 17px;
   border-radius: 10px;
   cursor: pointer;
-
+  overflow: visible;
+  z-index: 99999 !important;
+  position: fixed;
+  width: 14rem !important;
+  top: 16px;
 }
 
 
-.test{
-  height: 90vh !important;
-}
+// .test{
+//   height: 90vh !important;
+// }
 
 // .scroll-test::-webkit-scrollbar {
 //   display: none; /* For Chrome, Safari, and Edge, hide scrollbars */

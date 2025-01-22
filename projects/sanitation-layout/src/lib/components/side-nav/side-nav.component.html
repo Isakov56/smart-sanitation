@@ -7,7 +7,7 @@
   fixedInViewport 
   [attr.role]="getRole()"
   [mode]="getSidenavMode()"
-  [opened]="(isHandset$ | async) === false"
+  [opened]="true"
   (mouseenter)="isHovered = true" 
   (mouseleave)="isHovered = false">
     <div class="d-flex justify-content-center align-items-center mt-3 w-100">
@@ -81,7 +81,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="scroll-test" [class.pr-40]="!isPersistent">
-    <div class="d-flex justify-content-between ms-3 entry-container">
+    <div class="d-flex justify-content-between ms-3 entry-container  align-items-center">
       <mat-toolbar color="primary h-100 d-flex align-items-center" >
         
         <button

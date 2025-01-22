@@ -321,6 +321,7 @@ ngOnDestroy(): void {
     this.store.dispatch(loadDevices());
     // this.devices$ = this.store.select(selectAllDevices);
     this.store.select(selectAllDevices).subscribe(data => {
+
       if (data) {
        this.layout = data.map(item => ({ ...item }));
         this.cdr.detectChanges();
