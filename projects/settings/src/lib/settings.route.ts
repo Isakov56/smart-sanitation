@@ -1,9 +1,14 @@
 import { Route } from "@angular/router";
+import { PermissionGuard } from 'core';
 
 export const settingsRouts: Route[] =[
     {
         path: 'infrastruttura',
     loadComponent: () => import('./infrastructure/infrastructure.component').then(c => c.InfrastructureComponent)
+    , canActivate: [PermissionGuard],
+    data: {
+      permission: 'INFR_02' // Example required permission
+    } 
     },
     {
         path: 'asset',

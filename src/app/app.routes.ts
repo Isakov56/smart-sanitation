@@ -11,6 +11,7 @@ import { SessionComponent } from 'session'; // Ensure you have the LoginComponen
 import { AuthGuard } from 'core'; // AuthGuard to protect routes
 import { SanitationLayoutComponent } from 'sanitation-layout'; // Your layout component
 import { RouteConfig } from 'isakov-shared';
+import { UnauthorizedComponent } from 'shared';
 
 export const routeConfig: RouteConfig[] = [
     { path: '/dashboard', label: 'Dashboard', icon: 'home' },
@@ -29,7 +30,7 @@ export const routes: Routes = [
   {
     path: '', // Authenticated route group with layout
     component: SanitationLayoutComponent, // Layout that includes sidebar, header, etc.
-    canActivate: [AuthGuard], // Protect all routes inside this layout
+    // canActivate: [AuthGuard], // Protect all routes inside this layout
     children: [
       ...dashboardRouts,
       ...maintenanceRouts,
@@ -42,6 +43,10 @@ export const routes: Routes = [
     data: {
         routeConfig: routeConfig,  // Pass the routeConfig data to SanitationLayoutComponent
       },
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
   },
   {
     path: '**', // Fallback route

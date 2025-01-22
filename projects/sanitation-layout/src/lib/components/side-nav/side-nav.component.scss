@@ -2,12 +2,14 @@
   height: 100%;
   background-color: var(--primary-background-color);
   // width: 100%;
+  
  
 }
 
 
 .entry-container{
  height: 7% !important;
+ margin-top: 0.8rem !important;
 }
 
 .test{
@@ -174,6 +176,7 @@
 
 .scroll-test.pr-40 {
   padding-left: 70px !important;
+  position: relative;
 }
 
 .log-out{
@@ -205,10 +208,7 @@
   border-radius: 10px;
   cursor: pointer;
   overflow: visible;
-  z-index: 99999 !important;
-  position: fixed;
-  width: 14rem !important;
-  top: 16px;
+ 
 }
 
 

@@ -329,7 +329,7 @@ ngOnDestroy(): void {
     });
     
     const specificDevice$ = this.store.select(selectDeviceById('1'));
-    specificDevice$.subscribe((device) => console.log('Specific device:', device));
+    specificDevice$.subscribe((device) => console.log());
     
   }
 

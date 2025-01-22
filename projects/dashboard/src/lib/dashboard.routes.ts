@@ -5,6 +5,6 @@ export const dashboardRouts: Route[] =[
     {
         path: 'dashboard',
         loadComponent: () => import('./dashboard.component').then(c => c.DashboardComponent)
-        , canActivate: [AuthGuard]
+        // , canActivate: [AuthGuard]
     }
 ]

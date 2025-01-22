@@ -21,25 +21,7 @@
             {
                 "type": "permission",
                 "module": "COD_01",
-                "function": "INFR_01",
-                "role": "COD_01"
-            },
-            {
-                "type": "permission",
-                "module": "COD_01",
                 "function": "INFR_02",
-                "role": "COD_01"
-            },
-            {
-                "type": "permission",
-                "module": "COD_01",
-                "function": "INFR_03",
-                "role": "COD_01"
-            },
-            {
-                "type": "permission",
-                "module": "COD_01",
-                "function": "INFR_04",
                 "role": "COD_01"
             }
         ],
