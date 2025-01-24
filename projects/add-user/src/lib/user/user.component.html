@@ -1,14 +1,15 @@
 <div class="p-3 pt-0">
     <div class="d-flex my-2 justify-content-between align-items-center">
-        <h5 class="text-bigger p-0 m-0">Report di primo livello</h5>
 
     </div>
 
-    <div *ngIf="rowData">
-      <p class="text-small"><strong>ID:</strong> {{ rowData['ID'] }}</p>
-      <p class="text-small"><strong>Lingua:</strong> </p>
-      
-    
+    <div>
+      <p class="text-small"><strong>First Name:</strong> {{ userData?.firstName }}</p>
+        <p class="text-small"><strong>Last Name:</strong> {{ userData?.lastName }}</p>
+        <p class="text-small"><strong>Email:</strong> {{ userData?.email }}</p>
+        <p class="text-small"><strong>Username:</strong> {{ userData?.username }}</p>
+        <p class="text-small"><strong>Display Name:</strong> {{ userData?.displayName }}</p>
+        <p class="text-small"><strong>Role:</strong> {{ userData?.role }}</p>
       <!-- Display other properties of the row data here -->
     </div>
     <div >

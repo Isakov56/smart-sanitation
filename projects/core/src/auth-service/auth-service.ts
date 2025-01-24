@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { LoginCredentials } from 'shared';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -16,8 +18,9 @@ export class AuthService {
 //       })
 //     );
 //   }
-login(credentials: { username: string; password: string; type: string }): Observable<any> {
-    return this.http.post('http://192.168.25.16:8090/token', credentials, { observe: 'response' }).pipe(
+login(credentials: LoginCredentials): Observable<any> {
+    const url = environment.USER_API_URL;
+    return this.http.post(url, credentials, { observe: 'response' }).pipe(
       tap(response => {
         const authHeader = response.headers.get('Authorization');
         const userData = response.body; // Assuming user data is in the body
@@ -95,7 +98,7 @@ login(credentials: { username: string; password: string; type: string }): Observ
 
     // Log the permissions array
     const userPermissions = user.response.permission.map((perm: any) => perm.function); // here we are checking for the permission.function we can do the same for the role and others
-    
+
     console.log('User Permissions:', userPermissions);
 
     // Check if the required permission is in the user's permissions list

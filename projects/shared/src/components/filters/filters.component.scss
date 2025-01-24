@@ -7,4 +7,9 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 1199px){
+  .pick-container{
+    width: 8rem !important;
+  }
+}
 

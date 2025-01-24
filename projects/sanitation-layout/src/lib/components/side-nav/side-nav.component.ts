@@ -265,6 +265,7 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
 
   @Input() routes: RouteConfig[] = []
   label: string = ''
+  userData: any = null;
 
   capitalizeWords(str: string): string {
     return str
@@ -284,7 +285,10 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
       this.label = 'Infrastruttura';
     } else if (routePath.includes('asset')) {
       this.label = 'Asset';
-    } else if (routePath.includes('sensori')) {
+    } else if (routePath.includes('user')) {
+      this.label = 'Utente';
+    }
+    else if (routePath.includes('sensori')) {
       this.label = 'Sensori';
     } else {
       const matchedRoute = this.routes.find(route => route.path === routePath);
@@ -294,18 +298,27 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     this.cdr.detectChanges();
   }
   
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.store.dispatch(loadSensors());
     this.store.select(selectAllSensors).subscribe(data => {
       if (data) {
         this.sensors$ = data;
-         this.cdr.detectChanges();
-       }
+      }
+      // this.cdr.detectChanges();
     });
 
     // console.log('Drawer is initialized:', this.drawer);
     if (this.drawer) {
+    }
+
+    const userInfo = localStorage.getItem('user_info'); // 'user_info' is the key in localStorage
+
+    if (userInfo) {
+      this.userData = JSON.parse(userInfo); // Parse the JSON string into an object
+
+    } else {
+      console.warn('No user data found in localStorage!');
     }
 
     // this.sensorService.getSensors(true).subscribe((sensors) => {
