@@ -57,8 +57,12 @@
   background-color: var(--primary-button-hover);
 }
 
+.profile-active{
+  background-color: var(--primary-button-hover);
+}
+
 .hover-active.active {
-  background-color: transparent; /* Your hover color */
+  background-color: transparent; /* hover color */
 }
 
 .nav-link-icon{

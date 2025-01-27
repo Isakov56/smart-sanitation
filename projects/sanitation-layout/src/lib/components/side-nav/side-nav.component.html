@@ -26,7 +26,7 @@
       <div class="d-flex routes-nav flex-column justify-content-between">
         <div class="w-100 py-2 h-100">
             <div class="d-flex align-items-center nav-link-div w-100 p-2 px-2"
-              routerLinkActive="active" >
+              routerLinkActive="active" [ngClass]="{ 'profile-active': isUserPage() }">
               <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
                 <mat-icon fontIcon="account_circle"
                   class="account-circle material-symbols-outlined"></mat-icon>

@@ -43,7 +43,7 @@ export const routes: Routes = [
     data: {
         routeConfig: routeConfig,  // Pass the routeConfig data to SanitationLayoutComponent
       },
-  },
+  }, 
   {
     path: 'unauthorized',
     component: UnauthorizedComponent

@@ -176,6 +176,10 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     }
   }
 
+  isUserPage(): boolean {
+    return this.router.url === '/user';
+  }
+
   addDeviceTest(): void {
     if (this.deviceForm.valid) {
       const currentDevices = this.appStateService.getDevices();

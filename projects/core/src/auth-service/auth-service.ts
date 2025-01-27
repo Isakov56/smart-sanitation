@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { LoginCredentials } from 'shared';
-import { environment } from '../../../../environments/environment';
+// import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -19,8 +19,8 @@ export class AuthService {
 //     );
 //   }
 login(credentials: LoginCredentials): Observable<any> {
-    const url = environment.USER_API_URL;
-    return this.http.post(url, credentials, { observe: 'response' }).pipe(
+    // const url = environment.USER_API_URL;
+    return this.http.post('url', credentials, { observe: 'response' }).pipe(
       tap(response => {
         const authHeader = response.headers.get('Authorization');
         const userData = response.body; // Assuming user data is in the body
@@ -56,8 +56,8 @@ login(credentials: LoginCredentials): Observable<any> {
       })
     );
   }
-  
-  
+
+
    // Get token from localStorage
    getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
