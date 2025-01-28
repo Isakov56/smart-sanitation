@@ -15,7 +15,6 @@ import { AddAssetModalComponent } from './add-asset-modal/add-asset-modal.compon
   selector: 'lib-asset',
   standalone: true,
   imports: [
-    RouterOutlet,
     MatIcon,
     NgbDropdownModule,
     MatFormField,
@@ -26,7 +25,7 @@ import { AddAssetModalComponent } from './add-asset-modal/add-asset-modal.compon
     CardComponent,
     MatSlideToggle,
     RouterModule,
-    AddAssetModalComponent
+    
   ],
   templateUrl: './asset.component.html',
   styleUrl: './asset.component.css',

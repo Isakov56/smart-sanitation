@@ -81,9 +81,22 @@ login(credentials: LoginCredentials): Observable<any> {
   }
 
   // Get user roles
-  getUserRoles(): string[] {
-    const user = this.getUser();
-    return user ? user.roles || [] : [];
+  getUserRoles(permission: string): boolean {
+    const user = this.getUser();  // Retrieve user from localStorage
+    console.log('User data:', user);  // Check the user data
+
+    if (!user || !user.response || !user.response.permission) {
+        console.warn('No user data or permissions found');
+        return false;
+    }
+
+    // Log the permissions array
+    const userPermissions = user.response.permission.map((perm: any) => perm.role); // here we are checking for the permission.function we can do the same for the role and others
+
+    console.log('User Permissions:', userPermissions);
+
+    // Check if the required permission is in the user's permissions list
+    return userPermissions.includes(permission);
   }
 
   // Check if the user has a specific permission

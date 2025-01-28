@@ -10,9 +10,11 @@ export class PermissionGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const requiredPermission = route.data['permission'] as string;
+    const expectedRoles = route.data['role'] as string;
+
     const hasPermission = this.authService.hasPermission(requiredPermission);
   
-    console.log('Required Permission:', requiredPermission);
+    console.log('Required Permission:', requiredPermission, expectedRoles);
     console.log('Has Permission:', hasPermission);
   
     if (!hasPermission) {
