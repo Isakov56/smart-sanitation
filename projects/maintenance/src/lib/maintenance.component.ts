@@ -7,31 +7,34 @@ import { FiltersComponent } from 'shared'
 @Component({
   selector: 'lib-maintenance',
   standalone: true,
-  imports: [CardComponent, CommonModule, TableComponent, FiltersComponent],
+  imports: [ CommonModule, 
+    // TableComponent, FiltersComponent
+
+  ],
   templateUrl: './maintenance.components.html',
   styleUrl: './maintenance.components.scss'
 })
 export class MaintenanceComponent implements OnInit{
 
-  cards: any[] = [];
+  // cards: any[] = [];
 
-  generateCards(count: number): void {
-    this.cards = Array.from({ length: count }, () => ({  }));
-  }
+  // generateCards(count: number): void {
+  //   this.cards = Array.from({ length: count }, () => ({  }));
+  // }
 
   ngOnInit(): void {
-    this.generateCards(4);
+    // this.generateCards(4);
   }
 
-  columns = ['Data', 'Infrastruttura', 'Asset', 'Sensore', 'Tipo di manutenzione'];
-  data: any[] = [
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
-    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  // columns = ['Data', 'Infrastruttura', 'Asset', 'Sensore', 'Tipo di manutenzione'];
+  // data: any[] = [
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+  //   { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
    
-  ];
+  // ];
 }

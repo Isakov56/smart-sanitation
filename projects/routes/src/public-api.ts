@@ -1,0 +1,10 @@
+/*
+ * Public API Surface of routes
+ */
+
+export * from './lib/routes.service';
+export * from './lib/routes.component';
+export * from './lib/test-page/test-page.routes'
+export * from './lib/maintenance/maintenance.routs'
+export * from './lib/reports/reports.route'
+export * from './lib/monitoring/monitoring.routes'

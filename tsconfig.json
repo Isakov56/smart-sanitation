@@ -45,6 +45,9 @@
       "reports": [
         "./dist/reports"
       ],
+      "routes": [
+        "./dist/routes"
+      ],
       "sanitation-layout": [
         "./dist/sanitation-layout"
       ],
@@ -56,6 +59,9 @@
       ],
       "shared": [
         "./dist/shared"
+      ],
+      "tes-page": [
+        "./dist/tes-page"
       ],
       "test-store-lib": [
         "./dist/test-store-lib"
