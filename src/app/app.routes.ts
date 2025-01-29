@@ -4,8 +4,8 @@ import { dashboardRouts } from 'dashboard';
 // import { maintenanceRouts } from 'maintenance';
 // import { monitoringdRouts } from 'monitoring';
 // import { reportsdRouts } from 'reports';
+// import { addUserRouts } from 'add-user';
 import { addDeviceRouts } from 'add-device';
-import { addUserRouts } from 'add-user';
 import { settingsRouts } from 'settings';
 import { SessionComponent } from 'session'; // Ensure you have the LoginComponent
 import { AuthGuard } from 'core'; // AuthGuard to protect routes
@@ -17,6 +17,7 @@ import { testRouts } from 'routes';
 import { maintenanceRouts } from 'routes';
 import { reportsdRouts } from 'routes';
 import { monitoringdRouts } from 'routes';
+import { addUserRouts } from 'routes'
 
 export const routeConfig: RouteConfig[] = [
     { path: '/dashboard', label: 'Dashboard', icon: 'home' },
