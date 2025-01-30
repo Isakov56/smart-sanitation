@@ -12,7 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'shared';
 import { PieChartComponent } from 'charts-lib';
-import { ChartComponent } from 'charts-lib';
+// import { ChartComponent } from 'charts-lib';
+import { ChartComponent } from 'shared'
 import { WeatherService } from 'core';
 import { CardLoaderComponent } from 'shared';
 import { delay, Observable } from 'rxjs';

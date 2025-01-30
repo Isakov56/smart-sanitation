@@ -1,0 +1,15 @@
+<div class="card-container mb-3 h-100">
+    <mat-card  class="example-card d-flex justify-content-center align-items-center h-100" appearance="outlined">
+        <canvas  #chartCanvas class="p-2 card-transition justify-content-center"></canvas>
+        <div class=" h-100 p-1" [class.hidden]="!data">
+        </div>     
+        <div class="h-100 w-100 d-flex align-items-center justify-content-center" [class.hidden]="data">
+            <app-card-loader class="h-100 w-100" ></app-card-loader>
+        </div>
+    </mat-card>
+</div>
+<!-- <div class="card-container" *ngIf="isLoading">
+    <mat-card  class="example-card d-flex justify-content-center" appearance="outlined">     
+        <app-card-loader ></app-card-loader>
+    </mat-card>
+</div> -->
