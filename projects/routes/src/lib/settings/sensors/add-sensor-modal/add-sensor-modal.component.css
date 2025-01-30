@@ -1,0 +1,7 @@
+.larg{
+    width: 1000px;
+}
+
+::ng-deep .mat-autocomplete-panel {
+    z-index: 1050 !important;
+  }
