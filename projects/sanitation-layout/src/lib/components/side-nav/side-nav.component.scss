@@ -53,6 +53,20 @@
   cursor: pointer;
 }
 
+.nav-link-div:hover{
+  // border: 2px solid var(--primary-button);
+  background-color: rgba(129, 198, 233, 0.37);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nav-link-div:active{
+  // border: 2px solid var(--primary-button);
+  background-color: rgba(102, 155, 182, 0.39);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .nav-link-div.active{
   background-color: var(--primary-button-hover);
 }

@@ -105,6 +105,12 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
     this.settingsHovered = false;
   }
 
+  onSettingsClick(label: string) {
+    if (label === 'Settings') {
+      this.settingsHovered = true;
+    }
+  }
+
   private devicesSubscription!: Subscription;
 
   isDashboardPage = false;
