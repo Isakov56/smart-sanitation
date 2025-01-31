@@ -5,18 +5,18 @@
     <div class="mx-4 w-100 pt-2 pick-container">
       <div class="my-1">Infrastruttura</div>
       <form class="example-form w-100">
-        <mat-form-field class="example-full-width w-100 d-flex align-items-center ">
-          
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto" class="pick w-100">
+        <mat-form-field class="example-full-width w-100 d-flex align-items-center "> 
+          <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              [matAutocomplete]="auto"
+              class="pick">
           <mat-autocomplete #auto="matAutocomplete">
-            @for (option of filteredOptions | async; track option) {
-              <mat-option [value]="option">{{option}}</mat-option>
-            }
+              <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option">
+                  {{ option }}
+              </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </form>
@@ -25,17 +25,17 @@
       <div class="my-1">Asset</div>
       <form class="example-form w-100">
         <mat-form-field class="example-full-width w-100 d-flex align-items-center ">
-          
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto" class="pick w-100">
+          <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              [matAutocomplete]="auto"
+              class="pick">
           <mat-autocomplete #auto="matAutocomplete">
-            @for (option of filteredOptions | async; track option) {
-              <mat-option [value]="option">{{option}}</mat-option>
-            }
+              <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option">
+                  {{ option }}
+              </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </form>
@@ -44,17 +44,17 @@
       <div class="my-1">Sensori</div>
       <form class="example-form w-100">
         <mat-form-field class="example-full-width w-100 d-flex align-items-center ">
-          
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto" class="pick w-100">
+          <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              [matAutocomplete]="auto"
+              class="pick">
           <mat-autocomplete #auto="matAutocomplete">
-            @for (option of filteredOptions | async; track option) {
-              <mat-option [value]="option">{{option}}</mat-option>
-            }
+              <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option">
+                  {{ option }}
+              </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </form>

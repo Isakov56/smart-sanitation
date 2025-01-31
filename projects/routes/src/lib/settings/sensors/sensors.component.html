@@ -12,13 +12,13 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="mx-2" ngbDropdown autoClose="outside">
-                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle (click)="$event.stopPropagation()">
+            <div class="mx-2" autoClose="outside">
+                <div class="d-flex align-items-center dropdown-toggle " id="dropdownBasic1" (click)="filterToggle($event)">
                     <mat-icon fontIcon="filter_alt" class="nav-link-icon material-symbols-outlined mx-1"></mat-icon>
                     <div class="text-smaller mx-1">Filtra</div>
                 </div>
             
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu" (click)="$event.stopPropagation()">
+                <div id="myDropdown" aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu" [ngClass]="dropdownOpen ? 'visible' : ''">
                     <div class="my-2">
                         <div>Tipo</div>
                         <form class="example-form w-100">

@@ -26,12 +26,12 @@
       <div class="d-flex routes-nav flex-column justify-content-between">
         <div class="w-100 py-2 h-100">
             <div class="d-flex align-items-center nav-link-div w-100 p-2 px-2"
-              routerLinkActive="active" [ngClass]="{ 'profile-active': isUserPage() }">
+              routerLinkActive="active" [ngClass]="{ 'profile-active': isUserPage() }" routerLink="/user">
               <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
                 <mat-icon fontIcon="account_circle"
                   class="account-circle material-symbols-outlined"></mat-icon>
               </div>
-                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-3" routerLink="/user">
+                <div *ngIf="isHovered || isPersistent" class="d-flex align-items-center nav-icons ps-3">
                   <div class="mx-3" >
                     <div class="icon id">Username:</div>
                     <div class="icon id fw-bold" style="font-weight: 700 !important;">{{userData.response.username}}</div>

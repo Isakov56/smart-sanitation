@@ -1,8 +1,8 @@
-<div  class="pt-2 pe-4">
+<div  class="pt-2 pe-4" >
     <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex">
             <div class="mx-2" ngbDropdown>
-                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle>
+                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle (click)="setOpenFalse()">
                     <mat-icon fontIcon="search" class="nav-link-icon material-symbols-outlined me-1"></mat-icon>
                     <div class="text-smaller mx-1">Cerca</div>
                 </div>
@@ -12,27 +12,26 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="mx-2" ngbDropdown autoClose="outside" (click)="dropdown.open();" (click)="$event.stopPropagation()">
-                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle (click)="$event.stopPropagation()">
+            <div class="mx-2" autoClose="outside">
+                <div class="d-flex align-items-center dropdown-toggle " id="dropdownBasic1" (click)="filterToggle($event)">
                     <mat-icon fontIcon="filter_alt" class="nav-link-icon material-symbols-outlined mx-1"></mat-icon>
                     <div class="text-smaller mx-1">Filtra</div>
                 </div>
             
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu" (click)="dropdown.open();" (click)="$event.stopPropagation()">
-                    <div class="my-2" (click)="dropdown.open();" (click)="$event.stopPropagation()">
+                <div id="myDropdown" aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu"  [ngClass]="dropdownOpen ? 'visible' : ''">
+                    <div class="my-2">
                         <div>Tipo</div>
-                        <form class="example-form w-100" (click)="dropdown.open();" (click)="$event.stopPropagation()">
-                            <mat-form-field class="example-full-width w-100 d-flex align-items-center" (click)="dropdown.open();" (click)="$event.stopPropagation()">
+                        <form class="example-form w-100" >
+                            <mat-form-field class="example-full-width w-100 d-flex align-items-center" >
                                 <input
                                     type="text"
                                     placeholder="Pick one"
                                     aria-label="Number"
                                     matInput
                                     [matAutocomplete]="auto"
-                                    class="pick" (click)="dropdown.open();" (click)="$event.stopPropagation()">
-                                <mat-autocomplete #auto="matAutocomplete" (click)="dropdown.open();" (click)="$event.stopPropagation()">
-                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" 
-                                    (click)="selectOption(option, myDropdown, $event)"  (click)="$event.stopPropagation()">
+                                    class="pick">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" (click)="$event.stopPropagation()">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>
@@ -51,8 +50,7 @@
                                     [matAutocomplete]="auto"
                                     class="pick">
                                 <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" 
-                                                 (click)="$event.stopPropagation()">
+                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>
@@ -82,7 +80,7 @@
             </div>
             
             <div class="mx-2" ngbDropdown>
-                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle>
+                <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle (click)="setOpenFalse()">
                     <mat-icon fontIcon="filter_list" class="nav-link-icon material-symbols-outlined mx-1"></mat-icon>
                     <div class="text-smaller mx-1">Ordina</div>
                 </div>

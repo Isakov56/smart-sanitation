@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
@@ -52,6 +52,26 @@ export class AssetComponent implements OnInit{
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
     }
+
+      filterToggle(event: Event){
+        event.stopPropagation(); // Prevent the click event from propagating immediately
+      this.dropdownOpen = !this.dropdownOpen;
+    
+      // Delay the outside click listener to ensure the dropdown toggle is processed first
+      setTimeout(() => {
+        document.addEventListener('click', this.onClickOutside.bind(this));
+      });
+      }
+    
+      // Detect clicks anywhere on the document
+      @HostListener('document:click', ['$event'])
+      onClickOutside(event: Event) {
+        const dropdownElement = document.getElementById('myDropdown');
+      if (dropdownElement && !dropdownElement.contains(event.target as Node)) {
+        this.dropdownOpen = false;
+        document.removeEventListener('click', this.onClickOutside.bind(this)); // Remove listener when dropdown is closed
+      }
+      }
   
     ngOnInit(): void {
       this.generateCards(9)
