@@ -44,7 +44,7 @@
         <div class="w-100 py-2  h-100 nav-link-border">
           <div >
             <div *ngFor="let route of routes" class="d-flex align-items-center nav-link-div w-100 h-100 p-2 px-2" ngbDropdown
-              routerLinkActive="active"  [ngClass]="{ 'hover-active': route.label === 'Settings' }" (click)="onSettingsClick(route.label)"  (click)="route.label === 'Settings' ? $event.preventDefault() : null" [routerLink]="route.label !== 'Settings' ? route.path : null"  (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
+              routerLinkActive="active"  [ngClass]="{ 'hover-active': route.label === 'Settings' }" (click)="onSettingsClick(route.label)"  (click)="route.label === 'Settings' ? $event.preventDefault() : null" [routerLink]="route.label !== 'Settings' ? route.path : null"  >
               <div class="d-flex align-items-center nav-icons" [ngClass]="{' justify-content-center w-100': !isHovered && !isPersistent}" >
                 <mat-icon [fontIcon]="route.icon || 'default_icon'"
                   class="nav-link-icon material-symbols-outlined"></mat-icon>
@@ -58,7 +58,7 @@
                   ngbDropdown
                   class="d-inline-block ms-3 settings-drop"
                 >
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu show" (click)="onSettingsClick(route.label)" (mouseenter)="onMouseEnter(route.label)" (mouseleave)="onMouseLeave()">
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu show" >
             <button ngbDropdownItem routerLink="infrastruttura">Infrastruttura</button>
             <button ngbDropdownItem routerLink="asset">Asset</button>
             <button ngbDropdownItem routerLink="sensori">Sensori</button>

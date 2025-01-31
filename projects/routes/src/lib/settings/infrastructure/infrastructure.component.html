@@ -12,27 +12,27 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="mx-2" ngbDropdown autoClose="outside">
+            <div class="mx-2" ngbDropdown autoClose="outside" (click)="dropdown.open();" (click)="$event.stopPropagation()">
                 <div class="d-flex align-items-center" id="dropdownBasic1" ngbDropdownToggle (click)="$event.stopPropagation()">
                     <mat-icon fontIcon="filter_alt" class="nav-link-icon material-symbols-outlined mx-1"></mat-icon>
                     <div class="text-smaller mx-1">Filtra</div>
                 </div>
             
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu" (click)="$event.stopPropagation()">
-                    <div class="my-2">
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="px-3 cerca filter dropdown-menu" (click)="dropdown.open();" (click)="$event.stopPropagation()">
+                    <div class="my-2" (click)="dropdown.open();" (click)="$event.stopPropagation()">
                         <div>Tipo</div>
-                        <form class="example-form w-100">
-                            <mat-form-field class="example-full-width w-100 d-flex align-items-center">
+                        <form class="example-form w-100" (click)="dropdown.open();" (click)="$event.stopPropagation()">
+                            <mat-form-field class="example-full-width w-100 d-flex align-items-center" (click)="dropdown.open();" (click)="$event.stopPropagation()">
                                 <input
                                     type="text"
                                     placeholder="Pick one"
                                     aria-label="Number"
                                     matInput
                                     [matAutocomplete]="auto"
-                                    class="pick">
-                                <mat-autocomplete #auto="matAutocomplete">
+                                    class="pick" (click)="dropdown.open();" (click)="$event.stopPropagation()">
+                                <mat-autocomplete #auto="matAutocomplete" (click)="dropdown.open();" (click)="$event.stopPropagation()">
                                     <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" 
-                                                 (click)="$event.stopPropagation()">
+                                    (click)="selectOption(option, myDropdown, $event)"  (click)="$event.stopPropagation()">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>
@@ -71,8 +71,7 @@
                                     [matAutocomplete]="auto"
                                     class="pick">
                                 <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" 
-                                                 (click)="$event.stopPropagation()">
+                                    <mat-option *ngFor="let option of ['Option 1', 'Option 2', 'Option 3']" [value]="option" (mousedown)="$event.preventDefault()">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>

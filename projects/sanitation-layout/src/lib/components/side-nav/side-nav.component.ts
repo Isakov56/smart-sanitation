@@ -106,8 +106,10 @@ export class SideNavComponent implements OnInit, AfterViewInit  {
   }
 
   onSettingsClick(label: string) {
-    if (label === 'Settings') {
+    if (label === 'Settings' && !this.settingsHovered) {
       this.settingsHovered = true;
+    }else{
+      this.settingsHovered = false
     }
   }
 

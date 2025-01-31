@@ -12,6 +12,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { AddInfraModalComponent } from './add-infra-modal/add-infra-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'lib-infrastructure',
@@ -25,6 +26,14 @@ export class InfrastructureComponent implements OnInit {
   cards: any[] = [];
 
   constructor(private modalService: NgbModal) {}
+
+  selectedValue: string = '';
+
+  selectOption(option: string, dropdown: NgbDropdown, event: MouseEvent) {
+    event.stopPropagation(); // Prevents dropdown from closing
+    this.selectedValue = option;
+    dropdown.open(); // Reopens dropdown after selecting an option
+  }
 
   // Open the modal when the button is clicked
   openModal() {

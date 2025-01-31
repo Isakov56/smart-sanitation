@@ -27,7 +27,7 @@ export const routeConfig: RouteConfig[] = [
     { path: '/reports', label: 'Reports', icon: 'feed' },
     { path: '/add-user', label: 'Crea utente', icon: 'person_add_alt_icon' },
     { path: '/settings', label: 'Settings', icon: 'settings' },
-    { path: '/test-page', label: 'Test', icon: 'light_bulb' },
+    { path: '/test-page', label: 'Test', icon: 'light' },
   ]
 
 export const routes: Routes = [
