@@ -1,0 +1,73 @@
+.log-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.icon-container{
+    background-color: var(--side-background-color);
+}
+
+.logo{
+  width: 15rem;
+  height: 15rem;
+}
+
+.input-container{
+    
+
+    h6{
+        font-size: 18px;
+        margin: 0;
+    }
+    .border{
+        border-radius: 10px;
+        border: 2px solid rgb(187, 187, 187) !important;
+        width: 320px;
+    }
+
+    button{
+        border-radius: 10px;
+        background-color: var(--primary-button);
+    }
+
+    .password-dom{
+        cursor: pointer;
+        font-size: 14px;
+    }
+}
+
+// .mat-mdc-form-field {
+//     height: 32px; /* Adjust the overall height */
+//   }
+  
+// ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field {
+//     padding: 0 !important;
+//     height: 40px;  
+//     // border: 2px solid rgb(212, 212, 212) !important;
+//   }
+  
+// ::ng-deep .mat-mdc-form-field-infix {
+//     height: 40px !important; /* Match the input field height */
+//     padding: 0px !important; /* Adjust horizontal padding */
+    
+//   }
+  
+// ::ng-deep .mat-mdc-input-element {
+//     height: 40px !important; /* Reduce input element height */
+//     line-height: 40px !important; /* Vertically align the text */
+//     padding: 0px !important; /* Match input padding */
+//   }
+
+//   .smaller{
+//     height: 37px;
+//     position: relative;
+//   }
+
+//   .login-h1{
+//     color: var(--primary-button);
+//     font-weight: 500;
+//     font-size: 35px;
+//   }
+  
+  
+  
