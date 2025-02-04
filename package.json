@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-libraries": "ng build && ng build core && ng build shared && ng build routes && ng build test-store-lib",
+    "build-libraries": " ng build core && ng build shared && ng build routes && ng build test-store-lib",
     "build": "npm run build-libraries && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
