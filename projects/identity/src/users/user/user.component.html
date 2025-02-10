@@ -1,0 +1,36 @@
+<div class="p-3 pt-0">
+    <div class="d-flex my-2 justify-content-between align-items-center">
+
+    </div>
+
+    <div>
+      <p class="text-small"><strong>First Name:</strong> {{ userData?.firstName }}</p>
+        <p class="text-small"><strong>Last Name:</strong> {{ userData?.lastName }}</p>
+        <p class="text-small"><strong>Email:</strong> {{ userData?.email }}</p>
+        <p class="text-small"><strong>Username:</strong> {{ userData?.username }}</p>
+        <p class="text-small"><strong>Display Name:</strong> {{ userData?.displayName }}</p>
+        <p class="text-small"><strong>Role:</strong> {{ userData?.role }}</p>
+      <!-- Display other properties of the row data here -->
+    </div>
+    <div >
+        <div class="text-small mb-2">Cambia oassword:</div>
+        <div class="password p-3">
+            <div class="w-50">
+                <mat-form-field appearance="outline" class="w-100 search my-2 width px-2">
+                    <input matInput placeholder="Password corrente" class="ms-2">
+                </mat-form-field>
+            </div>
+            <div class="d-flex">
+                <mat-form-field appearance="outline" class="w-100 search my-2 width px-2">
+                    <input matInput placeholder="Nuova password" class="ms-2">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100 search my-2 width px-2">
+                    <input matInput placeholder="Conferma nuova password" class="ms-2">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="my-3">
+        <button class="btn p-2 px-4">CAMBIA PASSWORD</button>
+    </div>
+</div>

@@ -1,27 +1,30 @@
 import { Routes } from '@angular/router';
 import { sessionRouts } from 'session';
 // import { dashboardRouts } from 'dashboard';
-// import { maintenanceRouts } from 'maintenance';
-// import { monitoringdRouts } from 'monitoring';
-// import { reportsdRouts } from 'reports';
-// import { addUserRouts } from 'add-user';
+import { maintenanceRouts } from 'maintenance';
+import { monitoringdRouts } from 'monitoring';
+import { reportsdRouts } from 'reports';
+import { addUserRouts } from 'identity';
 // import { settingsRouts } from 'settings';
-// import { testRouts } from 'tes-page'
-// import { SanitationLayoutComponent } from 'sanitation-layout'; // Your layout component
+import { testRouts } from 'tes-page'
+import { SanitationLayoutComponent } from 'template-smart-sanitation';
 import { addDeviceRouts } from 'add-device';
 // import { SessionComponent } from 'session'; // Ensure you have the LoginComponent
 import { AuthGuard } from 'core'; // AuthGuard to protect routes
 import { RouteConfig } from 'isakov-shared';
 import { UnauthorizedComponent } from 'shared';
-import { testRouts } from 'routes';
-import { maintenanceRouts } from 'routes';
-import { reportsdRouts } from 'routes';
-import { monitoringdRouts } from 'routes';
-import { addUserRouts } from 'routes'
+// import { testRouts } from 'routes';
+// import { maintenanceRouts } from 'routes';
+// import { reportsdRouts } from 'routes';
+// import { monitoringdRouts } from 'routes';
+// import { addUserRouts } from 'routes'
+import { iotRouts } from 'iot';
+import { assetsRouts } from 'asset';
+import { infrastructureRouts } from 'infrastructure';
 import { settingsRouts } from 'routes';
 import { dashboardRouts } from 'routes'
 import { SessionComponent } from 'routes';
-import { SanitationLayoutComponent } from 'shared';
+// import { SanitationLayoutComponent } from 'shared';
 
 export const routeConfig: RouteConfig[] = [
     { path: '/dashboard', label: 'Dashboard', icon: 'home' },
@@ -49,7 +52,10 @@ export const routes: Routes = [
       ...reportsdRouts,
       ...addDeviceRouts,
       ...addUserRouts,
-      ...settingsRouts,
+      // ...settingsRouts,
+      ...iotRouts,
+      ...assetsRouts,
+      ...infrastructureRouts,
       ...testRouts
     ],
     data: {

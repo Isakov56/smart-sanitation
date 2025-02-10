@@ -24,6 +24,9 @@
       "add-user": [
         "./dist/add-user"
       ],
+      "asset": [
+        "./dist/asset"
+      ],
       "charts-lib": [
         "./dist/charts-lib"
       ],
@@ -32,6 +35,15 @@
       ],
       "dashboard": [
         "./dist/dashboard"
+      ],
+      "identity": [
+        "./dist/identity"
+      ],
+      "infrastructure": [
+        "./dist/infrastructure"
+      ],
+      "iot": [
+        "./dist/iot"
       ],
       "maintenance": [
         "./dist/maintenance"
@@ -59,6 +71,9 @@
       ],
       "shared": [
         "./dist/shared"
+      ],
+      "template-smart-sanitation": [
+        "./dist/template-smart-sanitation"
       ],
       "tes-page": [
         "./dist/tes-page"

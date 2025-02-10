@@ -1,0 +1,17 @@
+.password{
+    background-color: #b8ccff66;
+    border-radius: 10px;
+}
+
+.password ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none; /* Completely remove it from the layout */
+  }
+
+  .password input{
+    background-color: white;
+    margin: 0 !important;
+    padding-left: 0.5rem !important;
+    outline: none !important;
+    border: none !important;
+    border-radius: 4px;
+  }

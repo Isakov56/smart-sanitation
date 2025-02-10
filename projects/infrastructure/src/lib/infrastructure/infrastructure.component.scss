@@ -1,0 +1,81 @@
+.nav-link-icon{
+    font-size: 23px;
+  width: 23px;
+  height: 23px;
+  color: var(--primary-button);
+}
+
+.cerca ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none; /* Completely remove it from the layout */
+  }
+
+  .cerca{
+    min-width: 20rem;
+  }
+
+  /* Add this CSS to your styles (global or component-specific) */
+  .cerca.filter {
+    position: absolute;
+    top: 100%; /* Position the dropdown below the trigger */
+    left: 0;
+    z-index: 9999; /* Ensures it's on top of other elements */
+    width: 100%; /* Ensure dropdown width matches input width */
+  }
+
+  .visible{
+    display: block;
+    width: 20rem !important;
+    position: absolute !important;
+    top: 6.6rem !important;
+    left: 9rem !important;
+  }
+
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+  
+
+  .example-card {
+    flex: 1 1 calc(35% - 60px);
+    max-width: calc(31% - 5px);
+    margin: auto;
+    margin-bottom: 18px;
+    margin-left: 0;
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 18px; 
+    width: 100%; 
+    justify-content: space-between;
+}
+
+@media (max-width: 1300px) {
+    .example-card {
+        flex: 1 1 calc(40% - 20px); 
+        max-width: calc(32% - 0px); 
+    }
+    .card-container{
+      gap: 10px; 
+    }
+}
+
+@media (max-width: 1240px) { 
+    
+    .example-card {
+        flex: 1 1 calc(100% - 0px); 
+        max-width: calc(48% - 2px); 
+    }
+    .card-container{
+      gap: 18px; 
+    }
+    
+}
