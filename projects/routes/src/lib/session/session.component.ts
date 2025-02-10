@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'core'; // Adjust the path based on your project structure
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoginCredentials } from 'shared';
+import { MatOption } from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'lib-session',
@@ -21,6 +25,8 @@ import { LoginCredentials } from 'shared';
     FormsModule,
     CommonModule,
     RouterModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './session.component.html',
@@ -31,7 +37,33 @@ export class SessionComponent implements OnInit {
   password: string = '';
   type: string = 'login';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  @ViewChild('privacyDialog') privacyDialog!: TemplateRef<any>;
+
+  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) {}
+
+  openPrivacyDialog(event: Event) {
+    event.preventDefault(); // Prevent checkbox from being toggled immediately
+
+    const dialogRef = this.dialog.open(this.privacyDialog, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('Dialog closed');
+      // You can add logic here if you want to handle checkbox state
+    });
+  }
+  closeDialog() {
+    this.dialog.closeAll();
+  }
+
+  acceptAndCloseDialog(checkbox: any) {
+    // Check the checkbox
+    checkbox.checked = true;
+
+    // Close the dialog
+    this.dialog.closeAll();
+  }
 
   ngOnInit(): void {
     console.log(this.id, this.password, 'credentials');
