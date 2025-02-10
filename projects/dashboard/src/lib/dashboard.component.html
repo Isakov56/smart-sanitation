@@ -31,14 +31,19 @@
 
         
         <!-- <img src="blob:http://localhost:4200/5b35cf69-fee5-458e-832e-92460c96498f"> -->
-         
     
     <!-- <div class="w-100 card-container mb-4"> -->
       <gridster [options]="options" class=" test ps-0 pe-3">
         <gridster-item *ngFor="let item of layout; let i = index" [item]="item" class="">
           <app-chart [data]="item"></app-chart>
-          
         </gridster-item>
+        <gridster-item *ngIf="layout.length > 0"
+          [item]="{ cols: getCols(), rows: getRows(), x: 1, y: 1 }"
+          class="">
+<div class="p-2">
+<app-table [columns]="columns" [data]="data" class="w-100"></app-table>
+</div>
+</gridster-item>
       </gridster>
       <!-- <app-chart  class="w-100" [data]="getDeviceFromObservable((item | async) || [], item.id)"></app-chart> -->
     <!-- </div> -->

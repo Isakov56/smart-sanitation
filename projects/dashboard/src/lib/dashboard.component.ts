@@ -49,7 +49,8 @@ import { LayoutService } from 'core';
     MatButtonModule,
     CommonModule,
     //  CardComponent,
-    // PieChartComponent, CardLoaderComponent, TableComponent,
+    // PieChartComponent, CardLoaderComponent, 
+    TableComponent,
     ChartComponent,
     GridsterModule,
   ],
@@ -140,6 +141,26 @@ export class DashboardComponent implements OnInit, OnDestroy  {
   streamUrl: SafeUrl | null = null;
   imageUrl: string | undefined = '';
   headers: string = '';
+
+  getCols(): number {
+    return this.columns.length; // Ensure at least 1 col
+  }
+  
+  getRows(): number {
+    return this.data.length > 0 ? Math.ceil(this.data.length / 2) : 1; // Adjust as needed
+  }
+
+  columns = ['Data', 'Infrastruttura', 'Asset', 'Sensore', 'Tipo di manutenzione'];
+  data: any[] = [
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+    { 'Data': '10/11/2024', "Infrastruttura": 'infrastruttura', 'Asset': 'assets', 'Sensore': 'sensore', 'Tipo di manutenzione': 'straordinario' },
+   
+  ];
 
   private drawFrameOnCanvas(blob: Blob): void {
     const reader = new FileReader();
