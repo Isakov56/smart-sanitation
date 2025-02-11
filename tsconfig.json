@@ -80,6 +80,15 @@
       ],
       "test-store-lib": [
         "./dist/test-store-lib"
+      ],
+      "xmaint-asset-lib": [
+        "./dist/xmaint-asset-lib"
+      ],
+      "xmaint-core-lib": [
+        "./dist/xmaint-core-lib"
+      ],
+      "xmaint-dashboard": [
+        "./dist/xmaint-dashboard"
       ]
     },
     "importHelpers": true,

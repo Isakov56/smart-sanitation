@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { sessionRouts } from 'session';
-import { dashboardRouts } from 'dashboard';
+// import { dashboardRouts } from 'dashboard';
+import { dashboardRouts } from 'xmaint-dashboard';
 import { maintenanceRouts } from 'maintenance';
 import { monitoringdRouts } from 'monitoring';
 import { reportsdRouts } from 'reports';
@@ -19,7 +20,8 @@ import { UnauthorizedComponent } from 'shared';
 // import { monitoringdRouts } from 'routes';
 // import { addUserRouts } from 'routes'
 import { iotRouts } from 'iot';
-import { assetsRouts } from 'asset';
+import { assetsRouts} from 'xmaint-asset-lib'
+// import { assetsRouts } from 'asset';
 import { infrastructureRouts } from 'infrastructure';
 // import { settingsRouts } from 'routes';
 // import { dashboardRouts } from 'routes'
