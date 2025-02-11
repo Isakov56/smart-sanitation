@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TableComponent } from 'shared';
+import { TableComponent } from 'xmaint-shared-lib';
 
 @Component({
   selector: 'lib-asset-details',

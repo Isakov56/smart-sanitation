@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
-import { PermissionGuard } from 'core';
-import { RoleGuard } from "core";
+import { PermissionGuard } from 'xmaint-core-lib';
+import { RoleGuard } from "xmaint-core-lib";
 
 export const assetsRouts: Route[] =[
     {

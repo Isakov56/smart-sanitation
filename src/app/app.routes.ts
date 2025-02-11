@@ -1,28 +1,37 @@
 import { Routes } from '@angular/router';
-import { sessionRouts } from 'session';
+// import { sessionRouts } from 'session';
+import { sessionRouts } from 'xmaint-session-lib';
 // import { dashboardRouts } from 'dashboard';
-import { dashboardRouts } from 'xmaint-dashboard';
-import { maintenanceRouts } from 'maintenance';
-import { monitoringdRouts } from 'monitoring';
-import { reportsdRouts } from 'reports';
-import { addUserRouts } from 'identity';
+import { dashboardRouts } from 'xmaint-dashboard-lib';
+// import { maintenanceRouts } from 'maintenance';
+import { maintenanceRouts } from 'xmaint-maintenance-lib';
+// import { monitoringdRouts } from 'monitoring';
+import { monitoringdRouts } from 'xmaint-monitoring-lib';
+// import { reportsdRouts } from 'reports';
+import { reportsdRouts } from 'xmaint-reports-lib';
+// import { addUserRouts } from 'identity';
+import { addUserRouts } from 'xmaint-identity-lib';
 // import { settingsRouts } from 'settings';
 import { testRouts } from 'tes-page'
-import { SanitationLayoutComponent } from 'template-smart-sanitation';
+// import { SanitationLayoutComponent } from 'template-smart-sanitation';
+import { SanitationLayoutComponent } from 'xmaint-template-sanitation-lib';
 import { addDeviceRouts } from 'add-device';
-import { SessionComponent } from 'session'; // Ensure you have the LoginComponent
-import { AuthGuard } from 'core'; // AuthGuard to protect routes
+// import { SessionComponent } from 'session';
+import { SessionComponent } from 'xmaint-session-lib'; 
+import { AuthGuard } from 'xmaint-core-lib'; 
 import { RouteConfig } from 'isakov-shared';
-import { UnauthorizedComponent } from 'shared';
+import { UnauthorizedComponent } from 'xmaint-shared-lib';
 // import { testRouts } from 'routes';
 // import { maintenanceRouts } from 'routes';
 // import { reportsdRouts } from 'routes';
 // import { monitoringdRouts } from 'routes';
 // import { addUserRouts } from 'routes'
-import { iotRouts } from 'iot';
+// import { iotRouts } from 'iot';
+import { iotRouts } from 'xmaint-iot-lib';
 import { assetsRouts} from 'xmaint-asset-lib'
 // import { assetsRouts } from 'asset';
-import { infrastructureRouts } from 'infrastructure';
+// import { infrastructureRouts } from 'infrastructure';
+import { infrastructureRouts } from 'xmaint-infrastructure-lib';
 // import { settingsRouts } from 'routes';
 // import { dashboardRouts } from 'routes'
 // import { SessionComponent } from 'routes';

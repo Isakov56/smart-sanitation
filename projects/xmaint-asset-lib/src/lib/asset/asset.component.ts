@@ -8,7 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CardComponent } from 'shared';
+import { CardComponent } from 'xmaint-shared-lib';
 import { AddAssetModalComponent } from './add-asset-modal/add-asset-modal.component';
 
 @Component({

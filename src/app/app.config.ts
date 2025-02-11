@@ -9,9 +9,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import { ApiInterceptor } from 'core';
+import { ApiInterceptor } from 'xmaint-core-lib';
 import { MatIconModule } from '@angular/material/icon';
-import { DataModule } from 'test-store-lib';
+import { DataModule } from 'xmaint-ngrx-store-lib';
 import { StoreModule } from '@ngrx/store';  // Import StoreModule
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';

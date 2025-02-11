@@ -69,9 +69,6 @@
       "settings": [
         "./dist/settings"
       ],
-      "shared": [
-        "./dist/shared"
-      ],
       "template-smart-sanitation": [
         "./dist/template-smart-sanitation"
       ],
@@ -89,6 +86,42 @@
       ],
       "xmaint-dashboard": [
         "./dist/xmaint-dashboard"
+      ],
+      "xmaint-dashboard-lib": [
+        "./dist/xmaint-dashboard-lib"
+      ],
+      "xmaint-identity": [
+        "./dist/xmaint-identity"
+      ],
+      "xmaint-identity-lib": [
+        "./dist/xmaint-identity-lib"
+      ],
+      "xmaint-infrastructure-lib": [
+        "./dist/xmaint-infrastructure-lib"
+      ],
+      "xmaint-iot-lib": [
+        "./dist/xmaint-iot-lib"
+      ],
+      "xmaint-maintenance-lib": [
+        "./dist/xmaint-maintenance-lib"
+      ],
+      "xmaint-monitoring-lib": [
+        "./dist/xmaint-monitoring-lib"
+      ],
+      "xmaint-ngrx-store-lib": [
+        "./dist/xmaint-ngrx-store-lib"
+      ],
+      "xmaint-reports-lib": [
+        "./dist/xmaint-reports-lib"
+      ],
+      "xmaint-session-lib": [
+        "./dist/xmaint-session-lib"
+      ],
+      "xmaint-shared-lib": [
+        "./dist/xmaint-shared-lib"
+      ],
+      "xmaint-template-sanitation-lib": [
+        "./dist/xmaint-template-sanitation-lib"
       ]
     },
     "importHelpers": true,

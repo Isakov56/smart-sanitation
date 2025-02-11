@@ -905,6 +905,369 @@
           }
         }
       }
+    },
+    "xmaint-identity": {
+      "projectType": "library",
+      "root": "projects/xmaint-identity",
+      "sourceRoot": "projects/xmaint-identity/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-identity/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-identity/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-identity/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-identity/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-dashboard-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-dashboard-lib",
+      "sourceRoot": "projects/xmaint-dashboard-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-dashboard-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-dashboard-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-dashboard-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-dashboard-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-identity-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-identity-lib",
+      "sourceRoot": "projects/xmaint-identity-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-identity-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-identity-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-identity-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-identity-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-infrastructure-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-infrastructure-lib",
+      "sourceRoot": "projects/xmaint-infrastructure-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-infrastructure-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-infrastructure-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-infrastructure-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-infrastructure-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-iot-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-iot-lib",
+      "sourceRoot": "projects/xmaint-iot-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-iot-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-iot-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-iot-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-iot-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-maintenance-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-maintenance-lib",
+      "sourceRoot": "projects/xmaint-maintenance-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-maintenance-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-maintenance-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-maintenance-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-maintenance-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-monitoring-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-monitoring-lib",
+      "sourceRoot": "projects/xmaint-monitoring-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-monitoring-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-monitoring-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-monitoring-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-monitoring-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-reports-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-reports-lib",
+      "sourceRoot": "projects/xmaint-reports-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-reports-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-reports-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-reports-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-reports-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-session-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-session-lib",
+      "sourceRoot": "projects/xmaint-session-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-session-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-session-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-session-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-session-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-template-sanitation-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-template-sanitation-lib",
+      "sourceRoot": "projects/xmaint-template-sanitation-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-template-sanitation-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-template-sanitation-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-template-sanitation-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-template-sanitation-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "xmaint-shared-lib": {
+      "projectType": "library",
+      "root": "projects/xmaint-shared-lib",
+      "sourceRoot": "projects/xmaint-shared-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/xmaint-shared-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/xmaint-shared-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/xmaint-shared-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/xmaint-shared-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
